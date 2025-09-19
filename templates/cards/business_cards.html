@@ -1,0 +1,2097 @@
+{% extends 'cards/generate.html' %}
+
+{% block content %}
+{% load static %}
+
+{% if theme == 1 %}
+
+
+<div class="front-side" id="image">
+  <style>
+    .front-side,
+    .back-side {
+      width: 450px;
+      height: 300px;
+      display: grid;
+      grid-template-columns: 2% 96% 2%;
+      grid-template-rows: 4% 92% 4%;
+      position: relative;
+      margin: 20px auto;
+      overflow: hidden;
+      box-shadow: 2px 5px 15px 0px #17161694;
+      background-color: #122529;
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 150px);
+      grid-template-rows: repeat(8, 50px);
+      grid-gap: 8px;
+      width: 150px;
+      height: 400px;
+      transform: rotate(-45deg);
+    }
+    .black {
+      background-color: #343536;
+      grid-column: 2 / span 2;
+      grid-row: 1 / span 3;
+    }
+    .red1 {
+      background-color: #e45e4f;
+      grid-row: 2 / span 5;
+    }
+    .red2 {
+      background-color: #e45e4f;
+      grid-column: 2 / span 2;
+      grid-row: 4/7;
+    }
+    .green {
+      background-color: #007e67;
+      grid-column: 2/4;
+      grid-row: 7/9;
+    }
+    
+    .info-grid {
+      grid-column: 2/3;
+      grid-row: 2/3;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.363);
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.432);
+      border-radius: 6px;
+      font-size: 0.7rem; /*12px;*/
+      display: grid;
+      grid-template-columns: 15px repeat(3, 1fr) 15px;
+      grid-template-rows: repeat(3, 1fr);
+      line-height: 1px;
+    }
+    .info-grid .name {
+      grid-column: 2 / span 2;
+      grid-row: 1 / span 1;
+      font-size: 1.2em;
+      letter-spacing: .1rem;
+      margin-top: 8px;
+    }
+    .info-grid .name h5{
+      font-weight: unset;
+    }
+    .info-grid .addr {
+      grid-column: 2 / span 2;
+      grid-row: 3;
+    }
+    
+    .info-grid .phoneNo {
+      grid-column: 3 / span 2;
+      grid-row: 2;
+      text-align: end;
+    }
+    .info-grid .qr {
+      grid-column: 4 / span 2;
+      grid-row: 1;
+      text-align: end;
+    }
+    .info-grid .emailId {
+      grid-column: 3 / span 2;
+      grid-row: 3;
+      text-align: end;
+      font-size: 1.1em;
+    }
+    
+    .back-side .name-tag {
+      grid-column: 1 / span 4;
+      grid-row: 2 / span 1;
+      align-self: center;
+      z-index: 2;
+      width: 100%;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.363);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.288);
+      font-size: 0.6rem; /*12px;*/
+      letter-spacing: .1rem;
+      text-align: center;
+    }
+    .name-tag h1,h3{
+      margin: 2px;
+      font-weight: unset;
+    }
+    .credits{
+      margin-top:40px;
+      text-align: center;
+      color: #343536;
+    }
+    .button-container {
+      display: flex;
+
+      flex-direction: column;
+      padding: 0.5rem;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+    
+    .button-container button {
+      margin-top: 5px;
+    }
+    .animated {
+      animation-duration: 0.3s;
+      animation-fill-mode: both;
+    }
+  
+    .fadeInUp {
+      animation-name: fadeInUp;
+    }
+  
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+  
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .hidden {
+      display: none;
+      animation-name: fadeInUp;
+    }
+</style>
+    <div class="color-grid">
+        <div class="black"></div>
+        <div class="red1"></div>
+        <div class="red2"></div>
+        <div class="green"></div>
+    </div>
+    <div class="info-grid">
+        <div class="name">
+            <h2>{{details.name}}</h2>
+            <h5>Role : {{details.role}}</h5>
+        </div>
+        <div class="addr">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px"
+                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="30px" height="30px">
+                <g>
+                    <g>
+                        <path d="M455.139,498.052l-99.132-99.132c-1.532-1.532-3.61-2.392-5.777-2.392h-18.927c-4.512,0-8.17,3.657-8.17,8.17    s3.658,8.17,8.17,8.17h15.542l82.792,82.791H82.362l82.791-82.791h15.542c4.512,0,8.17-3.657,8.17-8.17s-3.658-8.17-8.17-8.17    H161.77c-2.167,0-4.245,0.861-5.777,2.392l-99.132,99.132c-2.337,2.338-3.036,5.851-1.771,8.904    c1.265,3.053,4.244,5.044,7.548,5.044h386.723c3.304,0,6.283-1.99,7.548-5.044C458.175,503.903,457.475,500.39,455.139,498.052z"
+                            fill="#FFFFFF" />
+                    </g>
+                </g>
+                <g>
+                    <g>
+                        <path d="M256,0C161.393,0,84.426,76.968,84.426,171.574c0,35.596,10.808,69.742,31.263,98.756l133.641,188.964    c1.532,2.165,4.019,3.452,6.671,3.452c2.653,0,5.14-1.288,6.671-3.452L396.32,270.32c20.448-29.004,31.256-63.15,31.256-98.746    C427.574,76.968,350.607,0,256,0z M382.971,260.895L256,440.427L129.037,260.905c-18.495-26.234-28.271-57.125-28.271-89.331    C100.766,85.978,170.403,16.34,256,16.34s155.234,69.637,155.234,155.234C411.234,203.78,401.458,234.671,382.971,260.895z"
+                            fill="#FFFFFF" />
+                    </g>
+                </g>
+                <g>
+                    <g>
+                        <path d="M256,92.596c-43.549,0-78.979,35.429-78.979,78.979c0,14.657,4.073,28.988,11.779,41.442    c2.375,3.836,7.41,5.022,11.247,2.649c3.837-2.375,5.023-7.41,2.649-11.247c-6.107-9.87-9.335-21.225-9.335-32.843    c0-34.539,28.099-62.638,62.638-62.638s62.638,28.099,62.638,62.638S290.539,234.213,256,234.213    c-11.617,0-22.974-3.228-32.843-9.335c-3.839-2.376-8.873-1.187-11.247,2.649s-1.189,8.873,2.649,11.247    c12.454,7.706,26.784,11.779,41.44,11.779c43.549,0,78.979-35.429,78.979-78.979C334.979,128.025,299.549,92.596,256,92.596z"
+                            fill="#FFFFFF" />
+                    </g>
+                </g>
+            </svg>
+            <p class="mt-2" style="color: #505050;">{{details.contact}}
+            </p>
+        </div>
+        <div class="qr mt-5" style="margin: 0 0.8rem;" >
+          <p class="mt-2" style="color: #ffffff;">QR code</p> <img src="" style="width: 3.2rem"  alt="QR Code" id="qr">
+       </div>
+        
+        <div class="phoneNo">
+          <svg viewBox="0 0 8 6" xmlns="http://www.w3.org/2000/svg" color="" width="30px">
+            <path d="m0 0h8v6h-8zm.75 .75v4.5h6.5v-4.5zM0 0l4 3 4-3v1l-4 3-4-3z"/>
+          </svg>
+            <p class="mt-2" style="color: #505050;">
+                <strong> {{details.email}}</strong></p>
+               
+        </div>
+
+       
+
+        <div class="emailId">
+            <img width="50px" src="/media/{{details.companylogo}}" alt="">
+            
+            <p class="web m-2" style="font-size: 0.6rem;color:#e3e3e3">
+                <strong>{{details.website}}</strong>
+            </p>
+            <p class="email m-1" style="font-size: 0.6rem;color:#cac8c8" >
+              <strong>{{details.companyemail}}</strong>
+            </p>
+        </div>
+    </div>
+    
+</div> 
+<button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+
+{% elif theme == 2%}
+<style>
+
+ .container {
+  max-width: 100%;
+  margin: auto;
+}
+.display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.display .display-item {
+  flex-grow: 1;
+  padding: 15px;
+}
+.display .display-item > span {
+  display: block;
+  text-align: center;
+  padding: 15px;
+  font-size: 2em;
+}
+.business-card, .flippable-business-card {
+  width: 550px;
+  height: 330px;
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+.business-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #fff 0%, #fff 50%, rgba(0, 200, 200, .4) 50.5%, rgba(0, 200, 200, .6) 100%);
+  color: rgba(0, 0, 0, .8);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.business-card .profile {
+  display: flex;
+  flex-basis: 150px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding: 15px;
+}
+.business-card .profile .profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+}
+.business-card .profile .profile-title {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.business-card .profile .profile-title h2 {
+  font-size: 1.4em;
+}
+.business-card .info {
+  display: flex;
+  flex-grow: 1;
+}
+.business-card .info .info-contact {
+  padding: 15px;
+  display: flex;
+  flex-shrink: 1;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.business-card .info .info-contact a {
+  color: rgba(0, 0, 0, .8);
+}
+.business-card .info .info-contact i {
+  font-size: 1.2em;
+  width: 25px;
+}
+.business-card .info .info-bio {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+  text-align: center;
+  margin: 0rem 1rem 0 2rem;
+}
+.business-card .info .logo {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 20%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+  text-align: center;
+  margin:  0rem 1rem 0 2rem;
+}
+.flippable-business-card {
+  perspective: 1000px;
+}
+.flippable-business-card .front, .flippable-business-card .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.flippable-business-card .front {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.flippable-business-card .front .front-top {
+  height: 150px;
+   background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.flippable-business-card .front .front-top h2, .flippable-business-card .front .front-top h3 {
+  display: block;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .4), -1px -1px 1px rgba(0, 0, 0, .4);
+}
+.flippable-business-card .front .front-top .profile-image {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%) translateY(50%) rotate(45deg);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 4px solid white;
+}
+.flippable-business-card .front .front-top .profile-image:before {
+  content: '';
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  transform: rotate(-45deg);
+  top: -20%;
+  left: -20%;
+  background-size: cover;
+  background-position: center;
+}
+.flippable-business-card .front .front-bottom {
+  height: 150px;
+  display: flex;
+  color: rgba(255, 255, 255, .8);
+  background-color: darkslategray;
+}
+.flippable-business-card .front .front-bottom > div {
+  flex-grow: 1;
+  flex-basis: 50%;
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+.flippable-business-card .front .front-bottom > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-right: 40px;
+  padding-left: 15px;
+}
+.flippable-business-card .front .front-bottom > div:first-child h2 {
+  font-size: 1.4em;
+}
+.flippable-business-card .front .front-bottom > div:last-child {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 40px;
+  padding-right: 15px;
+}
+.flippable-business-card .front .front-bottom > div:last-child a {
+  color: rgba(0, 0, 0, .8);
+}
+.flippable-business-card .front .front-bottom > div:last-child i {
+  font-size: 1.2em;
+  width: 25px;
+}
+.flippable-business-card .front .front-bottom > div:last-child > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.flippable-business-card .back {
+  transform: rotateX(180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: none;
+  background-color: darkslategray;
+  color: rgba(255, 255, 255, .8);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.flippable-business-card .back .title {
+  height: 75px;
+  padding: 15px;
+}
+.flippable-business-card .back .bio {
+  background-color: rgba(255, 255, 255, .1);
+  padding: 15px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  justify-content: space-around;
+}
+.flippable-business-card .back .social {
+  height: 75px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.flippable-business-card .back .social .sms {
+  display: flex;
+  justify-content: space-around;
+  font-size: 2em;
+}
+.flippable-business-card:hover .back {
+  transform: rotateX(360deg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.flippable-business-card:hover .front {
+  transform: rotateX(180deg);
+  box-shadow: none;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
+</style>
+<div class="container" id="image">
+	<div class="display">
+		<div class="display-item">
+			<div class="business-card">
+				<div class="profile">
+					<div class="profile-image">
+            <img width="80px" class="mt-4" src="/media/{{details.companylogo}}" alt="">
+          </div>
+					<div class="profile-title">
+						<h2>{{details.name}}</h2>
+						<h3>{{details.companyname}}</h3>
+						<span>Role : {{details.role}}</span>
+					</div>
+				</div>
+				<div class="info">
+					<div class="info-contact">
+						<span><i class="fa fa-address-card"></i>{{details.contact}}</span>
+						<span><i class="fa fa-at"></i> {{details.website}}</span>
+						<span><i class="fa fa-building-o"></i> <a href="#">{{details.address}}</a></span>
+					</div>
+					<div class="info-bio">
+            <div class="qr" >
+              <p class="" style="color: #ffffff;">QR code</p> <img src="" style="width: 3.2rem"  alt="QR Code" id="qr">
+           </div>
+					
+					</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+    <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+  </div>
+
+</div>
+	
+
+  {% elif theme == 3 %}
+  <style>
+
+    .container {
+      width: 1200px;
+      max-width: 100%;
+      margin: auto;
+    }
+    .display {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .display .display-item {
+      flex-grow: 1;
+      padding: 15px;
+    }
+    .display .display-item > span {
+      display: block;
+      text-align: center;
+      padding: 15px;
+      font-size: 2em;
+    }
+    .business-card, .flippable-business-card {
+      width: 550px;
+      height: 330px;
+      max-width: 100%;
+      border-radius: 4px;
+      margin: 0 auto;
+    }
+    .business-card {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #fff 0%, #fff 50%, rgba(0, 200, 200, .4) 50.5%, rgba(0, 200, 200, .6) 100%);
+      color: rgba(0, 0, 0, .8);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+    .business-card .profile {
+      display: flex;
+      flex-basis: 150px;
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+      padding: 15px;
+    }
+    .business-card .profile .profile-image {
+      background-image: url(https://images.unsplash.com/photo-1507120878965-54b2d3939100?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=57f3676a7820564424855d5e5c6b09e7);
+      background-position: center;
+      background-size: cover;
+      width: 120px;
+      height: 120px;
+      border-radius: 100%;
+    }
+    .business-card .profile .profile-title {
+      padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .business-card .profile .profile-title h2 {
+      font-size: 1.4em;
+    }
+    .business-card .info {
+      display: flex;
+      flex-grow: 1;
+    }
+    .business-card .info .info-contact {
+      padding: 15px;
+      display: flex;
+      flex-shrink: 1;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .business-card .info .info-contact a {
+      color: rgba(0, 0, 0, .8);
+    }
+    .business-card .info .info-contact i {
+      font-size: 1.2em;
+      width: 25px;
+    }
+    .business-card .info .info-bio {
+      display: flex;
+      flex-grow: 1;
+      flex-basis: 50%;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 15px;
+      text-align: center;
+    }
+    .business-card .info .logo {
+      display: flex;
+      flex-grow: 1;
+      flex-basis: 50%;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 15px;
+      text-align: center;
+    }
+    .flippable-business-card {
+      perspective: 1000px;
+    }
+    .flippable-business-card .front, .flippable-business-card .back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 0.5s ease-in-out;
+      transform-style: preserve-3d;
+      background-color: white;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .flippable-business-card .front {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+    .flippable-business-card .front .front-top {
+      height: 150px;
+      background-image: url(https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=b0aa3fbba9c018e93499effa49dd8e83);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .flippable-business-card .front .front-top h2, .flippable-business-card .front .front-top h3 {
+      display: block;
+      padding: 15px;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, .4), -1px -1px 1px rgba(0, 0, 0, .4);
+    }
+    .flippable-business-card .front .front-top .profile-image {
+      position: absolute;
+      height: 120px;
+      width: 120px;
+      bottom: 0;
+      left: 0%;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .flippable-business-card .front .front-top .qr {
+      position: absolute;
+      height: 120px;
+      width: 120px;
+      bottom: 0;
+      right: 0%;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .flippable-business-card .front .front-top .profile-image:before {
+      content: '';
+      width: 140%;
+      height: 140%;
+      position: absolute;
+    }
+    .flippable-business-card .front .front-bottom {
+      height: 150px;
+      display: flex;
+      color: rgba(255, 255, 255, .8);
+      background-color: darkslategray;
+    }
+    .flippable-business-card .front .front-bottom > div {
+      flex-grow: 1;
+      flex-basis: 50%;
+      padding-top: 30px;
+      padding-bottom: 15px;
+    }
+    .flippable-business-card .front .front-bottom > div:first-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding-right: 40px;
+      padding-left: 15px;
+    }
+    .flippable-business-card .front .front-bottom > div:first-child h2 {
+      font-size: 1.4em;
+    }
+    .flippable-business-card .front .front-bottom > div:last-child {
+      display: flex;
+      justify-content: space-around;
+      padding-left: 40px;
+      padding-right: 15px;
+    }
+    .flippable-business-card .front .front-bottom > div:last-child a {
+      color: rgba(0, 0, 0, .8);
+    }
+    .flippable-business-card .front .front-bottom > div:last-child i {
+      font-size: 1.2em;
+      width: 25px;
+    }
+    .flippable-business-card .front .front-bottom > div:last-child > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .flippable-business-card .back {
+      transform: rotateX(180deg);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      box-shadow: none;
+      background-color: darkslategray;
+      color: rgba(255, 255, 255, .8);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .flippable-business-card .back .title {
+      height: 75px;
+      padding: 15px;
+    }
+    .flippable-business-card .back .bio {
+      background-color: rgba(255, 255, 255, .1);
+      padding: 15px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      font-style: italic;
+      justify-content: space-around;
+    }
+    .flippable-business-card .back .social {
+      height: 75px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .flippable-business-card .back .social .sms {
+      display: flex;
+      justify-content: space-around;
+      font-size: 2em;
+    }
+    .flippable-business-card:hover .back {
+      transform: rotateX(360deg);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+    .flippable-business-card:hover .front {
+      transform: rotateX(180deg);
+      box-shadow: none;
+    }
+    .button-container {
+      display: flex;
+
+      flex-direction: column;
+      padding: 0.5rem;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+    
+    .button-container button {
+      margin-top: 5px;
+    }
+    .animated {
+      animation-duration: 0.3s;
+      animation-fill-mode: both;
+    }
+  
+    .fadeInUp {
+      animation-name: fadeInUp;
+    }
+  
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+  
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .hidden {
+      display: none;
+      animation-name: fadeInUp;
+    }
+  </style>
+  <div class="display-item " id="image">
+    <div class="flippable-business-card">
+      <div class="front">
+        <div class="front-top">
+          <div class="profile-image">
+            <img width="80px" style="margin-left: 1rem;" src="/media/{{details.companylogo}}" alt="">
+          </div>
+          <div class="qr" >
+            <p class="" style="color: #ffffff;">QR code</p> <img src="" style="width: 3.2rem"  alt="QR Code" id="qr">
+         </div>
+        </div>
+        <div class="front-bottom">						
+          <div>
+            <h2 class="mt-2">{{details.name}}</h2>
+            <h3>{{details.companyname}}</h3>
+            <span class="mb-3">Role : {{details.role}}</span>
+          </div>
+          <div>
+            <div>
+              <span><i class="fa fa-address-card-o"></i>{{details.contact}}</span>
+              <span><i class="fa fa-at"></i> {{details.website}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <div class="title">
+          <h2>{{details.name}}</h2>
+          <span>Role : {{details.role}}</span>
+        </div>
+        <div class="bio">
+          <p>{{details.companycontact}}</p>
+          <p>{{details.webiste}}</p>
+          <p>{{details.companyemail}}</p>
+        </div>
+        <div class="social">
+          <div class="sms">
+            <div class="sm twitter">
+              <i class="fa fa-twitter"></i>
+            </div>
+            <div class="sm facebook">
+              <i class="fa fa-facebook"></i>
+            </div>
+            <div class="sm pinterest">
+              <i class="fa fa-pinterest"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>  
+</div>
+
+</div>
+
+{% elif theme == 4 %}
+
+<style> 
+  .container {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0 auto;
+    padding: 0 !important;
+ }
+  .card {
+   /* Styling */
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    background: #141414;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+ }
+ /* Back styling */
+  .back {
+    background: #15ccc0;
+    padding: 30px;
+ }
+  .name {
+    color: #3b3b3b;
+    margin-bottom: 0;
+ }
+  p {
+    margin: 0.8em 0;
+ }
+  .info {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    color: #3b3b3b;
+ }
+  .property {
+    color: #fff;
+ }
+ /* Make semi-responsive */
+  @media (max-width: 700px) {
+    .card {
+      transform: scale(0.5);
+   }
+    .container:hover .card {
+      transform: scale(0.5) rotateY(-180deg) translateZ(1px);
+   }
+ }
+  
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
+ </style>
+ <div class="container" id="image">
+   <div class="card">
+     <div class="back side">
+       <h3 class="name">{{details.name}}</h3>
+       <div>Role : {{details.role}}</div>    
+       <img style="float: right;" width="50px"  src="" style="width: 3.2rem;"  alt="QR Code" id="qr">
+       <img style="float: right;margin:0 1rem;" width="50px" src="/media/{{details.companylogo}}" alt="">   
+       <div class="info">
+         <p style="font-size:0.8rem;" class="text-secondary"><span class="property">Email: </span>{{details.email}}</p>
+         <p style="font-size:0.8rem;" class="text-secondary"><span class="property">Company : </span>{{details.companyname}}</p>
+         <p style="font-size:0.8rem;" class="text-secondary"><span class="property">contact: </span>{{details.contact}}</p>
+         <p style="font-size:0.8rem;" class="text-secondary"><span class="property">Website: </span>{{details.website}}</p>
+       </div>
+     </div>
+     
+   </div>
+   
+ </div>
+ <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+{% elif theme == 5 %}
+
+<style>
+  
+  .container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    
+  }
+  
+  .card{
+    height:210px;
+    width:350px;
+    background-color:#95d3f3;
+    position:relative;
+    overflow:hidden;
+    color: #000000;
+    font-weight: bold;
+    z-index: 1;
+    -webkit-box-shadow: 0px 1px 9px 3px #6996ad;
+    -moz-box-shadow: 0px 1px 9px 3px #add6eb;
+    box-shadow: 0px 1px 3px 1px #6996ad;
+  
+  }
+  
+  .card:after{
+    content:'';
+    position:absolute;
+    background-color:#b5d5d5;
+    height:200px;
+    opacity:0.7;
+    width:200px;
+    top:-50px;
+    left:-50px;
+    border-radius:30% 70% 56% 44% / 30% 44% 56% 70%;
+    z-index:-5;
+  }
+  
+  .card:before{
+    content:'';
+    position:absolute;
+    background-color:#7c8696;
+    height:200px;
+    opacity:0.8;
+    width:200px;
+    bottom:-80px;
+    right:-80px;
+    border-radius:52% 48% 0% 100% / 45% 56% 44% 55%;
+    z-index:-484;
+  }
+  
+  .card .content{
+    display:flex;
+    align-items:right;
+    text-align:right;
+    justify-content:flex-end;
+    margin-top:20px;
+    margin-right:20px;
+    flex-direction:column;
+  }
+  
+  .card .content span:nth-child(1){
+    font-size:19px;
+  }
+  
+  .card .content span:nth-child(2){
+    font-size:14px;
+  }
+  
+  .card .content span:nth-child(3){
+    font-size:12px;
+  }
+  
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
+  </style>
+  <div class="container" id="image">
+    <div class="card">
+        <div class="content">
+            <span>{{details.name}}</span>
+            <span>Role : {{details.role}}</span>
+            <span>{{details.email}}</span>
+        </div>
+        <img style="display:inline-block;position:absolute;left:5px;bottom:20px;" width="50px"  src="" style="width: 3.2rem;"  alt="QR Code" id="qr">
+        <img style="display:inline-block;position:absolute;left:50px;bottom:20px;margin:0 1rem;" width="50px" src="/media/{{details.companylogo}}" alt="">   
+        <div class="content">
+            <span>{{details.companyname}}</span>
+            <span>{{details.companycontact}}</span>
+            <span>{{details.website}}</span>
+        </div>
+    </div>
+  </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+  {% endif %}
+  {% if not message %}
+{% if theme == 6 %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+:root {
+    --col: #151c26;
+    --col0: #3E64FF;
+    --dark: #393939;
+    --red: #d12229;
+}
+
+/* inspired from btn*/
+
+.credit {
+    position: absolute;
+    top: 15px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(248, 92, 113);
+    cursor: pointer;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.credit-horizontal {
+    right: 5%;
+}
+
+.credit-vertical {
+    right: -96%;
+}
+
+.credit a {
+    color: #eee;
+    padding: 10px;
+}
+
+.credit:after {
+    box-sizing: border-box;
+    content: "";
+    border: 8px solid;
+    border-color: transparent transparent transparent #eee;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .5s ease-in-out;
+}
+
+.credit:hover::after {
+    right: -3px;
+}
+
+.bg-hover {
+    background-color: #1769ff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: .5s ease-in-out;
+    z-index: -1;
+}
+
+.credit:hover .bg-hover {
+    left: 0;
+}
+  
+.business-hor {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#front, #back {
+    background-color: #fff;
+    width: 500px;
+    height: 350px;
+    position: relative;
+    border-radius: 4px;
+    margin: 0 5px;
+    box-shadow: 0 0 15px #000;
+}
+
+#front::after, #front::before {
+    content: "";
+    background-color: var(--col0);
+    width: 15px;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    border-radius: 20px 0 0 20px;
+    z-index: 2;
+}
+
+#front::before {
+    left: 0px;
+    border-radius: 0 20px 20px 0;
+}
+
+#front::after {
+    right: 0px;
+    border-radius: 20px 0 0 20px;
+}
+
+#front>p {
+    margin-top: 155px;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3em;
+    position: relative;
+}
+
+#front p span {
+    font-weight: 600;
+    color: var(--col0);
+}
+
+#front>p::after, #front>p::before {
+    content: "";
+    width: 160px;
+    height: 4px;
+    background-color: var(--col);
+    margin: 0 20px;
+    border-radius: 4px;
+    top: calc(50% - 2px);
+    position: absolute;
+}
+
+#front>p::before {
+    left: 10px;
+}
+
+#front>p::after {
+    right: 10px;
+}
+
+#front div {
+    background-color: var(--col);
+    color: rgb(230, 230, 230);
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 125px;
+}
+
+#front div p {
+    margin: 0;
+    font-size: 0.8em;
+    padding: 2px;
+}
+
+#front canvas {
+    position: absolute;
+    top: 55px;
+    left: 100px;
+}
+
+#back {
+    display: flex;
+}
+
+#back>div:nth-child(1) {
+    width: 250px;
+}
+
+#back>div:nth-child(1) canvas {
+    position: absolute;
+    left: -25px;
+    top: 60px;
+}
+
+#back>div:nth-child(1) p {
+    position: absolute;
+    top: 140px;
+    font-size: 1.3em;
+    left: 69px;
+    margin: 20px 0;
+}
+
+#back>div:nth-child(1) p span {
+    font-weight: 600;
+    color: var(--col0);
+}
+
+#back .details {
+    width: 250px;
+}
+
+.name {
+    margin: 15px 0 0 45px;
+}
+
+.name h2 {
+    color: var(--col0);
+    font-size: 1.4em;
+}
+
+.name p {
+    font-size: 0.8em;
+}
+
+.details #canvas2, .details #canvas3 {
+    position: absolute;
+}
+
+.details #canvas3 {
+    top: 68px;
+}
+
+.details .contact {
+    margin: 25px 0 0 45px;
+    /* add this so the z-index can have an effect on this element*/
+    position: relative;
+    /*set z-index:2 to make it above the canvas and you can click the links*/
+    z-index: 2;
+}
+
+.details .contact a {
+    color: var(--col) !important;
+}
+
+.contact div p {
+    font-size: 0.8em;
+    margin: 10px;
+    font-weight: 700;
+}
+
+.contact div {
+    display: flex;
+    align-items: center;
+}
+
+.contact div svg {
+    width: 15px;
+    padding: 1px;
+    background-color: var(--col0);
+    border-radius: 1px;
+}
+
+.contact div:nth-of-type(1) svg {
+    width: 11px;
+    padding: 3px;
+}
+
+i {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.changeColor {
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 70px);
+    z-index: 10;
+}
+
+.onGitHub {
+    position: absolute;
+    bottom: 40px;
+    color: var(--col0);
+    left: calc(50% - 61px);
+}
+
+.onGitHub a {
+    color: var(--col0);
+}
+ 
+  
+
+@keyframes moving {
+    50% {
+        left: calc(50% - 40px);
+    }
+}
+
+/* add some responsiveness*/
+
+@media screen and (max-width: 560px) {}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
+</style>
+<div class="business-hor" id="image">
+    <div id="back">
+        <div>
+          <img style="display:inline-block;position:absolute;left:70px;bottom:60px;" width="60px"  src="" style="width: 3.2rem;"  alt="QR Code" id="qr">
+            <p><span>{{details.companyname}}</span></p>
+            <img style="display:inline-block;position:absolute;left:50px;top:80px;margin:0 1rem;" width="80px" src="/media/{{details.companylogo}}" alt="">   
+        </div>
+        <div class="details">
+            <div class="name">
+                <h2 >{{details.name}}</h2>
+                <p>{{details.role}}</p>
+            </div>
+            <canvas id="canvas3"></canvas>
+            <div class="contact">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                        y="0px" viewBox="0 0 513.64 513.64">
+                        <path style="fill: #fff;" d="M499.66,376.96l-71.68-71.68c-25.6-25.6-69.12-15.359-79.36,17.92c-7.68,23.041-33.28,35.841-56.32,30.72
+                            c-51.2-12.8-120.32-79.36-133.12-133.12c-7.68-23.041,7.68-48.641,30.72-56.32c33.28-10.24,43.52-53.76,17.92-79.36l-71.68-71.68
+                            c-20.48-17.92-51.2-17.92-69.12,0l-48.64,48.64c-48.64,51.2,5.12,186.88,125.44,307.2c120.32,120.32,256,176.641,307.2,125.44
+                            l48.64-48.64C517.581,425.6,517.581,394.88,499.66,376.96z" />
+                    </svg>
+                    <p>{{details.companycontact}}</p>
+                </div>
+                <div>
+                    <svg class="w-6 h-6" fill="none" stroke="#fff" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <p><a href="mailto:udaysk963@gmail.com" style="font-size: 0.5rem;">{{details.email}}</a></p>
+                </div>
+                <div>
+                    <svg fill="none" stroke="#fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                        </path>
+                    </svg>
+                    <p>{{details.website}}</p>
+                </div>
+
+                <div>
+
+                    <p><a href="" target="_blank">{{details.website}}</a></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+    <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+    
+    {% elif theme == 7 %}
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Anton|Nunito:300,400');
+
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.center-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.inner-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.bizzy-card-container {
+  min-width: 200px;
+  max-width: 450px;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-wrap: wrap;
+ }
+
+/*=============================
+	     Left Content
+===============================*/
+.biz-card-a {
+  box-shadow: 2px 5px 15px 0px #17161694;
+  width: 160px;
+  height: 220px;
+  background-color: #f2f2f2;
+  float: left;
+  padding: 10px;
+  transition: 0.2s ease;
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+ }
+
+.biz-headshot {
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+  background-size: 132px;   
+  background-repeat: no-repeat;
+  background-position: 50% 6%;
+  border: 1px solid #d8d8d8;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+.biz-pic-drew { background-image: url('/media/{{details.companylogo}}'); }
+
+.biz-words-container { margin-top: 120px; }
+
+.biz-name {
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  color: #252526;
+  font-size: 1rem;
+  margin-bottom: 2px;
+ }
+
+.biz-title {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  color: #252526;
+  font-size: 0.7rem;
+  line-height: 1.3;
+  max-width: 80px;
+  margin-left: 20px;
+ }
+
+
+/*=============================
+	     Right Content
+===============================*/
+.biz-card-b {
+  width: 230px;
+  height: 220px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  transition: 0.2s ease;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+ }
+
+.biz-shape {
+  float:right;
+  background: #ff4d79;
+  background: -webkit-linear-gradient(-45deg, #ff4d79 0%, #ea2e6d 100%);
+  background: -ms-linear-gradient(-45deg, #ff4d79 0%, #ea2e6d 100%);
+  background: linear-gradient(135deg, #ff4d79 0%, #ea2e6d 100%);
+  transform: scaleX(1) rotate(50deg);
+  top: 0;
+  bottom: 0;
+  height: 308px;
+  margin: -28px -55px 0 0;
+  border-radius: 50px;
+  width: 100%;
+  color: #fff;
+  border: 2px solid #fff;
+ }
+
+.biz-contact-box {
+  position: absolute;	
+  margin-top: 140px;
+  margin-left: 1px;
+  width: 210px;
+  transform: scaleX(1) rotate(-50deg);
+ }
+
+.biz-email:before, 
+.biz-cell:before,
+.biz-portfolio:before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  float: left;
+  margin: -7px 9px 0 0;
+} 
+
+.biz-email:before { background: url("https://drewgoff.com/images/business-card/email.svg") no-repeat; }
+.biz-cell:before   { background: url("https://drewgoff.com/images/business-card/cellphone.svg") no-repeat; }
+.biz-portfolio:before   { background: url("https://drewgoff.com/images/business-card/suitcase.svg") no-repeat; }
+
+.biz-email, .biz-cell, 
+.biz-portfolio {
+  color: #252526;	
+  font-size: 11px; 
+  letter-spacing: 0.15rem;
+  margin-bottom: 10px; 
+  margin-left: 20px;
+   cursor: pointer;
+   padding-top: 5px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+ }
+
+/*=============================
+	 Business Card Mobile
+===============================*/
+@media screen and (max-width: 470px) {
+
+.biz-card-a, .biz-card-b { margin-left: 20%; }
+
+.biz-card-a {
+  width: 240px;
+  height: 185px;
+  border-top-right-radius: 18px;
+  border-bottom-left-radius: 0;
+ }
+
+.biz-headshot { margin-top: 6px; }
+
+.biz-card-b {
+  width: 240px;
+  height: 180px;
+  border-bottom-left-radius: 18px;   
+  border-top-right-radius: 0;
+ }
+
+.biz-shape {
+  transform: scaleX(1) rotate(77deg);
+  margin: -13px -60px 0 0;
+ }
+
+.biz-contact-box { transform: scaleX(1) rotate(-77deg); }
+
+.biz-contact-box {
+  position: absolute;	
+  margin-top: 120px;
+  margin-left: -20px;
+  width: 210px;
+ }
+}
+
+@media screen and (max-width: 375px) {
+.biz-card-a, .biz-card-b { margin-left: 11%; }
+}
+
+@media screen and (max-width: 320px) {
+.biz-card-a, .biz-card-b { margin-left: 5%; }
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
+
+    </style>
+    <div class="center-container" >
+      <div class="inner-card-container" id="image">
+        <div class="bizzy-card-container">
+
+          <div class="biz-card-a">
+            <div class="biz-headshot biz-pic-drew">
+              <div class="biz-words-container">
+                <div class="biz-name">{{details.name}}</div>
+                <div class="biz-title">{{details.role}}</div>
+              </div>
+            </div>
+          </div>
+          <img style="position:absolute;right:50px;top:20px;z-index:111;" width="60px"  src=""  alt="QR Code" id="qr">
+          <div class="biz-card-b">
+            <div class="biz-shape">
+              <div class="biz-contact-box">
+               
+                <div class="biz-email">
+                  <a href="mailto:drew@drewgoff.com">
+			  {{details.email}}
+			 </a>
+                </div>
+
+                <div class="biz-cell">
+                  <a href="tel:317-910-5607">{{details.companycontact}}</a>
+                </div>
+
+                <div class="biz-portfolio">
+                  <a href="{{details.website}}">{{details.website}}</a>
+                </div>
+
+              </div>
+              <!--biz-contact-box-->
+            </div>
+            <!--biz-shape-->
+          </div>
+
+        </div>
+        <!--bizzy-card-container-->
+      </div>
+      <!--inner-card-container-->
+      
+  </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+  {% elif theme == 8 %}
+  <style>
+    .business-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      height: 250px;
+      width: 500px;
+      background: #f12e50;
+      border-radius: 30px;
+   }
+    .business-card:before, .business-card:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+   }
+    .business-card:before {
+      background: #ee0c4b;
+      border-top-right-radius: 30px;
+      clip-path: polygon(20% 0, 100% 0, 100% 30%, 40% 70%);
+   }
+    .business-card:after {
+      background: #c80e3d;
+      border-bottom-right-radius: 30px;
+      clip-path: polygon(40% 70%, 100% 30%, 100% 100%, 48.5% 100%);
+   }
+    div {
+      z-index: 2;
+   }
+    .bc__logo {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+   }
+    .bc__logo figure {
+      position: relative;
+      display: inline-block;
+      height: 4em;
+      width: calc(4em * 0.57735);
+      border-radius: 0.5em/0.25em;
+      background: white;
+      transform: rotate(90deg);
+   }
+    .bc__logo figure:before, .bc__logo figure:after {
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      border-radius: inherit;
+      background: inherit;
+      content: '';
+   }
+    .bc__logo figure:before {
+      transform: rotate(60deg);
+   }
+    .bc__logo figure:after {
+      transform: rotate(-60deg);
+   }
+    .bc__logo i {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 25%;
+      width: 70%;
+      background: #ee0c4b;
+      transform: skew(-30deg) rotate(-90deg);
+      z-index: 2;
+   }
+    .bc__logo i:before, .bc__logo i:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 75%;
+      background: inherit;
+      z-index: 5;
+   }
+    .bc__logo i:before {
+      top: -82%;
+      right: 24%;
+      transform: skew(-40deg) rotate(90deg);
+   }
+    .bc__logo i:after {
+      bottom: -85%;
+      right: 23%;
+      transform: skew(-40deg) rotate(90deg);
+   }
+    .bc__logo h2 {
+      display: inline-block;
+      padding-left: 0.65em;
+      color: white;
+      font-size: 1.5em;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 2;
+      vertical-align: top;
+   }
+    .bc__tagline {
+      position: absolute;
+      bottom: 10%;
+      right: 5%;
+      color: white;
+      line-height: 1.4;
+      text-align: right;
+   }
+    .bc__tagline em {
+      font-weight: 600;
+      font-style: italic;
+   }
+    .credit {
+      position: absolute;
+      bottom: 15%;
+      width: 100%;
+      color: white;
+      text-align: center;
+   }
+    .credit a {
+      color: #ea4c89;
+      text-decoration: none;
+   }
+    
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+</style>
+  <div class='business-card' id="image">
+      <div class='bc__logo'>
+        <img width="80px" src="/media/{{details.companylogo}}" alt="">
+        <h2>{{details.name}}</h2> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.role}}</h6> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.email}}</h6> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.companyname}}</h6> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.companycontact}}</h6> <br>
+      </div>
+      <div class='bc__tagline'>
+        <img style="position:absolute;right:300px;bottom:10px;z-index:111;" width="40px"  src=""  alt="QR Code" id="qr">
+      </div>
+   </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+  
+
+ {% endif %}
+{% endif %}
+
+
+<script>
+  document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href
+  console.log(qr)
+  function screen() {
+    const render = node =>
+      domtoimage.toPng(node)
+        .then(dataUrl => {
+          console.log(performance.now() - pf)
+          const img = new Image();
+          img.src = dataUrl;
+          showButtons(dataUrl);
+          //console.log(img.src)
+         
+        })
+        .catch(error =>
+          console.error('oops, something went wrong!', error)
+        );
+
+    const image = document.getElementById('image');
+
+    var pf = performance.now();
+    render(image);
+  }
+  var buttonContainer = null;
+  function showButtons(imageUrl) {
+    // Create buttons
+    if (!buttonContainer) {
+      // Create the button container
+      buttonContainer = document.createElement('div');
+      buttonContainer.classList.add('button-container');
+
+      // Create buttons
+      var copyButton = createButton('Copy URL', 'btn-primary');
+      var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+      var instagramButton = createButton('Share on Instagram', 'btn-danger');
+
+      // Append buttons to the container
+      buttonContainer.appendChild(copyButton);
+      buttonContainer.appendChild(whatsappButton);
+      buttonContainer.appendChild(instagramButton);
+
+      // Append the button container to the document body
+          
+      // Append the container after the "Share" button
+      var shareButton = document.querySelector('.share-btn');
+      shareButton.insertAdjacentElement('afterend', buttonContainer);
+
+
+      copyButton.addEventListener('click', function () {
+        copyUrlToClipboard(imageUrl);
+      });
+
+      whatsappButton.addEventListener('click', function () {
+        shareOnWhatsApp(imageUrl);
+      });
+
+      instagramButton.addEventListener('click', function () {
+        shareOnInstagram(imageUrl);
+      });
+    }
+    else{
+      buttonContainer.classList.toggle('hidden');
+  }
+}
+
+  function createButton(text, className) {
+    var button = document.createElement('button');
+    button.innerText = text;
+    button.classList.add('btn', className);
+    return button;
+  }
+  function copyUrlToClipboard(url) {
+    // Copy the URL to the clipboard
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        alert('URL copied to clipboard');
+      })
+      .catch(error => {
+        console.error('Failed to copy URL to clipboard', error);
+      });
+  }
+  
+  function shareOnWhatsApp(url) {
+    // Open WhatsApp with the image URL
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+  }
+  
+  function shareOnInstagram(url) {
+    // Open Instagram with the image URL
+    window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+  }
+  
+  
+  
+  
+  
+</script>
+    {% endblock content %}

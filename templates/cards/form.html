@@ -1,0 +1,179 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    /* General body styling with padding and background */
+    body {
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        padding-top: 100px;
+        color:black;
+    }
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    color: #9f0d0d;
+    font-size: 16px;
+    padding: 8px 0px;
+    margin-left: 26px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    font-weight: 500;
+}
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+        color: #333;
+    }
+
+    .form-control {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .btn {
+        background-color: #343a40;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #212529;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 850px) {
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button {
+            width: 50% !important;
+        }
+    }
+
+    /* Styling for inputs */
+    input[type="file"] {
+        padding: 6px;
+    }
+
+    /* Flexbox layout for form */
+    .container-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    /* Submit button styling */
+    .button {
+        width: 15%;
+        padding: 10px;
+    }
+</style>
+
+<div class="container">
+    <form action="{% url 'cards:generateForm' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container-flex">
+            <!-- Personal Details Section -->
+            <div>
+                <h2 class="h4 mt-2">Enter Your Details:</h2>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required placeholder="Enter your name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Id:</label>
+                    <input type="email" class="form-control" id="email" required placeholder="Enter your Email Id" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="role">Your Role:</label>
+                    <input type="text" class="form-control" id="role" required placeholder="Enter your role" name="role">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone No:</label>
+                    <input type="text" class="form-control" id="phone" required placeholder="Enter Phone Number" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="profileimage">Profile Image:</label>
+                    <input class="form-control" name="profileimage" required type="file" id="formFile">
+                </div>
+            </div>
+
+            <!-- Company Details Section -->
+            <div>
+                <h2 class="h4 mt-2">Enter The Company Details:</h2>
+                <div class="form-group">
+                    <label for="companyname">Company Name</label>
+                    <input type="text" class="form-control" id="companyname" required placeholder="Enter company name" name="companyname">
+                </div>
+                <div class="form-group">
+                    <label for="companylogo">Company Logo:</label>
+                    <input class="form-control" name="logo" required type="file" id="formFile">
+                </div>
+                <div class="form-group">
+                    <label for="website">Linkedin Url:</label>
+                    <input type="text" class="form-control" id="website" placeholder="Enter Linkedin Url" name="website">
+                </div>
+                <div class="form-group">
+                    <label for="company_website">Company Website:</label>
+                    <input type="text" class="form-control" id="company_website" placeholder="Enter Company Website" name="company_website">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" placeholder="Enter Company Address" name="address">
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div>
+                <h2 class="h4 mt-2">Upload Gallery Images:</h2>
+                <div class="form-group">
+                    <label for="gallery_image1">Gallery Image 1:</label>
+                    <input class="form-control" name="gallery_image1" type="file">
+                </div>
+                <div class="form-group">
+                    <label for="gallery_image2">Gallery Image 2:</label>
+                    <input class="form-control" name="gallery_image2" type="file">
+                </div>
+                <div class="form-group">
+                    <label for="gallery_image3">Gallery Image 3:</label>
+                    <input class="form-control" name="gallery_image3" type="file">
+                </div>
+                <div class="form-group">
+                    <label for="gallery_image4">Gallery Image 4:</label>
+                    <input class="form-control" name="gallery_image4" type="file">
+                </div>
+                <div class="form-group">
+                    <label for="gallery_image5">Gallery Image 5:</label>
+                    <input class="form-control" name="gallery_image5" type="file">
+                </div>
+                <div class="form-group">
+                    <label for="gallery_image6">Gallery Image 6:</label>
+                    <input class="form-control" name="gallery_image6" type="file">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="display: flex; justify-content: center;">
+            <button type="submit" class="btn p-2 m-5 button">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

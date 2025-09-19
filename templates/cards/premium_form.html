@@ -1,0 +1,311 @@
+
+
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    /* General body styling with padding and background */
+    body {
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        padding-top: 100px;
+        color: black;
+    }
+    
+    .navbar-expand-md .navbar-nav .nav-link {
+        color: #9f0d0d;
+        font-size: 16px;
+        padding: 8px 0px;
+        margin-left: 26px;
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+        font-weight: 500;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+        color: #333;
+    }
+
+    .form-control {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .btn {
+        background-color: #343a40;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #212529;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 850px) {
+        .container-flex {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button {
+            width: 50% !important;
+        }
+    }
+
+    /* Styling for inputs */
+    input[type="file"] {
+        padding: 6px;
+    }
+
+    /* Flexbox layout for form */
+    .container-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    /* Submit button styling */
+    .button {
+        width: 15%;
+        padding: 10px;
+    }
+
+    input::placeholder {
+        color: black;
+        font-size: 12px;
+    }
+
+</style>
+
+<div class="container">
+
+    {% if messages %}
+    <div class="container-fluid p-0 m-0">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Hey <b>{{ request.user.username }}</b>! {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<h3>Create Premium Card</h3>
+<form action="{% if premium_detail %}{% url 'cards:generate_premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="container-flex">
+        <!-- Personal Details Section -->
+        <div>
+            <h2 class="h4 mt-2">Enter Your Details:</h2>
+
+            <div class="form-group">
+                <label for="name"><span style="color:red;">*</span> Name: </label>
+                <input type="text" class="form-control" name="name" placeholder="Enter your name" value="{{ premium_detail.name|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><span style="color:red;">*</span> Personal Email:</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter your email" value="{{ premium_detail.email|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role"><span style="color:red;">*</span> Role:</label>
+                <input type="text" class="form-control" name="role" placeholder="Enter your role" value="{{ premium_detail.role|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="profileimage"><span style="color:red;">*</span> Profile (Personal / Company):</label>
+                <input type="file" class="form-control" name="profileimage" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><span style="color:red;">*</span> Phone Number 1:</label>
+                <input type="text" class="form-control" name="phone" placeholder="Enter your phone number" value="{{ premium_detail.phone|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_secondary">Phone Number 2:</label>
+                <input type="text" class="form-control" name="phone_secondary" placeholder="Enter your secondary phone number" value="{{ premium_detail.phone_secondary|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="whatsapp_no"><span style="color:red;">*</span> WhatsApp No:</label>
+                <input type="text" class="form-control" name="whatsapp_no" placeholder="Enter your WhatsApp number" value="{{ premium_detail.whatsapp_no|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="companyname"><span style="color:red;">*</span> Company / Business Name:</label>
+                <input type="text" class="form-control" name="companyname" placeholder="Enter your company name" value="{{ premium_detail.companyname|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company_email"><span style="color:red;">*</span> Company / Business Email:</label>
+                <input type="email" class="form-control" name="company_email" placeholder="Enter your company email" value="{{ premium_detail.company_email|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="companylogo"><span style="color:red;">*</span> Banner Image:</label>
+                <input type="file" class="form-control" name="companylogo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Any Website to Clite Show:</label>
+                <input type="url" class="form-control" name="website" placeholder="Enter your website URL (https://www.client_show.in/)" value="{{ premium_detail.website|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="company_website">Company Website:</label>
+                <input type="url" class="form-control" name="company_website" placeholder="Enter your company website URL (https://www.websenz.in/)" value="{{ premium_detail.company_website|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="address"><span style="color:red;">*</span> Address Proper Written:</label>
+                <input type="text" class="form-control" name="address" placeholder="Off. No. 7, 2nd Floor, Shri Gurudatta Housing Society, 1089, Shukrawar Peth, Swargate Corner, Pune, India, Maharashtra" value="{{ premium_detail.address|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location_url"><span style="color:red;">*</span> Location URL (copy from google link):</label>
+                <input type="url" class="form-control" name="location_url" placeholder="Enter your location URL (https://maps.app.goo.gl/5PzZSSj7PJ3TEggs5)" value="{{ premium_detail.location_url|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="start_year">Company Start Date:</label>
+                <input type="date" class="form-control" id="start_year" name="start_year" 
+                       value="{{ premium_detail.start_year|default:'' }}" 
+                       min="1800-01-01" max="{{ current_year }}-12-31" 
+                       placeholder="Select the start date">
+                <small class="form-text text-muted">Choose the date the company was started.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="nature_of_business"><span style="color:red;">*</span> Nature of Business:</label>
+                <input type="text" class="form-control" name="nature_of_business" placeholder="Web Development" value="{{ premium_detail.nature_of_business|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="speciality_1"><span style="color:red;">*</span> Specialty 1:</label>
+                <input type="text" class="form-control" name="speciality_1" placeholder="Enter your first specialty" value="{{ premium_detail.speciality_1|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="speciality_2">Specialty 2:</label>
+                <input type="text" class="form-control" name="speciality_2" placeholder="Enter your second specialty" value="{{ premium_detail.speciality_2|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="speciality_3">Specialty 3:</label>
+                <input type="text" class="form-control" name="speciality_3" placeholder="Enter your third specialty" value="{{ premium_detail.speciality_3|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium1">Gallery Image 1 (Identi-Size):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium1">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium2">Gallery Image 2 (Vertical):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium2">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium3">Gallery Image 3 (Horizontal):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium3">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium4">Gallery Image 4 (Identi-Size):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium4">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium5">Gallery Image 5 (Identi-Size):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium5">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium6">Gallery Image 6 (Dimensions: 200px height and width):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium6">
+            </div>
+
+            <div class="form-group">
+                <label for="gallery_imagePrimium7">Gallery Image 7 (Identi-Size):</label>
+                <input type="file" class="form-control" name="gallery_imagePrimium7">
+            </div>
+
+            <!-- Social Media Section -->
+            <h2 class="h4 mt-4">Social Media Links:</h2>
+            <div class="form-group">
+                <label for="facebook_url">Facebook URL:</label>
+                <input type="url" class="form-control" name="facebook_url" placeholder="Enter your Facebook URL" value="{{ premium_detail.facebook_url|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="twitter_url">Twitter URL:</label>
+                <input type="url" class="form-control" name="twitter_url" placeholder="Enter your Twitter URL" value="{{ premium_detail.twitter_url|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="instagram_url">Instagram URL:</label>
+                <input type="url" class="form-control" name="instagram_url" placeholder="Enter your Instagram URL" value="{{ premium_detail.instagram_url|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="youtube_url">YouTube URL:</label>
+                <input type="url" class="form-control" name="youtube_url" placeholder="Enter your YouTube URL" value="{{ premium_detail.youtube_url|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="pinterest_url">Pinterest URL:</label>
+                <input type="url" class="form-control" name="pinterest_url" placeholder="Enter your Pinterest URL" value="{{ premium_detail.pinterest_url|default:'' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin_url"><span style="color:red;">*</span> LinkedIn URL:</label>
+                <input type="url" class="form-control" name="linkedin_url" placeholder="Enter your LinkedIn URL" value="{{ premium_detail.linkedin_url|default:'' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telegram_url">Telegram URL:</label>
+                <input type="url" class="form-control" name="telegram_url" placeholder="Enter your Telegram URL" value="{{ premium_detail.telegram_url|default:'' }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="last_message"><span style="color:red;">*</span> Last Message:</label>
+            <textarea class="form-control" name="last_message" rows="4" placeholder="Enter your message here" required>{{ premium_detail.last_message|default:'' }}</textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="display: flex; justify-content: center;">
+            <button type="submit" class="btn p-2 m-5 button">Submit</button>
+        </div>
+</form>
+
+
+
+</div>
+
+{% endblock content %}
+
+
+
+

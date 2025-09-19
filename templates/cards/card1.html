@@ -1,0 +1,356 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="{% static 'card-1/style.css' %}">
+    <title>Profile Card</title>
+    <style>
+        .card:before {
+            background-image: url("/media/{{details.profileimage}}");
+        }
+    </style>
+</head>
+<body>
+	<a href="{% url 'cards:edit_card' id=details.id %}" class="btn btn-warning">Edit</a>
+
+	<div class="modal" >
+		<img src="/media/{{ details.companylogo }}" alt="">
+		<div class="close"></div>
+	</div>
+	
+  
+
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <a href="#" class="mail">
+                    <i class="" style=" color: black;font-size: 0.01px;margin-top: 251px;"><img src="" style="width: 2.2rem;    padding-top: 673%;"  alt="QR Code" id="qr"></i>
+                </a>
+                <div class="main">
+                    <div class="image" style="background: url('{{ details.companylogo.url }}') no-repeat center / cover;background-color: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px);">
+                        <div class="hover">
+                            <i class="fa fa-camera fa-2x"></i>
+                        </div>
+                    </div>
+                    <h3 class="name">{{details.name|title}}</h3>
+                    <h3 class="sub-name"> <i class="fa fa-id-badge"style="font-size:105x"></i> {{details.role|title}}</h3>
+                </div>
+            </div>
+
+			
+
+            <div class="content">
+                <div class="left">
+                    <div class="about-container">
+                        <p class="text" id="aboutText">
+                            <i class="fa fa-map-marker" style="font-size:11px"></i>
+                            {{details.address}}
+                        </p>
+                        <a id="readMoreBtn" href="javascript:void(0)" onclick="toggleText()" style="font-size:10px; display: none;color:black;text-decoration: none;">more info ...</a>
+
+
+                        <div class="buttons-wrap">
+							<div class="follow-wrap">
+                                <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3APrasad%20Yalmar%0ATEL%3BTYPE%3DCELL%3A{{details.phone}}%0AEND%3AVCARD" download="{{details.name|title}}.vcf" class="follow">save contact</a>
+                            </div>
+                            <!-- <div class="share-wrap">
+                                <a href="#" class="share">Share</a>
+                            </div> -->
+                        </div>
+
+                        <div class="icons-container2">
+                            <a href="tel:{{details.phone}}" class="icon1">
+								<i class="fa fa-phone"></i>
+								Call
+							</a>
+							
+							<a href="https://wa.me/{{details.phone}}?text=Hi%20{{details.name|title}}" class="icon2" target="_blank">
+                                <i class="fa fa-whatsapp" style='font-size:28px;'></i>
+                                WhatsApp
+                            </a>
+							
+							<a href="mailto:{{details.email}}" class="icon3">
+								<i class="fa fa-envelope"></i>
+								Email
+							</a>
+							
+							<a href="https://www.google.com/maps/dir/?api=1&destination={{details.address}}" class="icon4" target="_blank">
+								<i class="fas fa-map-marker-alt"></i>
+								Location
+							</a>
+							
+							
+                            <!-- <a href="#" class="icon">
+                                <i class="fa fa-envelope"></i>
+                            </a> -->
+                        </div>
+    
+                    </div>
+                
+                    <div class="icons-container">
+                        <a href="{{details.website}}"target="_blank" class="icon">
+                            <i class="fa fa-linkedin-square	"></i>
+                        </a>
+
+						<a href="{{details.company_website}}"target="_blank" class="icon">
+                            <i class="fa fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <div class="modal">
+        <img src="{% static 'card-1/img/images.jpg' %}" alt="">
+        <div class="close"></div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <a href="#" class="mail">
+                </a>
+                <div class="main">
+                    <h3 class="name" style="padding-top:40px">GALLERY</h3>
+                    <h3 class="sub-name"><i class="fa fa-id-badge" style="font-size:10px"></i> Freelancer</h3>
+                </div>
+            </div>
+			<div class="content">
+				<div class="grid m-0 p-0">
+					<div class="item">
+						{% if details.gallery_image1 %}
+						<a href="#" class="open-gallery">
+							<img class="gallery-img" src="{{ details.gallery_image1.url }}" alt="Gallery Image 1">
+						</a>
+						{% endif %}
+					</div>
+			
+					<div class="item">
+						{% if details.gallery_image2 %}
+						<a href="#" class="open-gallery">
+							<img class="gallery-img" src="{{ details.gallery_image2.url }}" alt="Gallery Image 2">
+						</a>
+						{% endif %}
+					</div>
+			
+					<div class="item">
+						{% if details.gallery_image3 %}
+						<a href="#" class="open-gallery">
+							<img class="gallery-img" src="{{ details.gallery_image3.url }}" alt="Gallery Image 3">
+						</a>
+						{% endif %}
+					</div>
+			
+					<div class="item">
+						{% if details.gallery_image4 %}
+						<a href="#" class="open-gallery">
+							<img class="gallery-img" src="{{ details.gallery_image4.url }}" alt="Gallery Image 4">
+						</a>
+						{% endif %}
+					</div>
+			
+					<div class="item">
+						{% if details.gallery_image5 %}
+						<a href="#" class="open-gallery">
+							<img class="gallery-img" src="{{ details.gallery_image5.url }}" alt="Gallery Image 5">
+						</a>
+						{% endif %}
+					</div>
+			
+					<div class="item">
+						{% if details.gallery_image6 %}
+						<a href="#" class="open-gallery">
+							<img class="gallery-img" src="{{ details.gallery_image6.url }}" alt="Gallery Image 6">
+						</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			
+        </div>
+    </div>
+	<style>
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr); /* Two columns */
+			gap: 10px; /* Gap between items */
+		}
+	
+		.item {
+			width: 100%; /* Each item takes up the full width of its grid cell */
+			height: 150px; /* Smaller height */
+			overflow: hidden;
+			position: relative;
+		}
+	
+		.gallery-img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; /* Ensures the image covers the entire area while keeping its aspect ratio */
+			transition: transform 0.3s ease-in-out;
+		}
+	
+		.item:hover .gallery-img {
+			transform: scale(1.05); /* Slightly enlarge on hover */
+		}
+	
+		/* Optional media query for responsive design */
+		@media (max-width: 600px) {
+			.grid {
+				grid-template-columns: 1fr; /* Switch to one column on smaller screens */
+			}
+		}
+	</style>
+	
+	<div class="container">
+        <div class="card">
+            <div class="header">
+                <a href="#" class="mail">
+                </a>
+                <div class="main">
+                    <h3 class="name" style="padding-top:40px">GALLERY</h3>
+                    <h3 class="sub-name"><i class="fa fa-id-badge" style="font-size:10px"></i> Freelancer</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div>
+
+					<div id="user-actions">
+					<button  class="btn btn-primary regButton share-btn" onclick="showButtons()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Share </button> <br>
+					<button class="btn btn-primary regButton download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button> <br>
+				
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <span class="close" id="close-gallery">&times;</span>
+        <img src="" alt="Gallery Image" id="gallery-image">
+    </div>
+
+   
+
+    <script src="{% static 'card-1/app.js' %}"></script>
+	<script src=" {% static 'cards/card1/js/jquery-1.9.1.min.js' %} " type="text/javascript"></script>
+	<script src=" {% static 'cards/card1/js/jquery-migrate-1.2.1.js' %} "></script>
+	<script src=" {% static 'cards/card1/js/jquery.easing.1.3.js' %} " type="text/javascript"></script>
+	<script src=" {% static 'cards/card1/js/jquery.scrollTo-min.js' %} " type="text/javascript"></script>
+	<script src=" {% static 'cards/card1/js/waypoints.js' %} " type="text/javascript"></script>
+	<script src=" {% static 'cards/card1/js/jquery.quicksand.js' %} " type="text/javascript"></script>
+	<script src=" {% static 'cards/card1/js/modernizr.custom.js' %} "></script>
+	<script src=" {% static 'cards/card1/js/jquery.magnific-popup.js' %} " type="text/javascript"></script>
+	<script src=" {% static 'cards/card1/js/script.js' %} " type="text/javascript"></script>
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script>
+		document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
+		document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+		document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+		document.getElementById("linkedin").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+		document.getElementById("whatsapp").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+		
+		document.getElementById("twitter2").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+		document.getElementById("facebook2").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+		document.getElementById("linkedin2").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+		document.getElementById("whatsapp2").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+		var buttonContainer = null;
+		function showButtons() {
+			// Create buttons
+			if (!buttonContainer) {
+			  // Create the button container
+			  buttonContainer = document.createElement('div');
+			  buttonContainer.classList.add('button-container');
+		
+			  // Create buttons
+			  var copyButton = createButton('Copy URL', 'btn-primary');
+			  var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+			  var instagramButton = createButton('Share on Instagram', 'btn-danger');
+		
+			  // Append buttons to the container
+			  buttonContainer.appendChild(copyButton);
+			  buttonContainer.appendChild(whatsappButton);
+			  buttonContainer.appendChild(instagramButton);
+		
+			  // Append the button container to the document body
+				  
+			  // Append the container after the "Share" button
+			  var shareButton = document.querySelector('.share-btn');
+			  shareButton.insertAdjacentElement('afterend', buttonContainer);
+				
+		
+			  copyButton.addEventListener('click', function () {
+				copyUrlToClipboard(window.location.href);
+			  });
+		
+			  whatsappButton.addEventListener('click', function () {
+				shareOnWhatsApp(window.location.href);
+			  });
+		
+			  instagramButton.addEventListener('click', function () {
+				shareOnInstagram(window.location.href);
+			  });
+			}
+			else{
+			  buttonContainer.classList.toggle('hidden');
+		  }
+		}
+		
+		  function createButton(text, className) {
+			var button = document.createElement('button');
+			button.innerText = text;
+			button.classList.add('btn', className);
+			return button;
+		  }
+		  function copyUrlToClipboard(url) {
+			// Copy the URL to the clipboard
+			navigator.clipboard.writeText(url)
+			  .then(() => {
+				alert('URL copied to clipboard');
+			  })
+			  .catch(error => {
+				console.error('Failed to copy URL to clipboard', error);
+			  });
+		  }
+		  
+		  function shareOnWhatsApp(url) {
+			// Open WhatsApp with the image URL
+			window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+		  }
+		  
+		  function shareOnInstagram(url) {
+			// Open Instagram with the image URL
+			window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+		  }
+	
+		  function downloadPage() {
+			// Use html2canvas to capture the page as an image
+			let main_content=document.getElementById("main-container")
+			document.getElementById("user-actions").style.visibility="hidden";
+			document.getElementsByClassName("aboutSocial")[0].style.visibility="hidden"
+			html2canvas(main_content).then(function(canvas) {
+			  // Convert the canvas to a data URL
+			  var image = canvas.toDataURL();
+		
+			  // Create an anchor element
+			  var anchor = document.createElement('a');
+			  anchor.href = image;
+			  anchor.download = 'profile.png';
+		
+			  // Trigger the download
+			  anchor.click();
+			});
+			document.getElementById("user-actions").style.visibility="visible";
+			document.getElementsByClassName("aboutSocial")[0].style.visibility="visible"
+	
+		  }
+	</script>
+</body>
+

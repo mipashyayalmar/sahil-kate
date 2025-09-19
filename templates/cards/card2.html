@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+{% load static %}
+<html  lang="en" class="notranslate" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 2</title>
+<!-- FONTS ONLINE -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,400italic,600,600italic,700,700italic,800,800italic,300' rel='stylesheet' type='text/css'>
+
+<!--MAIN STYLE-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link href=" {% static 'cards/card1/css/font.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/fontello.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/base.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/skeleton.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/main.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/magnific-popup.css' %} " rel="stylesheet"  />
+
+<link href=" {% static 'cards/card2/css/animate.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/bootstrap.min.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/font-awesome.min.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/main.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/style.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/responsive.css' %} " rel="stylesheet" type="text/css">
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+
+<!-- Page Wrap -->
+<div id="wrap"> 
+  
+  <!-- Menu Link -->
+  <div class="nav-menu"> <a href="#." class="cd-bouncy-nav-trigger"><i class="ion-navicon"></i></a> </div>
+  
+  <!-- Menu Overlay -->
+  <div class="cd-bouncy-nav-modal">
+    <nav>
+      <ul class="cd-bouncy-nav">
+        <li><a href="{% url 'cards:generate' id %}"><i class="ion-ios-home"></i> GoBack</a></li>
+        <li><a href="#contact"><i class="ion-paper-airplane"></i> Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#." class="cd-close">Close modal</a> </div>
+    
+
+    <!-- Profile -->
+  <div class="profile animated bounceInUp"  id="main-container" >
+    <div class="container">
+      <div class="profile-in">
+      
+      <!-- Avatar -->
+        <div class="text-center">
+          <div class="avatar"> 
+            <img  width="350px" class="images" src="/media/{{details.profileimage}}"> </div>
+        </div>
+        <h1>Hello, I am <strong style="color:#fff">{{details.name}}</strong> Passionate <span>{{details.role}}</span></h1>
+        <hr>
+        <p>Mobile Number : <span style="color:red" >{{details.phone}} </span> </p>
+        <p>Email : <span style="color:red" >{{details.email}} </span> </p>
+        <p style="display:inline-block">company : <span style="color:red" >{{details.companyname}} </span> </p>
+        <img style="display:inline-block" width="100px" src="/media/{{details.companylogo}}"> 
+        <p>Webiste : <span style="color:red" >{{details.website}} </span> </p>
+        <p>Address : <span style="color:red" >{{details.address}}</ </span> <p>
+          <div class="aboutSocial">
+            <p>Share Now : </p>
+            <ul>
+                <li><a href="#" id="twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                <li><a href="#" id="facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                <li><a href="#" id="linkedin" target="_blank"><i class="icon-linkedin"></i></a></li>
+                <li><a href="#" id="whatsapp" target="_blank"><i class="icon-w">W</i></a></li>
+                <br> <br>
+                <button  class="btn btn-primary regButton share-btn" onclick="showButtons()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Share </button> <br>
+                <button class="btn btn-primary regButton download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button> <br>
+                <li><img src="" style="width: 10.2rem"  alt="QR Code" id="qr"></li>
+            </ul>
+            <br>
+          </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<section id="contact" style="background:#fff;" class="offset section">
+
+
+  <!--Inner content-->
+  <div class="innerContent">
+
+  <!--Container-->
+  <div class="container clearfix">
+
+    <div class="sixteen columns">
+    <h1 class="titleBig">contact</h1>
+    </div>
+
+  
+
+      <div class="sixteen columns contactForm">
+        <p>You can send a message to  me</p>
+
+        <div class="cForm">
+        <form method="post" enctype="text/plain" action="mailto:someone@example.com">
+
+
+          <p>
+          <label for="name">Name <span class="required">*</span></label>
+              <input type="text" name="name" id="name">
+          </p>
+
+          <p>
+          <label for="email">Email <span class="required">*</span></label>
+              <input type="text" name="email" id="email">
+          </p>
+
+
+            <p>
+            <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject">
+            </p>
+
+
+
+
+            <p>
+            <label for="subject">Message <span class="required">*</span></label>
+       <textarea name="message" id="message" cols="45" rows="10"></textarea>
+      </p>
+              <div class="fBtn"><button id="submit" class="regButton"><i class="icon-paper-plane"></i>Send message</button></div>
+            </form>
+        <div id="success"><h2>Your message has been sent. Thank you!</h2></div>
+        <div id="error"><h2>Sorry your message can not be sent.</h2></div>
+
+
+      </div>			
+
+
+      </div>
+
+
+
+
+      </div>
+      <!--End container-->
+
+
+    </div>
+    <!--End inner content-->
+
+    </section>
+
+      <!--End contact section-->
+      
+      
+
+  <!--Footer-->				
+    <footer class="footer text-white offset" >
+
+      <!--Bottom footer-->
+      <div class="footerholder" >
+          <!--Container-->
+          <div class="container clearfix">
+
+            <div class="eight columns">
+
+              <p style="color:#fff">Thank you</p>
+            </div>
+
+
+              <div class="eight columns ">
+            <ul class="socialsFooter">
+              <li><a href="#" id="twitter2" target="_blank"><i class="icon-twitter"></i></a></li>
+															<li><a href="#" id="facebook2" target="_blank"><i class="icon-facebook"></i></a></li>
+															<li><a href="#" id="linkedin2" target="_blank"><i class="icon-linkedin"></i></a></li>
+															<li><a href="#" id="whatsapp2" target="_blank"><i class="icon-w">W</i></a></li>
+
+
+            </ul>
+
+              </div>
+
+      </div>
+        <!--End container-->
+      </div>
+        <!--End bottom footer-->
+
+
+    </footer>
+
+<!--End footer-->
+
+    
+
+
+</div>
+<!--ENd wrapper-->
+
+
+
+
+
+<!-- Wrap End --> 
+
+<script src=" {% static 'cards/card2/js/jquery-1.11.0.min.js' %} "></script> 
+<script src=" {% static 'cards/card2/js/bootstrap.min.js' %}"></script> 
+<script src=" {% static 'cards/card2/js/counter.js' %} "></script> 
+<script src=" {% static 'cards/card2/js/jquery.prettyPhoto.js' %} "></script> 
+<script src=" {% static 'cards/card2/js/main.js' %} "></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+	document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
+	document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+	document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+	document.getElementById("linkedin").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+	document.getElementById("whatsapp").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+	
+	document.getElementById("twitter2").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+	document.getElementById("facebook2").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+	document.getElementById("linkedin2").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+	document.getElementById("whatsapp2").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+  
+
+	var buttonContainer = null;
+	function showButtons() {
+		// Create buttons
+		if (!buttonContainer) {
+		  // Create the button container
+		  buttonContainer = document.createElement('div');
+		  buttonContainer.classList.add('button-container');
+	
+		  // Create buttons
+		  var copyButton = createButton('Copy URL', 'btn-primary');
+		  var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+		  var instagramButton = createButton('Share on Instagram', 'btn-danger');
+      copyButton.style.backgroundColor = "#E2F6CA";
+      whatsappButton.style.backgroundColor = "#A2FF86";
+      instagramButton.style.backgroundColor = "#FF90BB";
+		  // Append buttons to the container
+		  buttonContainer.appendChild(copyButton);
+		  buttonContainer.appendChild(whatsappButton);
+		  buttonContainer.appendChild(instagramButton);
+	
+		  // Append the button container to the document body
+			  
+		  // Append the container after the "Share" button
+		  var shareButton = document.querySelector('.share-btn');
+		  shareButton.insertAdjacentElement('afterend', buttonContainer);
+			
+	
+		  copyButton.addEventListener('click', function () {
+			copyUrlToClipboard(window.location.href);
+		  });
+	
+		  whatsappButton.addEventListener('click', function () {
+			shareOnWhatsApp(window.location.href);
+		  });
+	
+		  instagramButton.addEventListener('click', function () {
+			shareOnInstagram(window.location.href);
+		  });
+		}
+		else{
+		  buttonContainer.classList.toggle('hidden');
+	  }
+	}
+	
+	  function createButton(text, className) {
+		var button = document.createElement('button');
+		button.innerText = text;
+		button.classList.add('btn', className);
+		return button;
+	  }
+	  function copyUrlToClipboard(url) {
+		// Copy the URL to the clipboard
+		navigator.clipboard.writeText(url)
+		  .then(() => {
+			alert('URL copied to clipboard');
+		  })
+		  .catch(error => {
+			console.error('Failed to copy URL to clipboard', error);
+		  });
+	  }
+	  
+	  function shareOnWhatsApp(url) {
+		// Open WhatsApp with the image URL
+		window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+	  }
+	  
+	  function shareOnInstagram(url) {
+		// Open Instagram with the image URL
+		window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+	  }
+	  
+	  function downloadPage() {
+      // Use html2canvas to capture the page as an image
+      let main_content=document.getElementById("main-container")
+
+      main_content.classList.add("card-download")
+      document.getElementsByClassName("aboutSocial")[0].style.display="none";
+      html2canvas(main_content).then(function(canvas) {
+        // Convert the canvas to a data URL
+        var image = canvas.toDataURL();
+    
+        // Create an anchor element
+        var anchor = document.createElement('a');
+        anchor.href = image;
+        anchor.download = 'profile.png';
+    
+        // Trigger the download
+        anchor.click();
+      });
+      main_content.classList.remove("card-download")
+      document.getElementsByClassName("aboutSocial")[0].style.display="block";
+      }
+	  
+</script>
+</body>
+</html>

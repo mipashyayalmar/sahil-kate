@@ -1,0 +1,454 @@
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{%load static%}
+  <meta charset="utf-8">
+<meta name="view_premium_cardport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="keywords" content="Bootstrap, Landing page, Template, Business, Service">
+<meta name="view_premium_cardport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="author" content="Grayrids">
+<title>Smart Card</title>
+{% comment %} favi {% endcomment %}
+<link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-192x192.png' %}" type="image/png">
+
+
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" href="{% static 'css/LineIcons.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/nivo-lightbox.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+
+<br><br><br><br>
+{% for message in messages %}
+<div class="container-fluid p-0 m-0" >
+  <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="True">&times;</span>
+    </button>
+    Hey <b>{{username}}</b>! {{ message }}
+  </div>
+</div>
+{% endfor %}
+
+<section id="gallerySection">
+  <div id="galleryMenu">
+      <div class="menuItem" id="all" style="color: white;">all</div>
+      <div class="menuItem" id="water">basic</div>
+      <div class="menuItem" id="earth">professional</div>
+      <div class="menuItem" id="fire">premium</div>
+      <div class="selector"></div>
+  </div>
+  <div id="galleryContainer">
+    <a target="_blank" href="">
+        <div class="galleryItem">
+            <img src="{% static 'imgs/card/card-b4.png' %}" alt="Card Image">
+        </div>
+    </a>
+    
+    
+      <div class="galleryItem"><img src="{% static 'imgs/card/card-p6.png' %} " ></div>
+    
+    <a target="_blank" href="{% url 'cards:view_premium_card' premium_detail.id 1   %}">
+      <div class="galleryItem"><img src="{% static 'imgs/pre-cards/premium2.png' %} " ></div>
+    </a>
+
+    <a target="_blank" href="{% url 'cards:view_premium_card' premium_detail.id 2   %}">
+      <div class="galleryItem"><img src="{% static 'imgs/card/card-p4.jpg' %} " ></div>
+    </a>
+
+      <div class="galleryItem"><img src="{% static 'imgs/card/card-b4.png' %}" ></div>
+
+
+      <div class="galleryItem"><img src="{% static 'imgs/seond.png' %}" ></div>
+
+      <a target="_blank" href="{% url 'cards:view_premium_card' premium_detail.id 1   %}">
+        <div class="galleryItem"><img src="{% static 'imgs/card/card-p2.jpg' %} " ></div>
+      </a>
+
+      <div class="galleryItem"><img src="{% static 'imgs/card/card-p6.png' %} " ></div>
+
+
+      <div class="galleryItem"><img src="{% static 'imgs/card/card-p9.webp' %} " ></div>
+
+
+  </div>
+</section>
+<section id="footer">
+
+</section>
+ <style> 
+                            *{
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                            font-family: Arial, Helvetica, sans-serif;
+                        }
+                        body{
+                            overflow-x: hidden;
+                        }
+                        #gallerySection{
+                            width: 100%;
+                            background-color: #F5F5F5;
+                            text-align: center;
+                            overflow: hidden;
+                            height: calc(900px + 400px);
+                        }
+                        #gallerySection h1{
+                            text-transform: uppercase;
+                            font-size: 2.5em;
+                            padding-top: 70px;
+                        }
+                        #galleryMenu{
+                            margin: 80px auto 0 auto;
+                            width: 955px;
+                            display: flex;
+                            justify-content: space-between;
+                            position: relative;
+                        }
+                        #galleryMenu > .menuItem{
+                            padding: 10px 30px 10px 56px;
+                            text-transform: uppercase;
+                            font-size: 1.3em;
+                            cursor: pointer;
+                            z-index: 1;
+                            transition: color 0.7s 0.3s;
+                        }
+                        #galleryMenu > .selector{
+                            height: 100%;
+                            background-color: red;
+                            width: 10px;
+                            position: relative;
+                            top: 0;
+                            left: 270px;
+                        }
+
+
+                        #galleryContainer{
+                            width: 1170px;
+                            height: 900px;
+                            overflow: hidden;
+                            margin: 20px auto 0 auto;
+                            position: relative;
+                        }
+
+                        #galleryContainer .galleryItem{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 33.33%;
+                            height: 33.33%;
+                            transform-origin: center;
+                        }
+                        @media(max-width: 1200px){
+                            #galleryContainer{
+                                width: 70%;
+                                height: 1500px;
+                            }
+                            #galleryContainer .galleryItem{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 50%;
+                                height: 20%;
+                            }
+                        }
+                        @media(max-width: 958px){
+                            #galleryContainer{
+                                height: 2700px;
+                            }
+                            #galleryContainer .galleryItem{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 11.11%
+                            }
+                        }
+                        #galleryContainer .galleryItem img{
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        @media(max-width: 955px){
+                            #galleryMenu{
+                                width: 600px;
+                            }
+                        }
+                        @media(max-width: 600px){
+                            #galleryMenu{
+                                width: 400px;
+                            }
+                            #galleryMenu > .menuItem{
+                                font-size: 0.7em;
+                                padding: 10px 30px 10px 21px
+                            }
+                        }
+                        .fadeOut{
+                            animation: fadeOut 1s forwards;
+                        }
+                        .fadeIn{
+                            animation: fadeIn 1s forwards;
+                        }
+                        /* General Styles */
+
+
+        #galleryMenu > .selector {
+        height: 100%;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: -10px;
+        transition: left 1s, width 1s;
+        }
+
+
+
+
+
+        /* Adjustments for smaller screens */
+        @media(min-width: 1200px) {
+            #galleryMenu > .selector {
+        background-color: red;
+        left: 590px;
+        }
+
+        }
+
+
+</style>
+
+<script>
+
+                    const gallerySection = document.getElementById("gallerySection");
+                  const galleryMenu = document.getElementById("galleryMenu");
+                  const gallerySelector = gallerySection.querySelector(".selector");
+                  //Individual Gallery Menu Items
+                  const galleryMenuItems = galleryMenu.querySelectorAll(".menuItem");
+                  //Gallery Container
+                  const galleryContainer = document.getElementById("galleryContainer");
+                  const galleryContainerItems = galleryContainer.querySelectorAll(".galleryItem");
+
+
+                  let currentGalleryMenuSelection = "all";
+
+
+                  galleryMenuChange(currentGalleryMenuSelection);
+
+
+                  galleryMenuItems.forEach(galleryMenuItem => {
+                      galleryMenuItem.onclick = () => {
+                          gallerySelector.style.transition = "left 1s, width 1s";
+                          galleryMenuChange(galleryMenuItem.id);
+                          addTransition('left 1s, top 1s, transform 1s, opacity 1s');
+                          gallerySection.style.transition = "height 1s";
+                          setGalleryContainer(galleryMenuItem.id);
+                          currentGalleryMenuSelection = galleryMenuItem.id;
+                      }
+                  });
+
+                  //Set pos for gallery selector
+                  function galleryMenuChange(id) {
+                      if(window.matchMedia('(min-width: 956px)').matches){
+                          switch(id){
+                              case 'all':
+                                  changeGallerySelector("20px", "100px", "all");
+                                  break;
+                              case 'water':
+                                  changeGallerySelector("224px", "145px", "water");
+                                  break;
+                              case 'earth':
+                                  changeGallerySelector("459px", "245px", "earth");
+                                  break;
+                              case 'fire':
+                                  changeGallerySelector("826px", "110px", "fire");
+                          }
+                      }else if(window.matchMedia('(max-width: 955px) and (min-width: 601px)').matches){
+                          switch(id){
+                              case 'all':
+                                  changeGallerySelector("20px", "95px", "all");
+                                  break;
+                              case 'water':
+                                  changeGallerySelector("133px", "145px", "water");
+                                  break;
+                              case 'earth':
+                                  changeGallerySelector("310px", "145px", "earth");
+                                  break;
+                              case 'fire':
+                                  changeGallerySelector("532px", "105px", "fire");
+                          }
+                      }else if(window.matchMedia('(max-width: 600px)').matches){
+                          switch(id){
+                              case 'all':
+                                  changeGallerySelector("0px", "76px", "all");
+                                  break;
+                              case 'water':
+                                  changeGallerySelector("79px", "76px", "water");
+                                  break;
+                              case 'earth':
+                                  changeGallerySelector("170px", "104px", "earth");
+                                  break;
+                              case 'fire':
+                                  changeGallerySelector("300px", "76px", "fire");
+                          }
+                      }
+                  }
+                  //Change pos for gallery selector
+                  function changeGallerySelector(left, width, id){
+                      gallerySelector.style.left = left;
+                      gallerySelector.style.width = width;
+                      for(let i = 0; i < galleryMenuItems.length; i++){
+                          const galleryMenuItem = galleryMenuItems[i];
+                          if(galleryMenuItem.id === id){
+                              galleryMenuItem.style.color = "white";
+                              continue;
+                          }
+                          galleryMenuItem.style.color = "black";
+                      }
+                  }
+
+                  setGalleryContainer(currentGalleryMenuSelection);
+
+                  //Set pos for gallery items
+                  function setGalleryContainer(choice){
+                      if(window.matchMedia('(min-width: 1201px)').matches){
+                          switch(choice){
+                              case 'all':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 0}, {left: '33.33%', top: '0', num: 1},
+                                  {left: '66.66%', top: '0', num: 2},{left: '0%', top: '33.33%', num: 3},{left: '33.33%', top: '33.33%', num: 4},
+                                  {left: '66.66%', top: '33.33%', num: 5},{left: '0', top: '66.66%', num: 6},{left: '33.33%', top: '66.66%', num: 7},
+                                  {left: '66.66%', top: '66.66%', num: 8}]);
+                                  gallerySection.style.height = 'calc(900px + 400px)';
+                                  break;
+                              case 'water':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 0},{left: '33.33%',top:'0',num:6},{left: '66.66%',top:'0',num:7}]);
+                                  gallerySection.style.height = 'calc(300px + 400px)';
+                                  break;
+                              case 'earth':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 1},{left: '33.33%',top:'0',num:4},{left: '66.66%',top:'0',num:5}]);
+                                  gallerySection.style.height = 'calc(300px + 400px)';
+                                  break;
+                              case 'fire':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 2},{left: '33.33%',top:'0',num:3},{left: '66.66%',top:'0',num:8}]);
+                                  gallerySection.style.height = 'calc(300px + 400px)';
+                                  break;
+                          }
+                      
+                      }else if(window.matchMedia('(max-width: 1200px) and (min-width: 959px)').matches){
+                          switch(choice){
+                              case 'all':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 0}, {left: '50%', top: '0', num: 1},
+                                  {left: '0%', top: '20%', num: 2},{left: '50%', top: '20%', num: 3},{left: '0%', top: '40%', num: 4},
+                                  {left: '50%', top: '40%', num: 5},{left: '0', top: '60%', num: 6},{left: '50%', top: '60%', num: 7},
+                                  {left: '0%', top: '80%', num: 8}]);
+                                  gallerySection.style.height = 'calc(1500px + 400px)';
+                                  break;
+                              case 'water':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 0},{left: '50%',top:'0',num:6},{left: '0%',top:'20%',num:7}]);
+                                  gallerySection.style.height = 'calc(600px + 400px)';
+                                  break;
+                              case 'earth':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 1},{left: '50%',top:'0',num:4},{left: '0%',top:'20%',num:5}]);
+                                  gallerySection.style.height = 'calc(600px + 400px)';
+                                  break;
+                              case 'fire':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 2},{left: '50%',top:'0',num:3},{left: '0%',top:'20%',num:8}]);
+                                  gallerySection.style.height = 'calc(600px + 400px)';
+                                  break;
+                          }
+                          
+                      }else if(window.matchMedia('(max-width: 958px)').matches){
+                          switch(choice){
+                              case 'all':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 0}, {left: '0', top: '11.11%', num: 1},
+                                  {left: '0', top: '22.22%', num: 2},{left: '0', top: '33.33%', num: 3},{left: '0%', top: '44.44%', num: 4},
+                                  {left: '0', top: '55.55%', num: 5},{left: '0', top: '66.66%', num: 6},{left: '0', top: '77.77%', num: 7},
+                                  {left: '0%', top: '88.88%', num: 8}]);
+                                  gallerySection.style.height = 'calc(2700px + 400px)';
+                                  break;
+                              case 'water':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 0},{left: '0',top:'11.11%',num:6},{left: '0%',top:'22.22%',num:7}]);
+                                  gallerySection.style.height = 'calc(900px + 400px)';
+                                  break;
+                              case 'earth':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 1},{left: '0',top:'11.11%',num:4},{left: '0%',top:'22.22%',num:5}]);
+                                  gallerySection.style.height = 'calc(900px + 400px)';
+                                  break;
+                              case 'fire':
+                                  moveGalleryContainer([{left: '0', top: '0', num: 2},{left: '0',top:'11.11%',num:3},{left: '0%',top:'22.22%',num:8}]);
+                                  gallerySection.style.height = 'calc(900px + 400px)';
+                                  break;
+                          }
+                      }
+                  }
+
+                  //Change pos for gallery items
+                  function moveGalleryContainer(items){
+                      let nums = items.map(item => item.num);
+                      for(let i = 0; i < galleryContainerItems.length; i++){
+                          let ele = galleryContainerItems[i];
+                          if(nums.indexOf(i) !== -1){
+                              const item = items.find(item => item.num === i);
+                              //Needs to animate back in because it is being positioned
+                              if(ele.style.transform === 'scale(0)'){
+                                  ele.style.transform = 'scale(1)';
+                                  ele.style.opacity = '1';
+                              }
+                              ele.style.top = item.top;
+                              ele.style.left = item.left;
+                              continue;
+                          }
+                          //Animate out because it is not being positioned
+                          ele.style.transform = 'scale(0)';
+                          ele.style.opacity = '0';
+                      }
+                  }
+
+                  //Add the same transition to all items in the gallery
+                  function addTransition(transition){
+                      galleryContainerItems.forEach(gCI => {
+                          gCI.style.transition = transition
+                      });
+                  }
+
+                  //Change Pos On Window Resize
+                  window.addEventListener("resize", e => {
+                      gallerySelector.style.transition = "none";
+                      galleryMenuChange(currentGalleryMenuSelection);
+                      addTransition('none');
+                      gallerySection.style.transition = "none";
+                      setGalleryContainer(currentGalleryMenuSelection);
+                  });
+</script>
+
+
+
+<script src="{% static 'js/jquery-min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script src="{% static 'js/jquery.nav.js' %}"></script>
+<script src="{% static 'js/scrolling-nav.js' %}"></script>
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/nivo-lightbox.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/form-validator.min.js' %}"></script>
+<script src="{% static 'js/contact-form-script.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8c35738e9d3e076b',t:'MTcyNjM3MDExNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='../../../cdn-cgi/challenge-platform/h/b/scripts/jsd/388c99dd0998/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c12417{% static '17689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8c35738e9d3e076b","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfL4":true}},"token":"9a6015d415bb4773a0bff22543062d3b","b":1}' crossorigin="anonymous"></script>
+
+{% endblock %}

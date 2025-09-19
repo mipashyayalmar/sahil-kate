@@ -1,0 +1,1073 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row space-100">
+    <div class="col-lg-6 col-md-12 col-xs-12">
+    <div class="contents">
+    <h2 class="head-title">Streamline Your Client Connections<br> with Smart Solutions</h2>
+    <p>Transform your client interactions with our sleek, smart digital card. Effortlessly manage and enhance relationships with cutting-edge technology that sets you apart.</p>
+    <div class="header-button">
+    <a href="{% url 'home' %}#pricing" class="btn btn-border-filled">Get Started</a>
+
+    <a href="#contact" class="btn btn-border page-scroll">Contact Us</a>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-xs-12 p-0">
+    <div class="intro-img">
+    <img src="{% static 'img/intro.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    </div>
+    </header>
+    
+    <section id="services" class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Steps to Get Started</h2>
+            <div class="desc-text">
+                <p class="desc-text-2">In the evolving digital landscape, virtual business cards are now a vital tool for effective networking. These cards offer convenience by being easily accessible and eliminate the clutter of traditional paper cards. Digital cards enhance your professionalism during online meetings through platforms such as Zoom and Teams, allowing seamless contact sharing.</p>
+            </div>
+            <div class="row">
+                <!-- First Card -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="services-item">
+                        <div class="icon mb-3">
+                            <i class="lni-cog"></i>
+                        </div>
+                        <h4 class="mb-3">Quick Account Setup</h4>
+                        <p>Register your Equicard account effortlessly by providing some basic information. Get started with minimal input and create your digital business identity in no time.</p>
+                    </div>
+                </div>
+    
+                <!-- Second Card -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="services-item">
+                        <div class="icon mb-3">
+                            <i class="lni-brush"></i>
+                        </div>
+                        <h4 class="mb-3">Personalized Card Creation</h4>
+                        <p>Unleash your creativity by designing a personalized business card. Choose your color schemes, embed engaging videos, add web URLs, and link your social profiles to leave a lasting impression on your clients.</p>
+                    </div>
+                </div>
+    
+                <!-- Third Card -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="services-item">
+                        <div class="icon mb-3">
+                            <i class="lni-share"></i>
+                        </div>
+                        <h4 class="mb-3">Instant Card Sharing</h4>
+                        <p>Make your presence known by sharing your digital business card anytime, anywhere. With just a tap, you can distribute your card to potential clients or partners, helping you build valuable connections.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row justify-content-center">
+                <!-- Fourth Card (Centered) -->
+    
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                    <div class="services-item">
+                        <div class="icon mb-3">
+                            <i class="fa fa-qrcode"></i>
+                        </div>
+                        <h4 class="mb-3"> QR Scanning</h4>
+                        <p>Additionally, offer your contacts the option to scan your QR code to quickly find and connect with your profile, ensuring seamless networking both online and in person.</p>
+                    </div>
+                </div>
+    
+               
+            </div>
+        </div>
+    </section>
+
+
+    <section id="showcase">
+      <div class="container-fluid right-position">
+        
+        <!-- Section Header -->
+        <div class="row gradient-bg">
+          <div class="col-lg-12">
+            <div class="showcase-text section-header text-center p-3 p-md-4 p-lg-5">
+                <h2 class="section-title">Creative Demos of Professional Visiting Cards</h2>
+                <div class="desc-text">
+                    <p style="padding-left:10%;padding-right:10%;">
+                        Creative demos of professional visiting cards showcase innovative designs that combine aesthetics with functionality. These demos highlight unique elements like typography, colors, and materials to make memorable, impactful business cards.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    
+        <!-- Showcase Area -->
+        <div class="row justify-content-center showcase-area">
+          <div class="col-lg-12 col-md-12 col-xs-12 pr-0">
+            <div class="showcase-slider owl-carousel">
+              
+              <!-- Item 1 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/01.jpeg' %}" class="img-fluid" alt="Recent Work 1" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>Redesign Slack</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/001.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Item 2 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/02.jpeg' %}" class="img-fluid" alt="Recent Work 2" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>Mobile App Design</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/02.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Item 3 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/03.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/03.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 4 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/04.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/04.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 6 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/05.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/05.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 7 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/06.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/06.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 6 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/07.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/07.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 7 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/08.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/08.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Item 6 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/09.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/09.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item  -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/10.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/10.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <!-- Item 7 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/11.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/11.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              
+              <!-- Item 6 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/12.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/011.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 7 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/13.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/13.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Item 6 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/14.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/014.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              <!-- Item 7 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/15.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/015.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Item 6 -->
+              <div class="item">
+                <div class="screenshot-thumb">
+                  <img src="{% static 'img/showcase/16.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
+                  <div class="hover-content text-center">
+                    <div class="fancy-table">
+                      <div class="table-cell">
+                        <div class="single-text">
+                          <p>Icon, Web</p>
+                          <h5>E-Commerce Redesign</h5>
+                        </div>
+                        <div class="zoom-icon">
+                          <a class="lightbox" href="{% static 'img/showcase/016.jpeg' %}">
+                            <i class="lni-zoom-in"></i>
+                          </a>
+                          <a href="{% url 'cards:form' %}">
+                            <i class="lni-link"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+      
+    
+    
+    <section id="business-plan">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                    <div class="business-item-img">
+                        <img src="{% static 'img/business/business-img.png' %}" class="img-fluid" alt="Business Plan">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 col-md-12">
+                    <div class="business-item-info">
+                        <h3 class="mb-4">Crafted For Business, Startup, and Agency Websites</h3>
+                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        <a class="btn btn-common" href="#">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="features" class="section">
+        <div class="container">
+      
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="features-text section-header text-center">
+                <div>
+                  <h2 class="section-title">Services We Provide</h2>
+                  <div class="desc-text">
+                    <p>Explore the key benefits of using Equicard's digital business card solutions, designed to save time, increase efficiency, and contribute to a greener planet.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="row featured-bg">
+      
+            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+              <div class="feature-item featured-border1">
+                <div class="feature-icon float-left">
+                  <i class="lni-search"></i>
+                </div>
+                <div class="feature-info float-left">
+                  <h4>Target Your Leads Effectively</h4>
+                  <p>Enhance your lead generation with advanced search <br>features. Calendar integration helps you stay <br>organized and never miss out on<br> important tasks.</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+              <div class="feature-item featured-border2">
+                <div class="feature-icon float-left">
+                  <i class="lni-bullhorn"></i>
+                </div>
+                <div class="feature-info float-left">
+                  <h4>A Strategic Marketing Tool</h4>
+                  <p>Use digital business cards to efficiently plan, execute<br> marketing strategies, boosting yourpersonal and <br>professional brand.</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+              <div class="feature-item featured-border1">
+                <div class="feature-icon float-left">
+                  <i class="lni-timer"></i>
+                </div>
+                <div class="feature-info float-left">
+                  <h4>Time-Efficient & Cost-Effective</h4>
+                  <p>Edit and update your virtual card anytime, anywhere. <br>Save time and avoid the recurring costs of reprinting <br>traditional business cards.</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+              <div class="feature-item featured-border2">
+                <div class="feature-icon float-left">
+                  <i class="lni-network"></i>
+                </div>
+                <div class="feature-info float-left">
+                  <h4>Seamless Networking</h4>
+                  <p>Share your digital card instantly via QR code, <br>email, or social media, making networking easier at<br>events or online meetings.</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+              <div class="feature-item featured-border3">
+                <div class="feature-icon float-left">
+                  <i class="lni-stats-up"></i>
+                </div>
+                <div class="feature-info float-left">
+                  <h4>Data-Driven Insights</h4>
+                  <p>Track views and shares of your business card in <br>real-time allowing you to analyze interactions and <br>make informed decisions for follow-ups.</p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+              <div class="feature-item">
+                <div class="feature-icon float-left">
+                  <i class="lni-leaf"></i>
+                </div>
+                <div class="feature-info float-left">
+                  <h4>Environmentally Friendly</h4>
+                  <p>Switch to virtual cards to help reduce deforestation. <br>Support eco-friendly solutions and contribute to the  <br>protection of the planet.</p>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+      
+        </div>
+    </section>
+    
+    
+    <section id="pricing" class="section">
+    <div class="container">
+    
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="pricing-text section-header text-center">
+    <div>
+    <h2 class="section-title">Pricing Plans</h2>
+    <div class="desc-text">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
+    <p>eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div class="row pricing-tables">
+    
+    
+    
+    <div class="col-lg-4 col-md-4 col-xs-12">
+    <div class="pricing-table text-center">
+    <div class="pricing-details">
+    <h3>standard</h3>
+    <h1><span>$</span>19.99</h1>
+    <ul>
+    <li>Free Instalation</li>
+    <li>2 GB Storage</li>
+    <li>Upto 2 users</li>
+    <li>50 GB Bandwith</li>
+    <li>All Features</li>
+    <li>Sales Dashboard</li>
+    </ul>
+    </div>
+    <div class="plan-button">
+    <a href="{% url 'cards:form' %}" class="btn btn-common">Purchase</a>
+    </div>
+    </div>
+    </div>
+    
+    
+    
+    </div>
+    </section>
+    
+    
+    <section id="testimonial" class="section">
+    <div class="container right-position">
+    
+    <div class="row">
+    <div class="col-md-12 col-sm-12">
+    <div class="video-promo-content text-center">
+    <a id="play-video" class="video-play-button video-popup" href="https://www.youtube.com/watch?v=Y4fodpIwal8&amp;list=RDXCElIIYx_8s&amp;index=13">
+    <span></span>
+    </a>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div class="row justify-content-center testimonial-area">
+    <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 pr-20 pl-20" style="overflow: hidden;padding-bottom: 60px">
+    <div id="client-testimonial" class="text-center owl-carousel">
+    <div class="item">
+    <div class="testimonial-item">
+    <div class="content-inner">
+    <p class="description">Appropriately implement one-to-one catalysts for change <br> vis-a-vis wireless catalysts for change. Enthusiastically architect <br> adaptive e-tailers after sustainable total linkage. Appropriately <br> implement one-to-one catalysts for change.</p>
+    <div class="author-info">
+    <h5>Tahmina Anny ; <span> UIdeck Customer</span></h5>
+    </div>
+    </div>
+    <div class="client-thumb">
+    <img src="{% static 'img/testimonial/01.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    <div class="item">
+    <div class="testimonial-item">
+    <div class="content-inner">
+    <p class="description">Appropriately implement one-to-one catalysts for change <br> vis-a-vis wireless catalysts for change. Enthusiastically architect <br> adaptive e-tailers after sustainable total linkage. Appropriately <br> implement one-to-one catalysts for change.</p>
+    <div class="author-info">
+    <h5>Tahmina Anny ; <span> UIdeck Customer</span></h5>
+    </div>
+    </div>
+    <div class="client-thumb">
+    <img src="{% static 'img/testimonial/01.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    <div class="item">
+    <div class="testimonial-item">
+    <div class="content-inner">
+    <p class="description">Appropriately implement one-to-one catalysts for change <br> vis-a-vis wireless catalysts for change. Enthusiastically architect <br> adaptive e-tailers after sustainable total linkage. Appropriately <br> implement one-to-one catalysts for change.</p>
+    <div class="author-info">
+    <h5>Tahmina Anny ; <span> UIdeck Customer</span></h5>
+    </div>
+    </div>
+    <div class="client-thumb">
+    <img src="{% static 'img/testimonial/01.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    <div class="item">
+    <div class="testimonial-item">
+    <div class="content-inner">
+    <p class="description">Appropriately implement one-to-one catalysts for change <br> vis-a-vis wireless catalysts for change. Enthusiastically architect <br> adaptive e-tailers after sustainable total linkage. Appropriately <br> implement one-to-one catalysts for change.</p>
+    <div class="author-info">
+    <h5>Tahmina Anny ; <span> UIdeck Customer</span></h5>
+    </div>
+    </div>
+    <div class="client-thumb">
+    <img src="{% static 'img/testimonial/01.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    <div class="item">
+    <div class="testimonial-item">
+    <div class="content-inner">
+    <p class="description">Appropriately implement one-to-one catalysts for change <br> vis-a-vis wireless catalysts for change. Enthusiastically architect <br> adaptive e-tailers after sustainable total linkage. Appropriately <br> implement one-to-one catalysts for change.</p>
+    <div class="author-info">
+    <h5>Tahmina Anny ; <span> UIdeck Customer</span></h5>
+    </div>
+    </div>
+    <div class="client-thumb">
+    <img src="{% static 'img/testimonial/01.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    <div class="item">
+    <div class="testimonial-item">
+    <div class="content-inner">
+    <p class="description">Appropriately implement one-to-one catalysts for change <br> vis-a-vis wireless catalysts for change. Enthusiastically architect <br> adaptive e-tailers after sustainable total linkage. Appropriately <br> implement one-to-one catalysts for change.</p>
+    <div class="author-info">
+    <h5>Tahmina Anny ; <span> UIdeck Customer</span></h5>
+    </div>
+    </div>
+    <div class="client-thumb">
+    <img src="{% static 'img/testimonial/01.png' %}" alt>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    </section>
+    
+    
+    <section id="team" class="section">
+    <div class="container">
+    
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="team-text section-header text-center">
+    <div>
+    <h2 class="section-title">Team Members</h2>
+    <div class="desc-text">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
+    <p>eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    
+    </div>
+    
+    </div>
+    </section>
+    
+    
+    <section id="blog" class="section">
+    
+    <div class="container">
+    
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="blog-text section-header text-center">
+    <div>
+    <h2 class="section-title">Latest Blog Posts</h2>
+    <div class="desc-text">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
+    <p>eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div class="row">
+    
+    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+    
+    <div class="blog-item-wrapper">
+    <div class="blog-item-img">
+    <a href="single-post.html">
+    <img src="{% static 'img/blog/01.jpeg' %}" class="img-fluid" alt>
+    </a>
+    </div>
+    <div class="blog-item-text">
+    <h3><a href="single-post.html">How Slick Will Transform <br>Your Business</a></h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+    <a href class="read-more">5 Min read</a>
+    </div>
+    <div class="author">
+    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
+    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
+    </div>
+    </div>
+    
+    </div>
+    
+    
+    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+    
+    <div class="blog-item-wrapper">
+    <div class="blog-item-img">
+    <a href="single-post.html">
+    <img src="{% static 'img/blog/02.jpeg' %}" class="img-fluid" alt>
+    </a>
+    </div>
+    <div class="blog-item-text">
+    <h3><a href="single-post.html">Growth Techniques for <br>New Startups</a></h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+    <a href class="read-more">5 Min read</a>
+    </div>
+    <div class="author">
+    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
+    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
+    </div>
+    </div>
+    
+    </div>
+    
+    
+    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+    
+    <div class="blog-item-wrapper">
+    <div class="blog-item-img">
+    <a href="single-post.html">
+    <img src="{% static 'img/blog/03.jpeg' %}" class="img-fluid" alt>
+    </a>
+    </div>
+    <div class="blog-item-text">
+    <h3><a href="single-post.html">Writing Professional <br>Emails to Customers</a></h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+    <a href class="read-more">5 Min read</a>
+    </div>
+    <div class="author">
+    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
+    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
+    </div>
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    </section>
+
+    <style></style>
+    
+    
+    <section id="contact" class="section">
+    
+    <div class="container-1">
+    
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="contact-text section-header text-center">
+    <div>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="desc-text">
+    <p>
+      To get in touch, feel free to contact us via email or phone.</p><p> We’re available for inquiries and support anytime.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container-1">
+      <span class="big-circle"></span>
+      <img src="img/shape.png" class="square" alt="" />
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Direct Contact</h3>
+          <p class="text">
+           
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <i class="fas fa-map-marker-alt"></i> &nbsp &nbsp
+
+              <p>Office Address :  PK Chowk, Shiv Sai Lane, Pimple Saudagar Pune, India, Maharashtra</p>
+            </div>
+            <div class="information">
+              <i class="fas fa-envelope"></i> &nbsp &nbsp
+              <p>kateanita2025@gmail.com</p>
+            </div>
+            <div class="information">
+              <i class="fas fa-phone"></i>&nbsp&nbsp
+              <p>8975922020</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="index.html" autocomplete="off">
+            <h3 class="title">Contact us</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" />
+              <label for="">Username</label>
+              <span>Username</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" />
+              <label for="">Email</label>
+              <span>Email</span>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" />
+              <label for="">Phone</label>
+              <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input"></textarea>
+              <label for="">Message</label>
+              <span>Message</span>
+            </div>
+            <input type="submit" value="Send" class="btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+<script>
+    
+</script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+    
+    
+    
+    <div class="col-lg-1">
+    </div>
+    
+    
+    <div class="col-lg-4 col-md-12">
+    <div class="contact-img">
+    <img src="img/contact/01.png' %}" class="img-fluid" alt>
+    </div>
+    </div>
+    
+    
+    <div class="col-lg-1">
+    </div>
+    
+    </div>
+    
+    </div>
+    </section>
+    
+
+{% endblock content %}
+
+
+

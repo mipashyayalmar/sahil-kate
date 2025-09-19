@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Details</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .form-control {
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+        }
+        .image-preview {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit Detail</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Name -->
+        <div class="form-group">
+            <label for="id_name">Name</label>
+            {{ form.name }}
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            {{ form.email }}
+        </div>
+
+        <!-- Role (Dynamic Options) -->
+        <div class="form-group">
+            <label for="id_role">Role</label>
+            <select id="id_role" name="role" class="form-control">
+                <option value="">Select a role</option>
+                {% for role in roles %}
+                <option value="{{ role.id }}" {% if role.id == detail.role_id %}selected{% endif %}>
+                    {{ role.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <label for="id_phone">Phone</label>
+            {{ form.phone }}
+        </div>
+
+        <!-- Profile Image -->
+        <div class="form-group">
+            <label for="id_profileimage">Profile Image</label><br>
+            {% if detail.profileimage %}
+                <img src="{{ detail.profileimage.url }}" alt="Current Image" class="image-preview" id="profileimage-preview">
+            {% else %}
+                <p>No profile image available</p>
+            {% endif %}
+            {{ form.profileimage }}
+        </div>
+
+        <!-- Company Name (Dynamic Options) -->
+        <div class="form-group">
+            <label for="id_companyname">Company Name</label>
+            <select id="id_companyname" name="companyname" class="form-control">
+                <option value="">Select a company</option>
+                {% for company in companies %}
+                <option value="{{ company.id }}" {% if company.id == detail.company_id %}selected{% endif %}>
+                    {{ company.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Company Logo -->
+        <div class="form-group">
+            <label for="id_companylogo">Company Logo</label><br>
+            {% if detail.companylogo %}
+                <img src="{{ detail.companylogo.url }}" alt="Current Logo" class="image-preview" id="companylogo-preview">
+            {% else %}
+                <p>No company logo available</p>
+            {% endif %}
+            {{ form.companylogo }}
+        </div>
+
+        <!-- Website -->
+        <div class="form-group">
+            <label for="id_website">Website</label>
+            {{ form.website }}
+        </div>
+
+        <!-- Company Website -->
+        <div class="form-group">
+            <label for="id_company_website">Company Website</label>
+            {{ form.company_website }}
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+            <label for="id_address">Address</label>
+            {{ form.address }}
+        </div>
+
+        <!-- Gallery Images -->
+        <!-- Gallery Images -->
+{% for image in gallery_images %}
+<div class="form-group">
+    <label for="id_gallery_image{{ forloop.counter }}">Gallery Image {{ forloop.counter }}</label><br>
+    {% if image %}
+        <img src="{{ image.url }}" alt="Current Image {{ forloop.counter }}" class="image-preview" id="gallery_image{{ forloop.counter }}-preview">
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
+    {{ form.gallery_image|add:forloop.counter0 }}
+</div>
+{% endfor %}
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+<script>
+    function previewImage(input, previewElementId) {
+        const preview = document.getElementById(previewElementId);
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    document.getElementById('id_profileimage').addEventListener('change', function() {
+        previewImage(this, 'profileimage-preview');
+    });
+
+    document.getElementById('id_companylogo').addEventListener('change', function() {
+        previewImage(this, 'companylogo-preview');
+    });
+
+    // Handle dynamic gallery image preview
+    document.querySelectorAll('input[type="file"]').forEach((input, index) => {
+        input.addEventListener('change', function() {
+            previewImage(this, `gallery_image${index + 1}-preview`);
+        });
+    });
+</script>
+
+</body>
+</html>

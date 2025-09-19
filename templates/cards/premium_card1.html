@@ -1,0 +1,599 @@
+{%load static%}
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<base>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into%20Light&amp;display=swap" media="all" id="shr-font-shadows-into light">
+<link rel="stylesheet" href="../use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="templates/template7/t7-style.2.css" rel="stylesheet">
+<link href="templates/common/css/star-rating.css" rel="stylesheet">
+<link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+<meta property="og:image" itemprop="image" content="https://vcard-bucket.s3.us-east-2.amazonaws.com/A001/1649/1612183412786.jpeg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'cardp/card_p.css' %}">
+<meta property="og:description" content=" " />
+<title>{{ premium_detail.companyname }}- Digital Business Card</title>
+<meta name="title" content="Pioneer Coding - Digital Business Card | Link Connect" />
+<link rel="manifest" id="manifest-placeholder">
+<style type="text/css">
+            .enquiry-form input[type=button] {
+                background-color: #ff6e7f;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 6px 0;
+                font-family: 'Uniform', sans-serif;
+            }
+
+              
+            .shadow-button:hover {
+                background-color: #0056b3; /* Darker shade for hover */
+            }
+            
+            .shadow-button-icon {
+                margin-right: 5px;
+            }
+
+            .product-enquiry-btn {
+                padding: 7px 15px;
+                color: #ffffff;
+                font-size: 14px;
+                display: inline-block;background-color: #ff6e7f;
+                border: 3px solid #fff;
+                box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+            }
+
+
+                    #feedback-section input[type=button] {
+                background-color: #ff6e7f;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 6px 0;
+                font-family: 'Uniform', sans-serif;
+            }
+            .contact-info-container .contact-button:nth-child(even) .contact-buttons-text{
+
+                color: #ff6e7f;
+            }
+
+            .section-header {
+                color: #ff6e7f;
+                text-transform: uppercase;
+                text-align: center;
+                margin-top: -6px;
+                margin-bottom: 15px;
+            }
+            .contact-info-container .contact-button .contact-buttons-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+                text-align: center;
+                margin: 0 auto;
+                box-shadow: 1px 1px 5px rgb(107 128 168 / 20%);
+                border-radius: 100px;
+                margin-bottom: 5px;
+                background-color: #ff6e7f;
+                color: #ffffff;
+                z-index: 1;
+                position: relative;
+            }
+                    .contact-info-container::after {
+                content: ' ';
+                width: 60px;
+                margin: 0 auto;
+                height: 75%;
+                background-color: #ff6e7f;
+                border-radius: 20px 0px 0px 20px;
+                transform: perspective(350px) rotateY(
+            -115deg
+            );
+                box-shadow: 0 26px 20px 0 #dbdbe8;
+                opacity: 0.97;
+                position: absolute;
+                top: 50%;
+                right: -17px;
+                transform: translate(0, -50%) perspective(350px) rotateY(
+            -65deg
+            );
+            }
+
+            .contact-info-container::before {
+                content: ' ';
+                width: 60px;
+                margin: 0 auto;
+                height: 75%;
+                background-color: #ff6e7f;
+                border-radius: 20px 0px 0px 20px;
+                box-shadow: 0 26px 20px 0 #dbdbe8;
+                opacity: 0.97;
+                position: absolute;
+                top: 50%;
+                left: -17px;
+                transform: translate(0, -50%) perspective(350px) rotateY(
+            -115deg
+            );
+            }
+                    .footer-menu .footer-menu-icon {
+                font-size: 24px;
+                margin-bottom: 10px;
+                color:#ff6e7f;
+            }
+                    
+                    .theme-stripe {
+                background-color: #ff6e7f;
+                height: 20px;
+                box-shadow: 0 10px 20px 0 #dbdbe8;
+            }
+
+         
+
+            .profile-pic-img {
+                width: 120px;
+                margin-top: 32px;
+                margin-bottom: 5px;
+                border: 5px solid #ff6e7f;
+                padding: 4px;
+            }
+</style>
+</head>
+<body style="padding-top:10px">
+    {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+<div class="page-wrapper" id="home-section">
+    
+    <div id="card-container">
+        <div class="upper" style="background-image: url('{% if premium_detail.companylogo %}{{ premium_detail.companylogo.url }}{% else %}https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg{% endif %}'); background-size: cover; background-repeat: no-repeat;">
+
+            <div class="item" style="height:100px;margin-top:20px;opacity:none;"><img src="{{ premium_detail.profileimage.url }}" alt="{{ premium_detail.name }}">
+              <div class="frame"><a href="#" class="view"><i class="fa fa-search"></i></a></div>
+            </div>
+        </div>
+        
+        <div class="theme-stripe">
+          <div class="name-1">
+            <div class="theme-stripe">
+              <div class="name-1">
+                  <img src="" style=" padding-right: 82%; padding-top: 35px;height: 88px;" alt="You are offline" id="qr">
+              </div>
+          </div>
+          
+          <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                  const qrElement = document.getElementById("qr");
+          
+                  if (qrElement) {
+                      const currentUrl = encodeURIComponent(window.location.href); // Get and encode current URL
+          
+                      // Set QR Code src
+                      qrElement.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${currentUrl}`;
+                      
+                      qrElement.onerror = function () {
+                          console.error("Failed to load QR code from API.");
+                      };
+          
+                      console.log("QR Code generated for URL:", window.location.href);
+                  } else {
+                      console.error("QR element not found.");
+                  }
+              });
+          </script>
+          
+          </div>
+      </div>
+      
+        <div class="trapezoid">
+            <div class="views-label">
+                <div class="firmname">{{ premium_detail.companyname }}</div>
+                <div class="firmname-underline"></div>
+                <div class="name">{{ premium_detail.name }}<span style="margin-top: 5px; display: inline"><i style="font-size: 12px;"> ({{ premium_detail.role }})</i></span></div>
+            </div>
+        </div>
+        
+        <div class="lower">
+            <div class="contact-info-container">
+                <a class="contact-button" target="_blank" href="tel: {{ premium_detail.phone }}" style="margin-bottom: 0">
+                    <i class="fa fa-phone contact-buttons-icon"></i>
+                    <span class="contact-buttons-text">{{ premium_detail.phone }}</span>
+                </a>
+                {% if premium_detail.phone_secondary %}
+                <a class="contact-button alternate-number" target="_blank" href="tel:{{ premium_detail.phone_secondary }}">
+                    <span class="contact-buttons-text">{{ premium_detail.phone_secondary }}</span>
+                </a>
+                {% endif %}
+                <a class='contact-button' target="_blank" href="mailto:{{ premium_detail.email }}">
+                    <i class="fa fa-envelope fa-flip-horizontal contact-buttons-icon"></i>
+                    <span class="contact-buttons-text">{{ premium_detail.email }}</span>
+                </a>
+                <a class="contact-button" target="_blank" href="https://wa.me/{{ premium_detail.whatsapp_no }}?text=hello {{ premium_detail.name }} this message send using premium your card">
+                    <i class="fa fa-whatsapp contact-buttons-icon"></i>
+                    <span class="contact-buttons-text">{{ premium_detail.whatsapp_no }}</span>
+                </a>
+                {% if premium_detail.website %}
+                <a class="contact-button" target="_blank" href="{{ premium_detail.website }}">
+                    <i class="fa fa-globe contact-buttons-icon"></i>
+                    <span class="contact-buttons-text" style="padding: 0px;">Free Visit to Our Website</span>
+                </a>
+            {% endif %}
+            
+                <a class="contact-button" target="_blank" href="{{ premium_detail.company_website }}">
+                    <i class="fa fa-map-marker fa-flip-horizontal contact-buttons-icon"></i>
+                    <span class="contact-buttons-text">{{ premium_detail.address }}</span>
+                </a>
+            </div>
+        
+            <div class="share-buttons-box">
+                <div class="whatsapp-input">
+                    <div class="input-wrapper">
+                        <label id="country-code" onclick="openModal()">+91</label>
+                        <input id="whatsapp-input" class="input" placeholder="Enter mobile number" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                    </div>
+                    <a class="whatsapp-button" target="_blank" href="#" onclick="shareOnWhatsApp(event)">
+                        <i class="fa fa-whatsapp"></i> Share on WhatsApp
+                    </a>
+                </div>
+                <div class="p-20"></div>
+                <div class="shadow-buttons">
+                    <a class="shadow-button" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3APrasad%20Yalmar%0ATEL%3BTYPE%3DCELL%3A{{premium_detail.phone}}%0AEND%3AVCARD" download="{{premium_detail.name|title}}.vcf">
+                        <i class="fa fa-download shadow-button-icon"></i>Add to Phone Book
+                    </a>
+                    <a class="shadow-button" onclick="openShareModal(this, 'Pioneer Coding', 'pioneer-coding.html')">
+                        <i class="fa fa-share-alt shadow-button-icon"></i>Share
+                    </a>
+                </div>
+            
+                <div class="card-container">
+                    <div class="card-content">
+                        <a class="shadow-button save-card-button" href="#" onclick="downloadPremiumCard({{ id }}, {{ theme }}); return false;">
+                            <i class="fa fa-cloud-download-alt shadow-button-icon"></i>Save Card
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <ul class="inprofile share-buttons">
+        {% if premium_detail.facebook_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.facebook_url }}"><i class="share-button-facebook fa fa-facebook-f"></i></a>
+        </li>
+        {% endif %}
+        {% if premium_detail.twitter_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.twitter_url }}"><i class="share-button-twitter fa fa-twitter"></i></a>
+        </li>
+        {% endif %}
+        {% if premium_detail.instagram_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.instagram_url }}"><i class="share-button-instagram fa fa-instagram"></i></a>
+        </li>
+        {% endif %}
+        {% if premium_detail.youtube_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.youtube_url }}"><i class="share-button-youtube fa fa-youtube"></i></a>
+        </li>
+        {% endif %}
+        {% if premium_detail.pinterest_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.pinterest_url }}"><i class="share-button-pinterest fa fa-pinterest"></i></a>
+        </li>
+        {% endif %}
+        {% if premium_detail.linkedin_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.linkedin_url }}"><i class="share-button-linkedin fa fa-linkedin"></i></a>
+        </li>
+        {% endif %}
+        {% if premium_detail.telegram_url %}
+        <li class="share-button">
+            <a target="_blank" href="{{ premium_detail.telegram_url }}"><i class="share-button-telegram fa fa-telegram"></i></a>
+        </li>
+        {% endif %}
+    </ul>
+   
+    
+
+<div class="p-20"></div>
+<div class="section-container" id="about-us-section">
+  
+  <div class="theme-stripe"></div>
+  <div class="trapezoid section-top-trapezoid"><div class="views-label">
+    <div class="firmname">
+        <h2 class="section-header">About Us</h2></div>
+</div></div>
+  
+  <div class="section-content-wrapper">
+    <table class="about-us-table">
+      <tbody>
+        <tr>
+          <td class="table-row-label">
+            <h3 class="table-row-label-text">Company Name</h3>
+            <b class="table-row-label-separator">:</b>
+          </td>
+          <td></td>
+          <td class="table-row-value">{{ premium_detail.companyname }}</td>
+          <td></td>
+        </tr>
+        {% if premium_detail.start_year %}
+        <tr>
+          <td class="table-row-label">
+            <h3 class="table-row-label-text">Year of Start</h3>
+            <b class="table-row-label-separator">:</b>
+          </td>
+          <td></td>
+          <td class="table-row-value">{{ premium_detail.start_year }}</td>
+          <td></td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td class="table-row-label">
+            <h3 class="table-row-label-text">Nature Of Business</h3>
+            <b class="table-row-label-separator">:</b>
+          </td>
+          <td></td>
+          <td class="table-row-value">{{ premium_detail.nature_of_business}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="table-row-label">
+            <h3 class="table-row-label-text">Company Mail</h3>
+            <b class="table-row-label-separator">:</b>
+          </td>
+          <td></td>
+          <td class="table-row-value">{{ premium_detail.company_email }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 class="speciality-label">Our Specialities</h3>
+    <ul class="unorderedList">
+      <li>{{ premium_detail.speciality_1 }}</li>
+      <li>{{ premium_detail.speciality_2 }}</li>
+      <li>{{ premium_detail.speciality_3 }}</li>
+    </ul>
+    
+    <div class="about-us-text">
+        <h3 class="speciality-label">Message </h3>
+      <p>
+        <strong>“{{ premium_detail.last_message }}.”</strong>
+      </p>
+      <p>&nbsp;</p>
+    </div>
+
+    <div class="section-close"></div>
+
+    <div class="trapezoid section-bottom-trapezoid"></div>
+    <div class="theme-stripe"></div>
+  </div>
+</div>
+
+
+<!-- gallary sections  -->
+
+
+<div class="p-20"></div>
+<div class="section-container" id="about-us-section">
+  
+
+<div class="section-container" id="about-us-section">
+  
+  <div class="theme-stripe"></div>
+  <div class="trapezoid section-top-trapezoid">
+    <div class="views-label">
+        <div class="firmname">
+            <h2 class="section-header">gallary SECTIONS</h2></div>
+    </div>
+  </div>
+  
+  <div class="section-content-wrapper">
+
+    <table class="about-us-table">
+      <tbody>
+        <div class="container">
+          {% if premium_detail.gallery_imagePrimium1 or premium_detail.gallery_imagePrimium2 or premium_detail.gallery_imagePrimium3 or premium_detail.gallery_imagePrimium4 or premium_detail.gallery_imagePrimium5 or premium_detail.gallery_imagePrimium6 or premium_detail.gallery_imagePrimium7 %}
+          
+            {% if premium_detail.gallery_imagePrimium1 %}
+            <div class="item"><img src="{{ premium_detail.gallery_imagePrimium1.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click1</a></div>
+            </div>
+            {% endif %}
+            
+            {% if premium_detail.gallery_imagePrimium2 %}
+            <div class="item vertical"><img src="{{ premium_detail.gallery_imagePrimium2.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click2</a></div>
+            </div>
+            {% endif %}
+            
+            {% if premium_detail.gallery_imagePrimium3 %}
+            <div class="item horizontal"><img src="{{ premium_detail.gallery_imagePrimium3.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click3</a></div>
+            </div>
+            {% endif %}
+            
+            {% if premium_detail.gallery_imagePrimium4 %}
+            <div class="item"><img src="{{ premium_detail.gallery_imagePrimium4.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click4</a></div>
+            </div>
+            {% endif %}
+            
+            {% if premium_detail.gallery_imagePrimium5 %}
+            <div class="item"><img src="{{ premium_detail.gallery_imagePrimium5.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click5</a></div>
+            </div>
+            {% endif %}
+            
+            {% if premium_detail.gallery_imagePrimium6 %}
+            <div class="item big"><img src="{{ premium_detail.gallery_imagePrimium6.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click6</a></div>
+            </div>
+            {% endif %}
+            
+            {% if premium_detail.gallery_imagePrimium7 %}
+            <div class="item"><img src="{{ premium_detail.gallery_imagePrimium7.url }}" alt="Photo">
+              <div class="frame"><a href="#" class="view">click7</a></div>
+            </div>
+            {% endif %}
+            
+          {% else %}
+            <p>No gallery image selected</p>
+          {% endif %}
+        </div>
+        
+          
+          <!-- Fullscreen image view -->
+          <div id="fullscreen-overlay" class="fullscreen-overlay">
+            <span class="close">&times;</span>
+            <img class="fullscreen-image" id="fullscreen-img">
+          </div>
+          
+
+    <div class="section-close"></div>
+
+    <div class="trapezoid section-bottom-trapezoid"></div>
+    <div class="theme-stripe"></div>
+  </div>
+</div>
+      </tbody>
+    </table>
+   
+    
+    
+  </div>
+</div>
+
+
+
+
+<div class="section-container" id="enquiry-section">
+    <div class="theme-stripe"></div>
+    <div class="trapezoid section-top-trapezoid"><div class="views-label"></div>
+        <div class="firmname">
+            <h2 class="section-header">Enquiry Form</h2></div>
+    </div></div>
+    <div class="section-content-wrapper">
+      <form class="enquiry-form" id="enquiryForm" novalidate>
+        <input type="text" name="enquiryName" id="enquiryName" placeholder="Enter Full Name" required /><br />
+        <div class="flex">
+          <div class="enquiry-phoneNumber">
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required /><br />
+          </div>
+          <div class="enquiry-email">
+            <input type="text" name="email" id="email" placeholder="Enter Email" required /><br />
+          </div>
+        </div>
+        <textarea name="message" id="message" placeholder="Enter Message" required></textarea><br />
+        <input type="hidden" id="premium-email" value="{{ premium_detail.email|escapejs }},{{ premium_detail.company_email|escapejs }}">
+        <input type="button" value="Send" onclick="handleSendEnquiry()">
+      </form>
+    </div>
+    <div class="trapezoid section-bottom-trapezoid"></div>
+    <div class="theme-stripe"></div>
+  </div>
+  
+  
+
+<div class="copyright-wrapper">
+  <div class="copyright-wrapper-inner">
+    © 2024-2025 <a href="{% url 'home' %}" target="_blank"><b>Design & Developed by WEBSENZ Technologies</b></a>
+  </div>
+</div>
+
+
+<div class="footer">
+
+
+<div id="imageModal" class="modal">
+<span class="close" id="imageModalClose">&times;</span>
+<img class="modal-content fadeIn" id="img01">
+<div id="caption"></div>
+</div>
+
+
+<div id="shareModal" class="modal share-modal">
+<div class="share-form fadeInUpBig">
+<div class="share-form-header">
+<h3 class="share-form-header-text">Share Profile</h3>
+<span class="close" id="shareModalClose">&times;</span>
+</div>
+<div class="share-form-buttons-container">
+<p>Share my Digital vCard in your network.</p>
+<div class="share-buttons-heading">
+<img src="templates/template1/tild-arrow.svg" class="share-buttons-arrow">
+<div class="share-buttons-heading-text">Share my Digital vCard</div>
+</div>
+<ul class="share-buttons">
+<li class="share-button">
+<a href="javascript:;" target="_blank" onclick="handleDirectWhatsappShare(this, 9172353945, 'pioneer-coding.html')">
+<i class="share-button-whatsapp fab fa-whatsapp"></i>
+</a>
+</li>
+<li class="share-button">
+<a target="_blank" href="sms:?body=http://card.linkconnect.in/pioneer-coding">
+<i class="share-button-sms fas fa-comment-dots"></i>
+</a>
+</li>
+<li class="share-button">
+<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://card.linkconnect.in/pioneer-coding&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+<i class="share-button-facebook fab fa-facebook-f"></i>
+</a>
+</li>
+<li class="share-button">
+<a target="_blank" href="https://twitter.com/intent/tweet?text=http://card.linkconnect.in/pioneer-coding" data-size="large">
+<i class="share-button-twitter fab fa-twitter"></i>
+</a>
+</li>
+<li class="share-button">
+<a target="_blank" href="https://pinterest.com/pin/create/link/?url=http://card.linkconnect.in/pioneer-coding">
+<i class="share-button-pinterest fab fa-pinterest-p"></i>
+</a>
+</li>
+<li class="share-button">
+<a target="_blank" href="/cdn-cgi/l/email-protection#ad92ded8cfc7c8ced990e9c4cac4d9ccc18deeccdfc98bccc0dd96cfc2c9d490eec5c8cec68dc2d8d98dd9c5c4de8dc9c4cac4d9ccc18dceccdfc98dc5d9d9dd978282ceccdfc983c1c4c3c6cec2c3c3c8ced983c4c382ddc4c2c3c8c8df80cec2c9c4c3ca83">
+<i class="share-button-mail fas fa-envelope"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Modal for editing country code -->
+<div id="myModal" class="modal" style="display: none; cursor: pointer;">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <h2>Edit Country Code</h2>
+  <input type="text" id="modal-country-code" placeholder="Enter new country code" maxlength="5"  style=" cursor: pointer;">
+  <button onclick="updateCountryCode()">Update</button>
+</div>
+
+
+
+
+<script src=" {% static 'cardp/card-premi.js' %} "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src=" {% static 'cardp/card_p.js' %} "></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %} "></script><script src=" {% static '../cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js' %} "></script>
+<script src=" {% static '../cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js' %} "></script>
+<script src=" {% static 'templates/common/js/star-rating.js' %} "></script>
+<script src=" {% static 'templates/common/js/script.2.js' %} "></script>
+</body>
+
+</html>

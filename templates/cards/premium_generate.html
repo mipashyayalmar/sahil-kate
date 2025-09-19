@@ -1,0 +1,103 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Details</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- You can add your CSS links here -->
+</head>
+<body>
+    <div class="container">
+        <!-- Messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Premium Details Section -->
+        <div class="premium-details-card">
+            <h1>Premium Details</h1>
+            
+            <div class="profile">
+                <h2>{{ premium_details.name }}</h2>
+                <img src="{{ premium_details.profileimage.url }}" alt="{{ premium_details.name }}'s Profile Image" class="profile-image">
+            </div>
+            
+            <div class="details">
+                <p><strong>Personal Email:</strong> {{ premium_details.email }}</p>
+                <p><strong>Phone:</strong> {{ premium_details.phone }}</p>
+                {% if premium_details.phone_secondary %}
+                    <p><strong>Secondary Phone:</strong> {{ premium_details.phone_secondary }}</p>
+                {% endif %}
+                <p><strong>WhatsApp No:</strong> {{ premium_details.whatsapp_no }}</p>
+                <p><strong>Company Name:</strong> {{ premium_details.companyname }}</p>
+                <p><strong>Company Email:</strong> {{ premium_details.company_email }}</p>
+                <p><strong>Website:</strong> <a href="{{ premium_details.website }}" target="_blank">{{ premium_details.website }}</a></p>
+                <p><strong>Company Website:</strong> <a href="{{ premium_details.company_website }}" target="_blank">{{ premium_details.company_website }}</a></p>
+                <p><strong>Address:</strong> {{ premium_details.address }}</p>
+                <p><strong>Nature of Business:</strong> {{ premium_details.nature_of_business }}</p>
+            </div>
+
+            <!-- Specialities -->
+            <div class="specialities">
+                <h3>Specialities</h3>
+                {% if premium_details.speciality_1 %}
+                    <p><strong>Speciality 1:</strong> {{ premium_details.speciality_1 }}</p>
+                {% endif %}
+                {% if premium_details.speciality_2 %}
+                    <p><strong>Speciality 2:</strong> {{ premium_details.speciality_2 }}</p>
+                {% endif %}
+                {% if premium_details.speciality_3 %}
+                    <p><strong>Speciality 3:</strong> {{ premium_details.speciality_3 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery">
+                <h3>Gallery</h3>
+                <div class="gallery-grid">
+                    {% if premium_details.gallery_imagePrimium1 %}
+                        <img src="{{ premium_details.gallery_imagePrimium1.url }}" alt="Gallery Image 1">
+                    {% endif %}
+                    {% if premium_details.gallery_imagePrimium2 %}
+                        <img src="{{ premium_details.gallery_imagePrimium2.url }}" alt="Gallery Image 2">
+                    {% endif %}
+                    {% if premium_details.gallery_imagePrimium3 %}
+                        <img src="{{ premium_details.gallery_imagePrimium3.url }}" alt="Gallery Image 3">
+                    {% endif %}
+                    {% if premium_details.gallery_imagePrimium4 %}
+                        <img src="{{ premium_details.gallery_imagePrimium4.url }}" alt="Gallery Image 4">
+                    {% endif %}
+                    {% if premium_details.gallery_imagePrimium5 %}
+                        <img src="{{ premium_details.gallery_imagePrimium5.url }}" alt="Gallery Image 5">
+                    {% endif %}
+                    {% if premium_details.gallery_imagePrimium6 %}
+                        <img src="{{ premium_details.gallery_imagePrimium6.url }}" alt="Gallery Image 6">
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Last Message -->
+            {% if premium_details.last_message %}
+                <div class="last-message">
+                    <h3>Last Message</h3>
+                    <p>{{ premium_details.last_message }}</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="back-home">
+            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
