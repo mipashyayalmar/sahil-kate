@@ -169,11 +169,18 @@ def form(req):
     return render(req, 'cards/form.html')
 from django.shortcuts import render, redirect, get_object_or_404
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .forms import PremiumDetailForm
+from .models import Detail_Primium
 
 def premium_form(request, premium_id=None):
     # Check if a premium_id is provided to edit an existing premium card
     if premium_id:
         premium_detail = get_object_or_404(Detail_Primium, id=premium_id)
+        if premium_detail.created_for and premium_detail.created_for != request.user:
+            messages.error(request, "You are not authorized to edit this card.")
+            return redirect('cards:premium_form')
         form = PremiumDetailForm(request.POST or None, request.FILES or None, instance=premium_detail)
     else:
         premium_detail = None
@@ -183,31 +190,27 @@ def premium_form(request, premium_id=None):
         messages.error(request, "You need to be logged in to create or update a premium card.")
         return redirect('user:signin')
 
-    
     if request.method == 'POST':
         if form.is_valid():
-            premium_card = form.save(commit=False)  
-            premium_card.created_for = request.user  
+            premium_card = form.save(commit=False)
+            premium_card.created_for = request.user  # Set the user regardless of form data
             try:
-                premium_card.save()  
+                premium_card.save()
                 messages.success(request, 'Premium card created/updated successfully!')
-
-                
-                return redirect('cards:generate_premium_form', id=premium_card.id)  
+                return redirect('cards:generate_premium_form', id=premium_card.id)
             except Exception as e:
                 messages.error(request, f"An error occurred while saving the premium card: {str(e)}")
         else:
-           
-            messages.error(request, "Please correct the errors below.")
+            # Display specific form errors
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
 
-    
     context = {
         'form': form,
         'premium_detail': premium_detail
     }
     return render(request, 'cards/premium_form.html', context)
-
-
 
 
 def view(req, id, theme):

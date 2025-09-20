@@ -34,7 +34,7 @@
   <div class="container">
     {% comment %} logo  {% endcomment %}
     <a href="/" class="navbar-brand">
-      <img src="{% static 'img/kate-logo.png' %}" alt="websenz"height="100px" >
+      <img src="{% static 'img/kate-logo.png' %}" alt="Anitataikate"height="100px" >
   </a>
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,7 @@
   
     {% else %}
     <li class="nav-item">
-      <a class="nav-link page-scroll" href="/profile" >My Profile</a>
+      <a href="/profile">	<button type="button" class="btn btn-singin btn btn-border-filled"><i class="lni-user"></i><span>MY PROFILE</span></button></a>
     </li>
     {% endif %}	
 
@@ -72,7 +72,7 @@
     {% if not request.session.username %}
     <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-singin btn btn-border-filled" ><span>Login/Signup</span></button></a>
       {% else %}
-      <a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-singin btn btn-border-filled"><span>logout</span></button></a>
+      
       {% endif %}	
   </li>
 <br>

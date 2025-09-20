@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Bootstrap, Landing page, Template, Business, Service">
   <meta name="author" content="Grayrids">
-  <title>Smart Card</title>
-  {% comment %} favi {% endcomment %}
+<title>Navaratri Dandiya</title>
+<link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-512x512.png' %}" type="image/png">
   <link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-192x192.png' %}" type="image/png">
 
   <!-- Stylesheets -->
@@ -160,7 +160,7 @@
   <ul>
     <h1 style="margin-left:100px">
       <a href="/" class="navbar-brand">
-        <img src="{% static 'img/websenz-logo.png' %}" alt="websenz" width="250px" height="50px">
+        <img src="{% static 'img/kate-logo.png' %}" alt="Anitataikate"  height="100px">
       </a>
     </h1>
     <div id="resbar" class="bar">Menu</div>
@@ -242,37 +242,15 @@
       });
     });
   </script>
-<!-- Non-Premium Cards Section -->
+
 <div class="container mt-5">
-  <h3>My Designs</h3>
-  <div class="row">
-    {% if cards %}
-      {% for item in cards %}
-        <div class="col-md-4">
-          <div class="card" style="margin-bottom: 1rem;">
-            <img class="card-img-top" src="{% static 'cards/images/Blue_Black_Modern_For_Business_Card_0VtNhsF.png' %}" alt="Cards image cap">
-            <div class="card-body">
-              <h5 class="card-title">Design {{ forloop.counter }}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="/cardsgenerate/{{ item.id }}" class="btn" id="whatsapp" style="background-color: #008445; color:#fff;">Link {{ forloop.counter }}</a>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <p style="margin: 2rem;">You have not designed any card yet.</p>
-    {% endif %}
-  </div>
-</div>
-<!-- Premium Cards Section -->
-<div class="container mt-5">
-  <h3>My Premium Designs</h3>
+  <h3>My Identity Card</h3>
   <div class="row">
     {% if cards_detail %}
       {% for detail in cards_detail %}
         <div class="col-md-4">
           <div class="card" style="margin-bottom: 1rem;">
-            <img class="card-img-top" src="{% static 'cards/images/Blue_Black_Modern_For_Business_Card_0VtNhsF.png' %}" alt="Cards image cap">
+            <img class="card-img-top" src="{% static 'cards/images/3.0.png' %}"alt="Cards image cap">
             <div class="card-body">
               <h5 class="card-title">Premium Design {{ forloop.counter }}</h5>
               <p class="card-text">Details for premium design {{ forloop.counter }}.</p>
@@ -287,7 +265,6 @@
     {% endif %}
   </div>
 </div>
-
 
 
 

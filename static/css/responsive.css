@@ -195,12 +195,19 @@
     font-size: 20px;
     line-height: 35px;
     margin-bottom: 10px; }
-  .hero-area .contents {
-    padding: 90px 0 15px; }
+  /* .hero-area .contents {
+    padding: 90px 0 15px; } */
+    @media (min-width: 320px) and (max-width: 480px) {
+    .hero-area .contents {
+        padding: 100 0 15px;
+    }
+}
   .hero-area .contents p {
     color: #fff;
     font-size: 14px;
-    line-height: 26px; }
+    line-height: 26px;
+    display: none;
+   }
   .hero-area .contents .btn {
     margin-top: 30px;
     margin-right: 4px;

@@ -1,5 +1,3 @@
-
-
 {% extends 'home/base.html' %}
 
 {% block content %}
@@ -56,6 +54,17 @@
         background-color: #212529;
     }
 
+    /* Error styling */
+    .form-error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .form-control.is-invalid {
+        border-color: red;
+    }
+
     /* Responsive styling */
     @media (max-width: 850px) {
         .container-flex {
@@ -90,11 +99,11 @@
         color: black;
         font-size: 12px;
     }
-
 </style>
 
 <div class="container">
-
+    <h3>Create Premium Card</h3>
+    
     {% if messages %}
     <div class="container-fluid p-0 m-0">
         {% for message in messages %}
@@ -106,206 +115,333 @@
             </div>
         {% endfor %}
     </div>
-{% endif %}
+    {% endif %}
 
-<h3>Create Premium Card</h3>
-<form action="{% if premium_detail %}{% url 'cards:generate_premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <form action="{% if premium_detail %}{% url 'cards:premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <div class="container-flex">
-        <!-- Personal Details Section -->
-        <div>
-            <h2 class="h4 mt-2">Enter Your Details:</h2>
+        <div class="container-flex">
+            <!-- Personal Details Section -->
+            <div>
+                <h2 class="h4 mt-2">Enter Your Details:</h2>
 
-            <div class="form-group">
-                <label for="name"><span style="color:red;">*</span> Name: </label>
-                <input type="text" class="form-control" name="name" placeholder="Enter your name" value="{{ premium_detail.name|default:'' }}" required>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    {{ form.name }}
+                    {% for error in form.name.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Personal Email:</label>
+                    {{ form.email }}
+                    {% for error in form.email.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    {{ form.role }}
+                    {% for error in form.role.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="profileimage">Profile (Personal / Company):</label>
+                    {{ form.profileimage }}
+                    {% if premium_detail.profileimage %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.profileimage.name }}</small>
+                    {% endif %}
+                    {% for error in form.profileimage.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number 1:</label>
+                    {{ form.phone }}
+                    {% for error in form.phone.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_secondary">Phone Number 2:</label>
+                    {{ form.phone_secondary }}
+                    {% for error in form.phone_secondary.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp_no">WhatsApp No:</label>
+                    {{ form.whatsapp_no }}
+                    {% for error in form.whatsapp_no.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="companyname">Company / Business Name:</label>
+                    {{ form.companyname }}
+                    {% for error in form.companyname.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="company_email">Company / Business Email:</label>
+                    {{ form.company_email }}
+                    {% for error in form.company_email.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="companylogo">Banner Image:</label>
+                    {{ form.companylogo }}
+                    {% if premium_detail.companylogo %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.companylogo.name }}</small>
+                    {% endif %}
+                    {% for error in form.companylogo.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Any Website to Clite Show:</label>
+                    {{ form.website }}
+                    {% for error in form.website.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="company_website">Company Website:</label>
+                    {{ form.company_website }}
+                    {% for error in form.company_website.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address Proper Written:</label>
+                    {{ form.address }}
+                    {% for error in form.address.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="location_url">Location URL (copy from google link):</label>
+                    {{ form.location_url }}
+                    {% for error in form.location_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="start_year">Company Start Date:</label>
+                    {{ form.start_year }}
+                    <small class="form-text text-muted">Choose the date the company was started.</small>
+                    {% for error in form.start_year.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="nature_of_business">Nature of Business:</label>
+                    {{ form.nature_of_business }}
+                    {% for error in form.nature_of_business.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="speciality_1">Specialty 1:</label>
+                    {{ form.speciality_1 }}
+                    {% for error in form.speciality_1.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="speciality_2">Specialty 2:</label>
+                    {{ form.speciality_2 }}
+                    {% for error in form.speciality_2.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="speciality_3">Specialty 3:</label>
+                    {{ form.speciality_3 }}
+                    {% for error in form.speciality_3.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium1">Gallery Image 1 (Identi-Size):</label>
+                    {{ form.gallery_imagePrimium1 }}
+                    {% if premium_detail.gallery_imagePrimium1 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium1.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium1.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium2">Gallery Image 2 (Vertical):</label>
+                    {{ form.gallery_imagePrimium2 }}
+                    {% if premium_detail.gallery_imagePrimium2 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium2.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium2.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium3">Gallery Image 3 (Horizontal):</label>
+                    {{ form.gallery_imagePrimium3 }}
+                    {% if premium_detail.gallery_imagePrimium3 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium3.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium3.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium4">Gallery Image 4 (Identi-Size):</label>
+                    {{ form.gallery_imagePrimium4 }}
+                    {% if premium_detail.gallery_imagePrimium4 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium4.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium4.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium5">Gallery Image 5 (Identi-Size):</label>
+                    {{ form.gallery_imagePrimium5 }}
+                    {% if premium_detail.gallery_imagePrimium5 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium5.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium5.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium6">Gallery Image 6 (Dimensions: 200px height and width):</label>
+                    {{ form.gallery_imagePrimium6 }}
+                    {% if premium_detail.gallery_imagePrimium6 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium6.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium6.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="gallery_imagePrimium7">Gallery Image 7 (Identi-Size):</label>
+                    {{ form.gallery_imagePrimium7 }}
+                    {% if premium_detail.gallery_imagePrimium7 %}
+                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium7.name }}</small>
+                    {% endif %}
+                    {% for error in form.gallery_imagePrimium7.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <!-- Social Media Section -->
+                <h2 class="h4 mt-4">Social Media Links:</h2>
+                <div class="form-group">
+                    <label for="facebook_url">Facebook URL:</label>
+                    {{ form.facebook_url }}
+                    {% for error in form.facebook_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="twitter_url">Twitter URL:</label>
+                    {{ form.twitter_url }}
+                    {% for error in form.twitter_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="instagram_url">Instagram URL:</label>
+                    {{ form.instagram_url }}
+                    {% for error in form.instagram_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="youtube_url">YouTube URL:</label>
+                    {{ form.youtube_url }}
+                    {% for error in form.youtube_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="pinterest_url">Pinterest URL:</label>
+                    {{ form.pinterest_url }}
+                    {% for error in form.pinterest_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin_url">LinkedIn URL:</label>
+                    {{ form.linkedin_url }}
+                    {% for error in form.linkedin_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="telegram_url">Telegram URL:</label>
+                    {{ form.telegram_url }}
+                    {% for error in form.telegram_url.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="last_message">Last Message:</label>
+                    {{ form.last_message }}
+                    {% for error in form.last_message.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="email"><span style="color:red;">*</span> Personal Email:</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter your email" value="{{ premium_detail.email|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="role"><span style="color:red;">*</span> Role:</label>
-                <input type="text" class="form-control" name="role" placeholder="Enter your role" value="{{ premium_detail.role|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="profileimage"><span style="color:red;">*</span> Profile (Personal / Company):</label>
-                <input type="file" class="form-control" name="profileimage" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone"><span style="color:red;">*</span> Phone Number 1:</label>
-                <input type="text" class="form-control" name="phone" placeholder="Enter your phone number" value="{{ premium_detail.phone|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone_secondary">Phone Number 2:</label>
-                <input type="text" class="form-control" name="phone_secondary" placeholder="Enter your secondary phone number" value="{{ premium_detail.phone_secondary|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="whatsapp_no"><span style="color:red;">*</span> WhatsApp No:</label>
-                <input type="text" class="form-control" name="whatsapp_no" placeholder="Enter your WhatsApp number" value="{{ premium_detail.whatsapp_no|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="companyname"><span style="color:red;">*</span> Company / Business Name:</label>
-                <input type="text" class="form-control" name="companyname" placeholder="Enter your company name" value="{{ premium_detail.companyname|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="company_email"><span style="color:red;">*</span> Company / Business Email:</label>
-                <input type="email" class="form-control" name="company_email" placeholder="Enter your company email" value="{{ premium_detail.company_email|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="companylogo"><span style="color:red;">*</span> Banner Image:</label>
-                <input type="file" class="form-control" name="companylogo" required>
-            </div>
-
-            <div class="form-group">
-                <label for="website">Any Website to Clite Show:</label>
-                <input type="url" class="form-control" name="website" placeholder="Enter your website URL (https://www.client_show.in/)" value="{{ premium_detail.website|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="company_website">Company Website:</label>
-                <input type="url" class="form-control" name="company_website" placeholder="Enter your company website URL (https://www.websenz.in/)" value="{{ premium_detail.company_website|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="address"><span style="color:red;">*</span> Address Proper Written:</label>
-                <input type="text" class="form-control" name="address" placeholder="Off. No. 7, 2nd Floor, Shri Gurudatta Housing Society, 1089, Shukrawar Peth, Swargate Corner, Pune, India, Maharashtra" value="{{ premium_detail.address|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="location_url"><span style="color:red;">*</span> Location URL (copy from google link):</label>
-                <input type="url" class="form-control" name="location_url" placeholder="Enter your location URL (https://maps.app.goo.gl/5PzZSSj7PJ3TEggs5)" value="{{ premium_detail.location_url|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="start_year">Company Start Date:</label>
-                <input type="date" class="form-control" id="start_year" name="start_year" 
-                       value="{{ premium_detail.start_year|default:'' }}" 
-                       min="1800-01-01" max="{{ current_year }}-12-31" 
-                       placeholder="Select the start date">
-                <small class="form-text text-muted">Choose the date the company was started.</small>
-            </div>
-
-            <div class="form-group">
-                <label for="nature_of_business"><span style="color:red;">*</span> Nature of Business:</label>
-                <input type="text" class="form-control" name="nature_of_business" placeholder="Web Development" value="{{ premium_detail.nature_of_business|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="speciality_1"><span style="color:red;">*</span> Specialty 1:</label>
-                <input type="text" class="form-control" name="speciality_1" placeholder="Enter your first specialty" value="{{ premium_detail.speciality_1|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="speciality_2">Specialty 2:</label>
-                <input type="text" class="form-control" name="speciality_2" placeholder="Enter your second specialty" value="{{ premium_detail.speciality_2|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="speciality_3">Specialty 3:</label>
-                <input type="text" class="form-control" name="speciality_3" placeholder="Enter your third specialty" value="{{ premium_detail.speciality_3|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium1">Gallery Image 1 (Identi-Size):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium1">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium2">Gallery Image 2 (Vertical):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium2">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium3">Gallery Image 3 (Horizontal):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium3">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium4">Gallery Image 4 (Identi-Size):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium4">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium5">Gallery Image 5 (Identi-Size):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium5">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium6">Gallery Image 6 (Dimensions: 200px height and width):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium6">
-            </div>
-
-            <div class="form-group">
-                <label for="gallery_imagePrimium7">Gallery Image 7 (Identi-Size):</label>
-                <input type="file" class="form-control" name="gallery_imagePrimium7">
-            </div>
-
-            <!-- Social Media Section -->
-            <h2 class="h4 mt-4">Social Media Links:</h2>
-            <div class="form-group">
-                <label for="facebook_url">Facebook URL:</label>
-                <input type="url" class="form-control" name="facebook_url" placeholder="Enter your Facebook URL" value="{{ premium_detail.facebook_url|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="twitter_url">Twitter URL:</label>
-                <input type="url" class="form-control" name="twitter_url" placeholder="Enter your Twitter URL" value="{{ premium_detail.twitter_url|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="instagram_url">Instagram URL:</label>
-                <input type="url" class="form-control" name="instagram_url" placeholder="Enter your Instagram URL" value="{{ premium_detail.instagram_url|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="youtube_url">YouTube URL:</label>
-                <input type="url" class="form-control" name="youtube_url" placeholder="Enter your YouTube URL" value="{{ premium_detail.youtube_url|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="pinterest_url">Pinterest URL:</label>
-                <input type="url" class="form-control" name="pinterest_url" placeholder="Enter your Pinterest URL" value="{{ premium_detail.pinterest_url|default:'' }}">
-            </div>
-
-            <div class="form-group">
-                <label for="linkedin_url"><span style="color:red;">*</span> LinkedIn URL:</label>
-                <input type="url" class="form-control" name="linkedin_url" placeholder="Enter your LinkedIn URL" value="{{ premium_detail.linkedin_url|default:'' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="telegram_url">Telegram URL:</label>
-                <input type="url" class="form-control" name="telegram_url" placeholder="Enter your Telegram URL" value="{{ premium_detail.telegram_url|default:'' }}">
+            <!-- Submit Button -->
+            <div style="display: flex; justify-content: center;">
+                <button type="submit" class="btn p-2 m-5 button">Submit</button>
             </div>
         </div>
+    </form>
 
-        <div class="form-group">
-            <label for="last_message"><span style="color:red;">*</span> Last Message:</label>
-            <textarea class="form-control" name="last_message" rows="4" placeholder="Enter your message here" required>{{ premium_detail.last_message|default:'' }}</textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <div style="display: flex; justify-content: center;">
-            <button type="submit" class="btn p-2 m-5 button">Submit</button>
-        </div>
-</form>
-
-
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const submitButton = document.querySelector('button[type="submit"]');
+            submitButton.disabled = false; // Always enable submit button
+        });
+    </script>
 </div>
 
 {% endblock content %}
-
-
-
-

@@ -12,7 +12,7 @@
     <h2 class="head-title">Streamline Your Client Connections<br> with Smart Solutions</h2>
     <p>Transform your client interactions with our sleek, smart digital card. Effortlessly manage and enhance relationships with cutting-edge technology that sets you apart.</p>
     <div class="header-button">
-    <a href="{% url 'home' %}#pricing" class="btn btn-border-filled">Get Started</a>
+    <a href="{% url 'home' %}#pricing" class="btn btn-border-filled">Register</a>
 
     <a href="#contact" class="btn btn-border page-scroll">Contact Us</a>
     </div>
@@ -37,7 +37,7 @@
         <div class="row gradient-bg">
           <div class="col-lg-12">
             <div class="showcase-text section-header text-center p-3 p-md-4 p-lg-5">
-                <h2 class="section-title">When we last hosted the Dandiya festival, it left us with unforgettable memories etched in our hearts</h2>
+                <h2 class="section-title">The memories from the last Dandiya festival still dance in our hearts today.
                 <div class="desc-text">
                     <p style="padding-left:10%;padding-right:10%;">
                         Creative demos of professional visiting cards showcase innovative designs that combine aesthetics with functionality. These demos highlight unique elements like typography, colors, and materials to make memorable, impactful business cards.
@@ -496,7 +496,7 @@
     </ul>
     </div>
     <div class="plan-button">
-    <a href="{% url 'cards:form' %}" class="btn btn-common">Purchase</a>
+    <a href="{% if premium_detail %}{% url 'cards:edit_premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" class="btn btn-common">Registration</a>
     </div>
     </div>
     </div>
@@ -617,7 +617,7 @@ video {
     </a>
     </div>
     <div class="blog-item-text">
-    <h3><a href="single-post.html">Upcoming Grand Festival  of Dadiya Yatra <br>2025</a></h3>
+    <h3><a href="single-post.html">Upcoming Grand Dandiya Festival   <br>2025</a></h3>
     <p>Get ready for the Upcoming Grand Festival 2025!
 Celebrate the divine Dadiya Yatra with joy and devotion.</p>
     <a href class="read-more">Min read</a>
@@ -675,7 +675,7 @@ Celebrate the divine Dadiya Yatra with joy and devotion.</p>
       <img src="img/shape.png" class="square" alt="" />
       <div class="form">
         <div class="contact-info">
-          <h3 class="title">Direct Contact</h3>
+          <h3 class="title"></h3>
           <p class="text">
            
           </p>
