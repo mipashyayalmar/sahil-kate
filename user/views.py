@@ -22,67 +22,28 @@ from django.template.loader import render_to_string
 def signup(request):
     if request.method == 'POST':
         username = request.POST['username']
-        name = request.POST['name']
-        phone = request.POST['phone']
         password = request.POST['password']
         
         # Check if the user already exists
         if User.objects.filter(username=username).exists():
             return render(request, 'user/signin.html', {'message': 'User already exists with that username. Please sign in.'})
         
-        # Create the new user and deactivate it until verification
-        user = User.objects.create_user(username=username, password=password, name=name, phone=phone)
-        user.is_active = False
-        user.email = username
-        token = default_token_generator.make_token(user)
-        
-        # Build the verification URL
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
-        verification_url = request.build_absolute_uri(f'/userverify_email/{uid}/{token}/')
-        
-        # Email subject
-        subject = 'Welcome to websenz Card Generator, Verify your account'
-        
-        # Render the HTML email template
-        html_message = render_to_string('user/verification_email.html', {
-            'name': user.name,
-            'verification_url': verification_url,
-            'domain': request.get_host(),
-            'protocol': 'https' if request.is_secure() else 'http',
-        })
-        
-        # Convert HTML to plain text for fallback
-        plain_message = strip_tags(html_message)
-        
-        # Email setup using EmailMultiAlternatives
-        email = EmailMultiAlternatives(
-            subject,
-            plain_message,
-            settings.EMAIL_HOST_USER,
-            [username],
-        )
-        email.attach_alternative(html_message, "text/html")
-        
-        # Send the email
-        email.send()
-
-        # Save the user
+        # Create the new user - no email verification needed
+        user = User.objects.create_user(username=username, password=password)
+        user.is_active = True  # Activate immediately
         user.save()
-        return render(request, 'user/signin.html', {'message': 'User created successfully. Please check your email for verification instructions.'})
+        
+        # Automatically log in the user after signup
+        authenticated_user = authenticate(username=username, password=password)
+        if authenticated_user is not None:
+            request.session['username'] = username
+            request.session.save()
+            login(request, authenticated_user)
+            return redirect('/')  # Redirect to homepage after successful signup and login
+        
+        return render(request, 'user/signup.html', {'message': 'Account created but failed to log in automatically. Please sign in.'})
     
     return render(request, 'user/signup.html')
-def verify_email(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-        if default_token_generator.check_token(user, token):
-            user.is_active = True
-            user.save()
-            return render(request, 'user/verification_success.html')
-        else:
-            return render(request, 'user/verification_failure.html')
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        return render(request, 'user/verification_failure.html')
 
 def signin(request):
     if request.method == 'POST':
@@ -92,12 +53,6 @@ def signin(request):
         # Check if the user exists
         if not User.objects.filter(username=username).exists():
             return render(request, 'user/signup.html', {'message': "User doesn't exist. Please sign up"})
-        
-        user = User.objects.get(username=username)
-        
-        # Check if the user account is verified
-        if not user.is_active:
-            return render(request, 'user/signin.html', {'message': 'User account is not verified yet. Please check your email for verification instructions.'})
         
         # Authenticate the user with credentials
         authenticated_user = authenticate(username=username, password=password)

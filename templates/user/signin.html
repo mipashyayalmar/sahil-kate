@@ -12,26 +12,6 @@
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .checkbox {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .checkbox label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        .checkbox input[type="checkbox"] {
-            margin-right: 8px;
-        }
-        .terms-manager {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #666;
-        }
-    </style>
 </head>
 
 <body>
@@ -51,26 +31,11 @@
                     <p class="hint-text text-center" style="color: #FF0000">{{ message }}</p>
                 {% endif %}
                 <div class="form-holder">
-                    <input type="email" class="form-control" name="username" placeholder="Email" required>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-holder" style="position: relative;">
                     <input type="password" placeholder="Password" name="password" class="form-control" id="password" required>
                     <span toggle="#password" class="fa fa-fw fa-eye-slash field-icon" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></span>
-                </div>
-                
-                <!-- Checkbox for Terms and Conditions -->
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" id="terms-checkbox"> 
-                        I agree to all statements in <a href="#" id="terms-link">Terms & Conditions</a>
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="terms-manager" id="terms-manager" style="display: none;">
-                    <p>You've already accepted our terms on <span id="acceptance-date"></span>. 
-                       <a href="#" id="view-terms">View Terms</a> | 
-                       <a href="#" id="revoke-terms">Revoke Acceptance</a>
-                    </p>
                 </div>
 
                 <div class="form-login">
@@ -90,92 +55,13 @@
     <script>
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
-        const checkbox = document.getElementById('terms-checkbox');
-        const signinButton = document.getElementById('signin-button');
-        const termsManager = document.getElementById('terms-manager');
-        const acceptanceDate = document.getElementById('acceptance-date');
-        const termsLink = document.getElementById('terms-link');
-        const viewTerms = document.getElementById('view-terms');
-        const revokeTerms = document.getElementById('revoke-terms');
 
-        // Check if terms were previously accepted
-        function checkTermsStatus() {
-            const termsAccepted = localStorage.getItem('termsAccepted');
-            const acceptanceTimestamp = localStorage.getItem('acceptanceTimestamp');
-            
-            if (termsAccepted === 'true' && acceptanceTimestamp) {
-                // Terms were previously accepted
-                checkbox.style.display = 'none';
-                termsManager.style.display = 'block';
-                
-                // Format the acceptance date
-                const date = new Date(parseInt(acceptanceTimestamp));
-                acceptanceDate.textContent = date.toLocaleDateString() + ' at ' + date.toLocaleTimeString();
-                
-                // Enable the sign-in button
-                signinButton.disabled = false;
-                return true;
-            } else {
-                // Terms not accepted yet
-                termsManager.style.display = 'none';
-                checkbox.style.display = 'block';
-                signinButton.disabled = true;
-                return false;
-            }
-        }
-
-        // Initialize terms status on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            checkTermsStatus();
-            
-            // Toggle password visibility
-            togglePassword.addEventListener('click', function () {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
-                this.classList.toggle('fa-eye-slash');
-            });
-
-            // Enable/disable sign-in button based on checkbox state
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    // Store acceptance in localStorage
-                    localStorage.setItem('termsAccepted', 'true');
-                    localStorage.setItem('acceptanceTimestamp', Date.now().toString());
-                    
-                    // Update UI
-                    checkTermsStatus();
-                } else {
-                    signinButton.disabled = true;
-                }
-            });
-
-            // Handle revoke terms action
-            revokeTerms.addEventListener('click', function(e) {
-                e.preventDefault();
-                localStorage.removeItem('termsAccepted');
-                localStorage.removeItem('acceptanceTimestamp');
-                checkbox.checked = false;
-                checkTermsStatus();
-            });
-
-            // Show terms (both links)
-            function showTerms() {
-                // Replace with your actual terms display logic
-                alert('Display your terms and conditions here. This could open a modal or redirect to a terms page.');
-                return false;
-            }
-            
-            termsLink.addEventListener('click', showTerms);
-            viewTerms.addEventListener('click', showTerms);
-
-            // Prevent form submission if terms are not accepted
-            document.getElementById('signin-form').addEventListener('submit', function (e) {
-                if (!localStorage.getItem('termsAccepted')) {
-                    e.preventDefault();
-                    alert('You must agree to the terms and conditions before signing in.');
-                }
-            });
+        // Toggle password visibility
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
         });
     </script>
     <script src="{% static 'user/js/jquery-3.3.1.min.js' %}"></script>

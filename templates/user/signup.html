@@ -29,27 +29,13 @@
 					{% endif %}
 					
 					<div class="form-holder active">
-						<input type="email" class="form-control" name="username" placeholder="Email" required="required">
-					</div>
-					<div class="form-holder">
-						<input type="text" class="form-control" name="name" placeholder="Name" required="required">
-					</div>
-					<div class="form-holder">
-						<input type="text" class="form-control" name="phone" placeholder="Phone Number" required="required">
+						<input type="text" class="form-control" name="username" placeholder="Username" required="required">
 					</div>
 
 					<!-- Password input with toggle -->
 					<div class="form-holder" style="position: relative;">
 						<input type="password" placeholder="Password" name="password" class="form-control" id="password" required>
 						<span toggle="#password" class="fa fa-fw fa-eye-slash field-icon" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></span>
-					</div>
-
-					<!-- Checkbox for Terms and Conditions -->
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" id="terms-checkbox"> I agree to all statements in <a href="#">Terms & Conditions</a>
-							<span class="checkmark"></span>
-						</label>
 					</div>
 
 					<!-- Signup button -->
@@ -74,20 +60,6 @@
 				// Toggle between eye and eye-slash icons
 				this.classList.toggle('fa-eye');
 				this.classList.toggle('fa-eye-slash');
-			});
-		</script>
-
-		<!-- Validation Script for Terms & Conditions -->
-		<script>
-			const checkbox = document.getElementById('terms-checkbox');
-			const signupButton = document.getElementById('signup-button');
-
-			// Prevent form submission if checkbox is not checked
-			document.getElementById('signup-form').addEventListener('submit', function (e) {
-				if (!checkbox.checked) {
-					e.preventDefault(); // Prevent form from submitting
-					alert('Please agree to the Terms and Conditions before signing up.');
-				}
 			});
 		</script>
 
