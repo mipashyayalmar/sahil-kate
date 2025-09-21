@@ -70,7 +70,7 @@
 
   <li class="nav-item">
     {% if not request.session.username %}
-    <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-singin btn btn-border-filled" ><span>Login</span></button></a>
+    <a href="{% url 'user:signup' %}">	<button type="button" class="btn btn-singin btn btn-border-filled" ><span>Sing-Up</span></button></a>
       {% else %}
 
       {% endif %}

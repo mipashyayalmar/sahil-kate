@@ -12,14 +12,14 @@ class EditDetailForm(forms.ModelForm):
             'gallery_image4', 'gallery_image5', 'gallery_image6'
         ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your First Name'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
-            'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your role'}),
+            'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
-            'companyname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company name'}),
-            'website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your website URL'}),
-            'company_website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company website URL'}),
-            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
+            'companyname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your society name'}),
+            'website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your village'}),
+            'company_website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company village'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter flat no'}),
         }
 
     def clean(self):
@@ -55,21 +55,21 @@ class PremiumDetailForm(forms.ModelForm):
             'pinterest_url', 'linkedin_url', 'telegram_url'
         ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name'}),
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
-            'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your role'}),
+            'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
             'phone_secondary': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your secondary phone number'}),
             'whatsapp_no': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your WhatsApp number'}),
-            'companyname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company name'}),
+            'companyname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your society name'}),
             'company_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company email'}),
-            'website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your website URL'}),
-            'company_website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company website URL'}),
-            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
+            'website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your village'}),
+            'company_website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company village'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter flat no'}),
             'location_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your location URL'}),
-            'nature_of_business': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter nature of business'}),
-            'speciality_1': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first specialty'}),
-            'speciality_2': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your second specialty'}),
+            'nature_of_business': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter wing'}),
+            'speciality_1': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your gender'}),
+            'speciality_2': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your age group'}),
             'speciality_3': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your third specialty'}),
             'last_message': forms.Textarea(attrs={'rows': 4, 'class': 'form-control', 'placeholder': 'Enter your message here'}),
             'start_year': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -77,7 +77,7 @@ class PremiumDetailForm(forms.ModelForm):
             'twitter_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Twitter URL'}),
             'instagram_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Instagram URL'}),
             'youtube_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your YouTube URL'}),
-            'pinterest_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Pinterest URL'}),
+            'pinterest_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your middle name'}),
             'linkedin_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your LinkedIn URL'}),
             'telegram_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Telegram URL'}),
         }
