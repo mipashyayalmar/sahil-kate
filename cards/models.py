@@ -9,7 +9,7 @@ AUTH_USER_MODEL = get_user_model()
 
 class Detail(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    email = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=100, blank=True, null=True)
     profileimage = models.ImageField(upload_to='images/', blank=True, null=True)
     phone = models.CharField(max_length=100, blank=True, null=True)
@@ -35,7 +35,7 @@ class Detail(models.Model):
 
 class Detail_Primium(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    email = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=100, blank=True, null=True)
     profileimage = models.ImageField(upload_to='images/', blank=True, null=True)
     phone = models.CharField(max_length=100, blank=True, null=True)
@@ -47,12 +47,12 @@ class Detail_Primium(models.Model):
         upload_to='images/', 
         blank=True, 
         null=True,
-        default='https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg'
+        default='none'
     )
     website = models.CharField(max_length=500, blank=True, null=True)
-    company_website = models.CharField(max_length=100, blank=True, null=True, default="https://websenz.in/")
+    company_website = models.CharField(max_length=100, blank=True, null=True, default="none")
     address = models.CharField(max_length=500, blank=True, null=True)
-    location_url = models.URLField(blank=True, null=True)
+    location_url = models.CharField(max_length=100, blank=True, null=True)
     nature_of_business = models.CharField(max_length=200, blank=True, null=True)
     start_year = models.DateField(
         blank=True, 
@@ -65,13 +65,13 @@ class Detail_Primium(models.Model):
         help_text="Enter the date the company was started."
     )
 
-    facebook_url = models.URLField(blank=True, null=True)
-    twitter_url = models.URLField(blank=True, null=True)
-    instagram_url = models.URLField(blank=True, null=True)
-    youtube_url = models.URLField(blank=True, null=True)
-    pinterest_url = models.URLField(blank=True, null=True)
-    linkedin_url = models.URLField(blank=True, null=True)
-    telegram_url = models.URLField(blank=True, null=True)
+    facebook_url = models.CharField(max_length=100, blank=True, null=True)
+    twitter_url = models.CharField(max_length=100, blank=True, null=True)
+    instagram_url = models.CharField(max_length=100, blank=True, null=True)
+    youtube_url = models.CharField(max_length=100, blank=True, null=True)
+    pinterest_url = models.CharField(max_length=100, blank=True, null=True)
+    linkedin_url = models.CharField(max_length=100, blank=True, null=True)
+    telegram_url = models.CharField(max_length=100, blank=True, null=True)
 
     # Specialities
     speciality_1 = models.CharField(max_length=200, blank=True, null=True)

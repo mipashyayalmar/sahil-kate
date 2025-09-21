@@ -196,7 +196,7 @@ def premium_form(request, premium_id=None):
             premium_card.created_for = request.user  # Set the user regardless of form data
             try:
                 premium_card.save()
-                messages.success(request, 'Premium card created/updated successfully!')
+                messages.success(request, 'Your pass is generated please collect from office ')
                 return redirect('cards:generate_premium_form', id=premium_card.id)
             except Exception as e:
                 messages.error(request, f"An error occurred while saving the premium card: {str(e)}")
@@ -211,6 +211,7 @@ def premium_form(request, premium_id=None):
         'premium_detail': premium_detail
     }
     return render(request, 'cards/premium_form.html', context)
+    
 
 
 def view(req, id, theme):

@@ -123,85 +123,139 @@
         <div class="container-flex">
             <!-- Personal Details Section -->
             <div>
-                <h2 class="h4 mt-2">Enter Your Details:</h2>
+                <h2 class="h4 mt-2">Fill Out the Form to Generate Your Pass</h2>
 
                 <div class="form-group">
-                    <label for="name">Name:</label>
+                    <label for="name">First Name :</label>
                     {{ form.name }}
                     {% for error in form.name.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
+
+                
                 <div class="form-group">
-                    <label for="email">Personal Email:</label>
-                    {{ form.email }}
-                    {% for error in form.email.errors %}
+                    <label for="pinterest_url">Middle Name</label>
+                    {{ form.pinterest_url }}
+                    {% for error in form.pinterest_url.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
+
+
                 <div class="form-group">
-                    <label for="role">Role:</label>
+                    <label for="role">Last Name:</label>
                     {{ form.role }}
                     {% for error in form.role.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
+                
                 <div class="form-group">
-                    <label for="profileimage">Profile (Personal / Company):</label>
-                    {{ form.profileimage }}
-                    {% if premium_detail.profileimage %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.profileimage.name }}</small>
-                    {% endif %}
-                    {% for error in form.profileimage.errors %}
+                    <label for="start_year">DOB:</label>
+                    {{ form.start_year }}
+                    <small class="form-text text-muted">Choose the date the company was started.</small>
+                    {% for error in form.start_year.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
+              
+
                 <div class="form-group">
-                    <label for="phone">Phone Number 1:</label>
+                    <label for="phone">Phone Number</label>
                     {{ form.phone }}
                     {% for error in form.phone.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
-                <div class="form-group">
-                    <label for="phone_secondary">Phone Number 2:</label>
-                    {{ form.phone_secondary }}
-                    {% for error in form.phone_secondary.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
 
                 <div class="form-group">
-                    <label for="whatsapp_no">WhatsApp No:</label>
-                    {{ form.whatsapp_no }}
-                    {% for error in form.whatsapp_no.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="companyname">Company / Business Name:</label>
+                    <label for="companyname">Society Name:</label>
                     {{ form.companyname }}
                     {% for error in form.companyname.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
+                
                 <div class="form-group">
-                    <label for="company_email">Company / Business Email:</label>
-                    {{ form.company_email }}
-                    {% for error in form.company_email.errors %}
+                    <label for="website">Village:</label>
+                    {{ form.website }}
+                    {% for error in form.website.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+<!-- 
+                  <div class="form-group">
+                    <label for="company_website">Society Name:</label>
+                    {{ form.company_website }}
+                    {% for error in form.company_website.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div> -->
+
+                
+
+                <div class="form-group">
+                    <label for="address">Flat No:</label>
+                    {{ form.address }}
+                    {% for error in form.address.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                
+
+
+                <div class="form-group">
+                    <label for="nature_of_business">Wing:</label>
+                    {{ form.nature_of_business }}
+                    {% for error in form.nature_of_business.errors %}
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
 
+
+                
                 <div class="form-group">
-                    <label for="companylogo">Banner Image:</label>
+                    <label for="speciality_1">Gender:</label>
+                    {{ form.speciality_1 }}
+                    {% for error in form.speciality_1.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                
+
+                <div class="form-group">
+                    <label for="speciality_2">Age Group Selection:</label>
+                    {{ form.speciality_2 }}
+                    {% for error in form.speciality_2.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                
+                <div class="form-group">
+                    <label for="profileimage">Profile Picture:</label>
+                    {{ form.profileimage }}
+                    {% if premium_detail.profileimage %}
+                        <small class="form-text text-muted" required>Current file: {{ premium_detail.profileimage.name }}</small>
+                    {% endif %}
+                    {% for error in form.profileimage.errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="companylogo">Background Image:</label>
                     {{ form.companylogo }}
                     {% if premium_detail.companylogo %}
                         <small class="form-text text-muted">Current file: {{ premium_detail.companylogo.name }}</small>
@@ -211,81 +265,9 @@
                     {% endfor %}
                 </div>
 
+                
                 <div class="form-group">
-                    <label for="website">Any Website to Clite Show:</label>
-                    {{ form.website }}
-                    {% for error in form.website.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="company_website">Company Website:</label>
-                    {{ form.company_website }}
-                    {% for error in form.company_website.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Address Proper Written:</label>
-                    {{ form.address }}
-                    {% for error in form.address.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="location_url">Location URL (copy from google link):</label>
-                    {{ form.location_url }}
-                    {% for error in form.location_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="start_year">Company Start Date:</label>
-                    {{ form.start_year }}
-                    <small class="form-text text-muted">Choose the date the company was started.</small>
-                    {% for error in form.start_year.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="nature_of_business">Nature of Business:</label>
-                    {{ form.nature_of_business }}
-                    {% for error in form.nature_of_business.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="speciality_1">Specialty 1:</label>
-                    {{ form.speciality_1 }}
-                    {% for error in form.speciality_1.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="speciality_2">Specialty 2:</label>
-                    {{ form.speciality_2 }}
-                    {% for error in form.speciality_2.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="speciality_3">Specialty 3:</label>
-                    {{ form.speciality_3 }}
-                    {% for error in form.speciality_3.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium1">Gallery Image 1 (Identi-Size):</label>
+                    <label for="gallery_imagePrimium1">Address Proff:</label>
                     {{ form.gallery_imagePrimium1 }}
                     {% if premium_detail.gallery_imagePrimium1 %}
                         <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium1.name }}</small>
@@ -294,90 +276,9 @@
                         <div class="form-error">{{ error }}</div>
                     {% endfor %}
                 </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium2">Gallery Image 2 (Vertical):</label>
-                    {{ form.gallery_imagePrimium2 }}
-                    {% if premium_detail.gallery_imagePrimium2 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium2.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium2.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium3">Gallery Image 3 (Horizontal):</label>
-                    {{ form.gallery_imagePrimium3 }}
-                    {% if premium_detail.gallery_imagePrimium3 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium3.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium3.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium4">Gallery Image 4 (Identi-Size):</label>
-                    {{ form.gallery_imagePrimium4 }}
-                    {% if premium_detail.gallery_imagePrimium4 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium4.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium4.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium5">Gallery Image 5 (Identi-Size):</label>
-                    {{ form.gallery_imagePrimium5 }}
-                    {% if premium_detail.gallery_imagePrimium5 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium5.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium5.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium6">Gallery Image 6 (Dimensions: 200px height and width):</label>
-                    {{ form.gallery_imagePrimium6 }}
-                    {% if premium_detail.gallery_imagePrimium6 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium6.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium6.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="gallery_imagePrimium7">Gallery Image 7 (Identi-Size):</label>
-                    {{ form.gallery_imagePrimium7 }}
-                    {% if premium_detail.gallery_imagePrimium7 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium7.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium7.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
                 <!-- Social Media Section -->
                 <h2 class="h4 mt-4">Social Media Links:</h2>
-                <div class="form-group">
-                    <label for="facebook_url">Facebook URL:</label>
-                    {{ form.facebook_url }}
-                    {% for error in form.facebook_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="twitter_url">Twitter URL:</label>
-                    {{ form.twitter_url }}
-                    {% for error in form.twitter_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
+               
 
                 <div class="form-group">
                     <label for="instagram_url">Instagram URL:</label>
@@ -387,45 +288,6 @@
                     {% endfor %}
                 </div>
 
-                <div class="form-group">
-                    <label for="youtube_url">YouTube URL:</label>
-                    {{ form.youtube_url }}
-                    {% for error in form.youtube_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="pinterest_url">Pinterest URL:</label>
-                    {{ form.pinterest_url }}
-                    {% for error in form.pinterest_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="linkedin_url">LinkedIn URL:</label>
-                    {{ form.linkedin_url }}
-                    {% for error in form.linkedin_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="telegram_url">Telegram URL:</label>
-                    {{ form.telegram_url }}
-                    {% for error in form.telegram_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
-                    <label for="last_message">Last Message:</label>
-                    {{ form.last_message }}
-                    {% for error in form.last_message.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
             </div>
 
             <!-- Submit Button -->

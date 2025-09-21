@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
   <body>
-		
+
 <header id="home" class="hero-area">
   <div class="overlay">
   <span></span>
@@ -36,15 +36,15 @@
     <a href="/" class="navbar-brand">
       <img src="{% static 'img/kate-logo.png' %}" alt="Anitataikate"height="100px" >
   </a>
-  
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
   <i class="lni-menu"></i>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
   <ul class="navbar-nav mr-auto w-100 justify-content-end">
-  
 
-{% comment %} 
+
+{% comment %}
   {% if premium_form.id %}
   <a href="{% url 'cards:premium_form_view' id=premium_form.id %}" class="">Go to Premium Details</a>
 {% else %}
@@ -53,7 +53,7 @@
 
 
 
-  
+
 {% if premium_detail %}
 <a href="{% url 'cards:premium_form_view' id=premium_detail.id %}" class="">Go to Premium Details</a>
 {% else %}
@@ -61,23 +61,23 @@
 {% endif %} {% endcomment %}
 
   {% if not request.session.username %}
-  
+
     {% else %}
     <li class="nav-item">
       <a href="/profile">	<button type="button" class="btn btn-singin btn btn-border-filled"><i class="lni-user"></i><span>MY PROFILE</span></button></a>
     </li>
-    {% endif %}	
+    {% endif %}
 
   <li class="nav-item">
     {% if not request.session.username %}
-    <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-singin btn btn-border-filled" ><span>Login/Signup</span></button></a>
+    <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-singin btn btn-border-filled" ><span>Login</span></button></a>
       {% else %}
-      
-      {% endif %}	
+
+      {% endif %}
   </li>
 <br>
   <li>
-     <a href="{% url 'home' %}#pricing" class="btn btn-border-filled">Get Started</a>
+     <a href="{% url 'home' %}#pricing" class="btn btn-border-filled">Register Now</a>
   </li>
   </ul>
   </div>
@@ -86,97 +86,425 @@
 
 
   {% block content %}
-  
-  
+
+
   {% endblock content %}
 
-        
-<footer>
-
+  <footer>
   <section id="footer-Content">
-  <div class="container">
-  
-  <div class="row">
-  
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-  <div class="footer-logo">
-  <img src="{% static 'img/footer-logo.png' %}" alt>
-  </div>
-  </div>
-  
-  
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-  <div class="widget">
- 
-  </div>
-  </div>
-  
-  
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-  <div class="widget">
+    <div class="container">
+      <div class="row">
 
-  </div>
-  </div>
-  
-  
-  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-  <div class="widget">
-  <h3 class="block-title">Download App</h3>
-  <ul class="menu">
-  <li><a href="#"> - Android App</a></li>
-  <li><a href="#">- IOS App</a></li>
-  <li><a href="#">- Windows App</a></li>
-  <li><a href="#">- Play Store</a></li>
-  <li><a href="#">- IOS Store</a></li>
-  </ul>
-  </div>
-  </div>
-  
-  
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-  <div class="widget">
-  <h3 class="block-title">Subscribe Now</h3>
-  <p>Appropriately implement calysts for change visa wireless catalysts for change. </p>
-  <div class="subscribe-area">
-  <input type="email" class="form-control" placeholder="Enter Email">
-  <span><i class="lni-chevron-right"></i></span>
-  </div>
-  </div>
-  </div>
-  
-  </div>
-  
-  </div>
-  
-  <div class="copyright">
-  <div class="container">
-  
-  <div class="row">
-  <div class="col-md-12">
-  <div class="site-info text-center">
-  {% comment %} <p>Crafted by <a href="" rel="nofollow">UIdeck</a></p> {% endcomment %}
-  </div>
-  </div>
-  
-  </div>
-  
-  </div>
-  </div>
-  
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+          <div class="footer-logo">
+            <img src="{% static 'img/footer-logo.png' %}" alt>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+          <div class="widget">
+            <h3 class="block-title">Contact Information</h3>
+            <div class="info">
+              <div class="information">
+                <i class="lni-map-marker"></i> &nbsp &nbsp
+                <p>Office Address : PK Chowk, Shiv Sai Lane, Pimple Saudagar Pune, India, Maharashtra</p>
+              </div>
+              <div class="information">
+                <i class="lni-envelope"></i> &nbsp &nbsp
+                <p>kateanita2025@gmail.com</p>
+              </div>
+              <div class="information">
+                <i class="lni-phone"></i>&nbsp&nbsp
+                <p>8975922020</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+          <div class="widget">
+            <h3 class="block-title">Follow Us</h3>
+            <div class="social-icons">
+              <a href="https://www.instagram.com/anita_sandeep_kate?igsh=MTA4MnhkcHFyY3FpMw%3D%3D&utm_source=qr " class="social-icon instagram">
+                <i class="lni-instagram-filled"></i>
+              </a>
+              <a href="https://www.facebook.com/share/16ynVeaND9/?mibextid=wwXIfr" class="social-icon facebook">
+                <i class="lni-facebook-filled"></i>
+              </a>
+              <a href="https://wa.me/918975922020?text=anitatai%20sandip%20kate%20info" class="social-icon whatsapp" target="_blank">
+               <i class="lni-whatsapp"></i>
+              </a>
+
+              <a href="https://in.linkedin.com/in/sandeep-kate-043b28197" class="social-icon twitter">
+                <i class="lni-linkedin-filled"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
-  
-  </footer>
+</footer>
+
+<style>
+/* Contact Information Styles */
+.widget {
+  margin-bottom: 30px;
+}
+
+.block-title {
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: titleAppear 0.8s ease forwards;
+}
+
+.block-title:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  animation: underlineGrow 0.8s ease 0.5s forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.info {
+  margin-top: 20px;
+}
+
+.information {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.8s ease forwards;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.information:hover {
+  background: rgba(0, 123, 255, 0.05);
+  transform: translateX(5px);
+}
+
+.information:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.information:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.information:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.information i {
+  color: #007bff;
+  font-size: 18px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  width: 25px;
+}
+
+.information:hover i {
+  color: #0056b3;
+  transform: scale(1.2) rotate(5deg);
+}
+
+.information p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+  word-wrap: break-word;
+}
+
+.information:hover p {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Social Media Icons Styles */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px) scale(0.8);
+  animation: socialIconAppear 0.6s ease forwards;
+}
+
+.social-icon:nth-child(1) { animation-delay: 0.1s; }
+.social-icon:nth-child(2) { animation-delay: 0.2s; }
+.social-icon:nth-child(3) { animation-delay: 0.3s; }
+.social-icon:nth-child(4) { animation-delay: 0.4s; }
+
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.6s;
+}
+
+.social-icon:hover::before {
+  left: 100%;
+}
+
+.social-icon:hover {
+  transform: translateY(-8px) scale(1.15);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.social-icon i {
+  z-index: 2;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover i {
+  transform: rotate(360deg);
+}
+
+/* Individual social media colors */
+.instagram {
+  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.facebook {
+  background: linear-gradient(45deg, #1877f2, #42a5f5);
+}
+
+.whatsapp {
+  background: linear-gradient(45deg, #25d366, #128c7e);
+}
+
+.twitter {
+  background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+}
+
+.instagram:hover {
+  background: linear-gradient(45deg, #9c44c7, #ff2d2d, #ffbf58);
+}
+
+.facebook:hover {
+  background: linear-gradient(45deg, #2b87ff, #55b2ff);
+}
+
+.whatsapp:hover {
+  background: linear-gradient(45deg, #2ee673, #159f91);
+}
+
+.twitter:hover {
+  background: linear-gradient(45deg, #2db1ff, #1a9bec);
+}
+
+/* Animations */
+@keyframes titleAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineGrow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes socialIconAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pulse animation for social icons */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+
+.social-icon:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .col-lg-4 {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-logo {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .widget {
+    text-align: center;
+  }
+
+  .block-title {
+    text-align: center;
+  }
+
+  .block-title:after {
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+  }
+
+  .information {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .information i {
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+
+  .information p {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .social-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .information {
+    margin-bottom: 25px;
+  }
+
+  .information p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .block-title {
+    font-size: 16px;
+  }
+
+  .information {
+    padding: 12px;
+  }
+
+  .information i {
+    font-size: 16px;
+  }
+
+  .information p {
+    font-size: 13px;
+  }
+
+  .social-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+</style>
+
 
 
         <a href="#" class="back-to-top">
           <i class="lni-chevron-up"></i>
           </a>
-          
+
         <div id="preloader">
           <div class="loader" id="loader-1"></div>
-          </div> 
-          
-        
+          </div>
+
+
           <script src="{% static 'js/jquery-min.js' %}"></script>
           <script src="{% static 'js/popper.min.js' %}"></script>
           <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -191,7 +519,7 @@
           <script src="{% static 'js/main.js' %}"></script>
           <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8c35738e9d3e076b',t:'MTcyNjM3MDExNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='../../../cdn-cgi/challenge-platform/h/b/scripts/jsd/388c99dd0998/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c12417{% static '17689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8c35738e9d3e076b","version":"2024.8.0","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfL4":true}},"token":"9a6015d415bb4773a0bff22543062d3b","b":1}' crossorigin="anonymous"></script>
           </body>
-          
+
           <!-- Mirrored from preview.uideck.com/items/slick/business/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Sep 2024 03:15:30 GMT -->
           </html>
 

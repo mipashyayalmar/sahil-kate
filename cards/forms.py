@@ -17,8 +17,8 @@ class EditDetailForm(forms.ModelForm):
             'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your role'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
             'companyname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company name'}),
-            'website': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your website URL'}),
-            'company_website': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company website URL'}),
+            'website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your website URL'}),
+            'company_website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company website URL'}),
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
         }
 
@@ -56,30 +56,30 @@ class PremiumDetailForm(forms.ModelForm):
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
             'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your role'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
             'phone_secondary': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your secondary phone number'}),
             'whatsapp_no': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your WhatsApp number'}),
             'companyname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company name'}),
             'company_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company email'}),
-            'website': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your website URL'}),
-            'company_website': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company website URL'}),
+            'website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your website URL'}),
+            'company_website': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company website URL'}),
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
-            'location_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your location URL'}),
+            'location_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your location URL'}),
             'nature_of_business': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter nature of business'}),
             'speciality_1': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first specialty'}),
             'speciality_2': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your second specialty'}),
             'speciality_3': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your third specialty'}),
             'last_message': forms.Textarea(attrs={'rows': 4, 'class': 'form-control', 'placeholder': 'Enter your message here'}),
             'start_year': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'facebook_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Facebook URL'}),
-            'twitter_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Twitter URL'}),
-            'instagram_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Instagram URL'}),
-            'youtube_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your YouTube URL'}),
-            'pinterest_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Pinterest URL'}),
-            'linkedin_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your LinkedIn URL'}),
-            'telegram_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Telegram URL'}),
+            'facebook_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Facebook URL'}),
+            'twitter_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Twitter URL'}),
+            'instagram_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Instagram URL'}),
+            'youtube_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your YouTube URL'}),
+            'pinterest_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Pinterest URL'}),
+            'linkedin_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your LinkedIn URL'}),
+            'telegram_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Telegram URL'}),
         }
 
     def clean(self):
@@ -89,7 +89,7 @@ class PremiumDetailForm(forms.ModelForm):
                       'instagram_url', 'youtube_url', 'pinterest_url', 'linkedin_url', 'telegram_url']
         for field in url_fields:
             url = cleaned_data.get(field)
-            if url and not url.startswith(('http://', 'https://')):
+            if url and  url.startswith(('http://', 'https://')):
                 self.add_error(field, 'Enter a valid URL starting with http:// or https://.')
 
         # Validate optional file fields
