@@ -29,18 +29,23 @@
 					{% endif %}
 					
 					<div class="form-holder active">
-						<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+						<input type="text" class="form-control" name="username" placeholder="New Username" required="required">
 					</div>
 
 					<!-- Password input with toggle -->
 					<div class="form-holder" style="position: relative;">
-						<input type="password" placeholder="Password" name="password" class="form-control" id="password" required>
+						<input type="password" placeholder="New Password" name="password" class="form-control" id="password" required>
 						<span toggle="#password" class="fa fa-fw fa-eye-slash field-icon" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></span>
 					</div>
 
 					<!-- Signup button -->
 					<div class="form-login">
 						<button type="submit" id="signup-button">Sign up</button>
+					</div>
+
+					<!-- Signup button -->
+					<div class="form-login"style="padding-top:50px;">
+						
 						<p>Already have an account? <a href="{% url 'user:signin' %}">Login</a></p>
 					</div>
 				</form>
