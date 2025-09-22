@@ -68,9 +68,10 @@ class PremiumDetailForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter flat no'}),
             'location_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your location URL'}),
             'nature_of_business': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter wing'}),
-            'speciality_1': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your gender'}),
-            'speciality_2': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your age group'}),
-            'speciality_3': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your third specialty'}),
+            
+            'speciality_1': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select Gender'}),
+            'speciality_2': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select Age Group'}),
+            'speciality_3': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter other details'}),
             'last_message': forms.Textarea(attrs={'rows': 4, 'class': 'form-control', 'placeholder': 'Enter your message here'}),
             'start_year': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'facebook_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Facebook URL'}),

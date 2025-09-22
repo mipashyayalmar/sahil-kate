@@ -73,9 +73,34 @@ class Detail_Primium(models.Model):
     linkedin_url = models.CharField(max_length=100, blank=True, null=True)
     telegram_url = models.CharField(max_length=100, blank=True, null=True)
 
-    # Specialities
-    speciality_1 = models.CharField(max_length=200, blank=True, null=True)
-    speciality_2 = models.CharField(max_length=200, blank=True, null=True)
+
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+    ]
+
+    AGE_GROUP_CHOICES = [
+        ('below_18', '<18'),
+        ('18_40', '18-40'),
+        ('above_40', '>40'),
+    ]
+
+    # Fields for Gender and Age Group
+    speciality_1 = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Gender"
+    )
+
+    speciality_2 = models.CharField(
+        max_length=10,
+        choices=AGE_GROUP_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Age Group"
+    )
     speciality_3 = models.CharField(max_length=200, blank=True, null=True)
 
     # Gallery images
