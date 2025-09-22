@@ -1,309 +1,801 @@
-{% extends 'home/base.html' %}
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navaratri Dandiya</title>
+<link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-512x512.png' %}" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-{% block content %}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-{% load static %}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
 
-<style>
-    /* General body styling with padding and background */
-    body {
-        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-        padding-top: 100px;
-        color: black;
-    }
-    
-    .navbar-expand-md .navbar-nav .nav-link {
-        color: #9f0d0d;
-        font-size: 16px;
-        padding: 8px 0px;
-        margin-left: 26px;
-        font-family: 'Poppins', sans-serif;
-        position: relative;
-        font-weight: 500;
-    }
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-    .container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    }
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .container h2 {
-        color: #333;
-    }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: move 20s linear infinite;
+        }
 
-    .form-control {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
+        @keyframes move {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
 
-    .form-group label {
-        font-weight: 600;
-        color: #555;
-    }
+        .header h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    .btn {
-        background-color: #343a40;
-        color: #fff;
-        border: none;
-        transition: background-color 0.3s ease;
-    }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
 
-    .btn:hover {
-        background-color: #212529;
-    }
+        .alert {
+            margin: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: bounceIn 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* Error styling */
-    .form-error {
-        color: red;
-        font-size: 12px;
-        margin-top: 5px;
-    }
+        .alert-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+        }
 
-    .form-control.is-invalid {
-        border-color: red;
-    }
+        .alert-error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+        }
 
-    /* Responsive styling */
-    @media (max-width: 850px) {
-        .container-flex {
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .close:hover {
+            transform: rotate(90deg);
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeInLeft 0.8s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-section:nth-child(even) {
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        .form-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #374151;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #4f46e5;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            transition: width 0.3s ease;
+        }
+
+        .form-section:hover .section-title::after {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            transition: color 0.3s ease;
+        }
+
+        .form-group label.required::after {
+            content: '*';
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover {
+            border-color: #9ca3af;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-button {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        .button {
-            width: 50% !important;
+        .file-input-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
         }
-    }
 
-    /* Styling for inputs */
-    input[type="file"] {
-        padding: 6px;
-    }
+        .file-preview {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f9ff;
+            border-radius: 8px;
+            display: none;
+        }
 
-    /* Flexbox layout for form */
-    .container-flex {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
+        .form-error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            animation: shake 0.5s ease-in-out;
+        }
 
-    /* Submit button styling */
-    .button {
-        width: 15%;
-        padding: 10px;
-    }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
 
-    input::placeholder {
-        color: black;
-        font-size: 12px;
-    }
-</style>
+        .submit-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
 
-<div class="container">
-    <h3>Create Premium Card</h3>
-    
-    {% if messages %}
-    <div class="container-fluid p-0 m-0">
-        {% for message in messages %}
-            <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header h3 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h3 {
+                font-size: 1.8rem;
+            }
+
+            .form-container {
+                padding: 15px;
+            }
+
+            .form-section {
+                padding: 15px;
+            }
+        }
+
+        /* Animation delays for stagger effect */
+        .form-section:nth-child(1) { animation-delay: 0.1s; }
+        .form-section:nth-child(2) { animation-delay: 0.2s; }
+        .form-section:nth-child(3) { animation-delay: 0.3s; }
+        .form-section:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>Mrs.Anitatai Sandeep Kate</h3>
+            <p>Fill out the form below to generate your dandiya grand festival pass</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="alert-container">
+            {% if messages %}
+            <div class="container-fluid p-0 m-0">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Hey <b>{{ request.user.username }}</b>! {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="alert alert-success" style="display: none;">
+                <button type="button" class="close" onclick="this.parentElement.style.display='none'">
+                    <span>&times;</span>
                 </button>
-                Hey <b>{{ request.user.username }}</b>! {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <form action="{% if premium_detail %}{% url 'cards:premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <div class="container-flex">
-            <!-- Personal Details Section -->
-            <div>
-                <h2 class="h4 mt-2">Fill Out the Form to Generate Your Pass</h2>
-
-                <div class="form-group">
-                    <label for="name">First Name :</label>
-                    {{ form.name }}
-                    {% for error in form.name.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-                
-                <div class="form-group">
-                    <label for="pinterest_url">Middle Name</label>
-                    {{ form.pinterest_url }}
-                    {% for error in form.pinterest_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-
-                <div class="form-group">
-                    <label for="role">Last Name:</label>
-                    {{ form.role }}
-                    {% for error in form.role.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                
-                <div class="form-group">
-                    <label for="start_year">DOB:</label>
-                    {{ form.start_year }}
-                    <small class="form-text text-muted">Choose the date the company was started.</small>
-                    {% for error in form.start_year.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-              
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    {{ form.phone }}
-                    {% for error in form.phone.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-                <div class="form-group">
-                    <label for="companyname">Society Name:</label>
-                    {{ form.companyname }}
-                    {% for error in form.companyname.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                
-                <div class="form-group">
-                    <label for="website">Village:</label>
-                    {{ form.website }}
-                    {% for error in form.website.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-<!-- 
-                  <div class="form-group">
-                    <label for="company_website">Society Name:</label>
-                    {{ form.company_website }}
-                    {% for error in form.company_website.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div> -->
-
-                
-
-                <div class="form-group">
-                    <label for="address">Flat No:</label>
-                    {{ form.address }}
-                    {% for error in form.address.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                
-
-
-                <div class="form-group">
-                    <label for="nature_of_business">Wing:</label>
-                    {{ form.nature_of_business }}
-                    {% for error in form.nature_of_business.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-                
-                <div class="form-group">
-                    <label for="speciality_1">Gender:</label>
-                    {{ form.speciality_1 }}
-                    {% for error in form.speciality_1.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-                
-
-                <div class="form-group">
-                    <label for="speciality_2">Age Group Selection:</label>
-                    {{ form.speciality_2 }}
-                    {% for error in form.speciality_2.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-                
-                <div class="form-group">
-                    <label for="profileimage">Profile Picture:</label>
-                    {{ form.profileimage }}
-                    {% if premium_detail.profileimage %}
-                        <small class="form-text text-muted" required>Current file: {{ premium_detail.profileimage.name }}</small>
-                    {% endif %}
-                    {% for error in form.profileimage.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-
-                <div class="form-group">
-                    <label for="companylogo">Background Image:</label>
-                    {{ form.companylogo }}
-                    {% if premium_detail.companylogo %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.companylogo.name }}</small>
-                    {% endif %}
-                    {% for error in form.companylogo.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                
-                <div class="form-group">
-                    <label for="gallery_imagePrimium1">Address Proff:</label>
-                    {{ form.gallery_imagePrimium1 }}
-                    {% if premium_detail.gallery_imagePrimium1 %}
-                        <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium1.name }}</small>
-                    {% endif %}
-                    {% for error in form.gallery_imagePrimium1.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <!-- Social Media Section -->
-                <h2 class="h4 mt-4">Social Media Links:</h2>
-               
-
-                <div class="form-group">
-                    <label for="instagram_url">Instagram URL:</label>
-                    {{ form.instagram_url }}
-                    {% for error in form.instagram_url.errors %}
-                        <div class="form-error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-            </div>
-
-            <!-- Submit Button -->
-            <div style="display: flex; justify-content: center;">
-                <button type="submit" class="btn p-2 m-5 button">Submit</button>
+                <strong>Success!</strong> Your form has been submitted successfully.
             </div>
         </div>
-    </form>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <form id="premiumForm" class="form-container" action="{% if premium_detail %}{% url 'cards:premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-grid">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Personal Information</h4>
+                    
+                    <div class="form-group">
+                        <label for="name" class="required">First Name</label>
+                        {{ form.name }}
+                        {% for error in form.name.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pinterest_url">Middle Name</label>
+                        {{ form.pinterest_url }}
+                        {% for error in form.pinterest_url.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role" class="required">Last Name</label>
+                        {{ form.role }}
+                        {% for error in form.role.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_year" class="required">Date of Birth</label>
+                        {{ form.start_year }}
+                        <small class="form-text text-muted">Choose your date of birth.</small>
+                        {% for error in form.start_year.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="speciality_1" class="required">Gender</label>
+                        {{ form.speciality_1 }}
+                        {% for error in form.speciality_1.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="speciality_2" class="required">Age Group</label>
+                        {{ form.speciality_2 }}
+                        {% for error in form.speciality_2.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Contact Information</h4>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Village</label>
+                        {{ form.website }}
+                        {% for error in form.website.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instagram_url">Instagram URL</label>
+                        {{ form.instagram_url }}
+                        {% for error in form.instagram_url.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Society Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Society Information</h4>
+                    
+                    <div class="form-group">
+                        <label for="companyname" class="required">Society Name</label>
+                        {{ form.companyname }}
+                        {% for error in form.companyname.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="required">Flat Number</label>
+                        {{ form.address }}
+                        {% for error in form.address.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nature_of_business">Wing</label>
+                        {{ form.nature_of_business }}
+                        {% for error in form.nature_of_business.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Document Upload Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Document Upload</h4>
+                    
+                    <div class="form-group">
+                        <label for="profileimage" class="required">Profile Picture</label>
+                        <div class="file-input-wrapper">
+                            {{ form.profileimage }}
+                            <button type="button" class="file-input-button" onclick="document.getElementById('id_profileimage').click()">
+                                📷 Choose Profile Picture
+                            </button>
+                        </div>
+                        <div class="file-preview" id="profilePreview">
+                            {% if premium_detail.profileimage %}
+                                <small class="form-text text-muted">Current file: {{ premium_detail.profileimage.name }}</small>
+                            {% endif %}
+                        </div>
+                        {% for error in form.profileimage.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companylogo">Background Image</label>
+                        <div class="file-input-wrapper">
+                            {{ form.companylogo }}
+                            <button type="button" class="file-input-button" onclick="document.getElementById('id_companylogo').click()">
+                                🖼️ Choose Background Image
+                            </button>
+                        </div>
+                        <div class="file-preview" id="backgroundPreview">
+                            {% if premium_detail.companylogo %}
+                                <small class="form-text text-muted">Current file: {{ premium_detail.companylogo.name }}</small>
+                            {% endif %}
+                        </div>
+                        {% for error in form.companylogo.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gallery_imagePrimium1" class="required">Address Proof</label>
+                        <div class="file-input-wrapper">
+                            {{ form.gallery_imagePrimium1 }}
+                            <button type="button" class="file-input-button" onclick="document.getElementById('id_gallery_imagePrimium1').click()">
+                                📄 Choose Address Proof
+                            </button>
+                        </div>
+                        <div class="file-preview" id="addressProofPreview">
+                            {% if premium_detail.gallery_imagePrimium1 %}
+                                <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium1.name }}</small>
+                            {% endif %}
+                        </div>
+                        {% for error in form.gallery_imagePrimium1.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="btn-submit">
+                    🚀 Generate Dandiya Pass
+                </button>
+            </div>
+        </form>
+    </div>
 
     <script>
+        // Form validation and animation
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const submitButton = document.querySelector('button[type="submit"]');
-            submitButton.disabled = false; // Always enable submit button
+            const form = document.getElementById('premiumForm');
+            const progressFill = document.getElementById('progressFill');
+            const requiredFields = form.querySelectorAll('[required]');
+            
+            // Update progress bar based on filled fields
+            function updateProgress() {
+                let filledFields = 0;
+                requiredFields.forEach(field => {
+                    if (field.type === 'file') {
+                        if (field.files.length > 0) filledFields++;
+                    } else if (field.value.trim() !== '') {
+                        filledFields++;
+                    }
+                });
+                
+                const progress = (filledFields / requiredFields.length) * 100;
+                progressFill.style.width = progress + '%';
+            }
+
+            // Add event listeners to all form inputs
+            form.addEventListener('input', updateProgress);
+            form.addEventListener('change', updateProgress);
+
+            // File input handling with preview
+            const fileInputs = ['id_profileimage', 'id_companylogo', 'id_gallery_imagePrimium1'];
+            fileInputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                const previewId = inputId.replace('id_', '').replace('image', 'Preview').replace('Primium', '');
+                const preview = document.getElementById(previewId);
+                
+                if (input) {
+                    input.addEventListener('change', function() {
+                        if (this.files && this.files[0]) {
+                            const fileName = this.files[0].name;
+                            const fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
+                            
+                            preview.innerHTML = `
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span>📁</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: #059669;">${fileName}</div>
+                                        <div style="font-size: 0.875rem; color: #6b7280;">${fileSize} MB</div>
+                                    </div>
+                                </div>
+                            `;
+                            preview.style.display = 'block';
+                        }
+                        updateProgress();
+                    });
+                }
+            });
+
+            // Phone number validation
+            const phoneInput = document.getElementById('id_phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    if (this.value.length > 10) {
+                        this.value = this.value.slice(0, 10);
+                    }
+                });
+            }
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const errors = form.querySelectorAll('.form-error');
+                
+                // Hide all errors first
+                errors.forEach(error => error.style.display = 'none');
+                
+                // Validate required fields
+                requiredFields.forEach(field => {
+                    let fieldValid = false;
+                    
+                    if (field.type === 'file') {
+                        fieldValid = field.files.length > 0;
+                    } else if (field.type === 'tel') {
+                        fieldValid = field.value.length === 10 && /^\d{10}$/.test(field.value);
+                    } else {
+                        fieldValid = field.value.trim() !== '';
+                    }
+                    
+                    if (!fieldValid) {
+                        isValid = false;
+                        const errorDiv = field.parentElement.querySelector('.form-error');
+                        if (errorDiv) {
+                            errorDiv.style.display = 'block';
+                            field.focus();
+                        }
+                    }
+                });
+                
+                if (isValid) {
+                    // Show success message
+                    const alertContainer = document.getElementById('alert-container');
+                    const successAlert = alertContainer.querySelector('.alert-success');
+                    successAlert.style.display = 'block';
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Simulate form processing
+                    const submitBtn = form.querySelector('.btn-submit');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '⏳ Processing...';
+                    submitBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        // Submit the form after processing animation
+                        form.submit();
+                    }, 3000);
+                    
+                    console.log('Form submitted successfully!');
+                } else {
+                    // Shake the form
+                    form.style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        form.style.animation = '';
+                    }, 500);
+                }
+            });
+
+            // Initialize progress
+            updateProgress();
+        });
+
+        // Smooth scroll animation for form sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.form-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
         });
     </script>
-</div>
-
-{% endblock content %}
+</body>
+</html>

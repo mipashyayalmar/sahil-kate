@@ -1,709 +1,461 @@
-{% extends 'home/base.html' %}
 {% load static %}
-
-{% block content %}
-
-
-
-<div class="container">
-    <div class="row space-100">
-    <div class="col-lg-6 col-md-12 col-xs-12">
-    <div class="contents">
-    <h2 class="head-title">Streamline Your Client Connections<br> with Smart Solutions</h2>
-    <p>Transform your client interactions with our sleek, smart digital card. Effortlessly manage and enhance relationships with cutting-edge technology that sets you apart.</p>
-    <div class="header-button">
-    <a href="{% url 'home' %}#pricing" class="btn btn-border-filled">Register</a>
-
-    <a href="#contact" class="btn btn-border page-scroll">Contact Us</a>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-6 col-md-12 col-xs-12 p-0">
-    <div class="intro-img">
-    <img src="{% static 'img/intro.png' %}" alt>
-    </div>
-    </div>
-    </div>
-    </div>
-    </header>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="Smart Card, Collection, Business Card">
+    <meta name="author" content="Smart Card Services">
+    <title>Navaratri Dandiya</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-512x512.png' %}" type="image/png">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <br><br><br><br>
-{% for message in messages %}
-<div class="popup-overlay">
-  <div class="popup-message alert {{ message.tags }} alert-dismissible text-center" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="True">&times;</span>
-    </button>
-    Hey <b>{{username}}</b>! {{ message }}
-  </div>
-</div>
-{% endfor %}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
 
-<style>
-/* Fullscreen dark overlay */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  z-index: 1050; /* Higher than normal content */
-}
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-/* Center popup */
-.popup-message {
-  min-width: 350px;
-  max-width: 600px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  padding: 20px;
-}
-</style>
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
 
-  
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-    <section id="showcase">
-      <div class="container-fluid right-position">
-        
-        <!-- Section Header -->
-        <div class="row gradient-bg">
-          <div class="col-lg-12">
-            <div class="showcase-text section-header text-center p-3 p-md-4 p-lg-5">
-                <h2 class="section-title">The memories from the last Dandiya festival still dance in our hearts today.
-                <div class="desc-text">
-                    <p style="padding-left:10%;padding-right:10%;">
-                        Creative demos of professional visiting cards showcase innovative designs that combine aesthetics with functionality. These demos highlight unique elements like typography, colors, and materials to make memorable, impactful business cards.
-                    </p>
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content-wrapper {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-showcase {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+        }
+
+        .card-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .smart-card {
+            width: 350px;
+            height: 220px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        .smart-card:hover {
+            transform: scale(1.05) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .card-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .card-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .collection-info {
+            margin-top: 40px;
+        }
+
+        .collection-info h3 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-section, .map-section {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .map-section {
+            background: white;
+            border: 1px solid #e0e0e0;
+        }
+
+        .contact-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-section h4 i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            margin-right: 15px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+
+        .map-section h4 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .map-section h4 i {
+            margin-right: 10px;
+            color: #667eea;
+        }
+
+        .office-hours {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .office-hours h5 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .hours-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hours-list li {
+            padding: 5px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .smart-card {
+                width: 300px;
+                height: 190px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-section, .map-section {
+                padding: 20px;
+            }
+
+            .card-showcase {
+                padding: 40px 20px;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Pass Collection</h1>
+            <p>Anita Tai Sandeep Kate Launches Grand Dandiya Festival 2020 (3.0); Passes Available at the Following Locations</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Card Showcase -->
+            <div class="card-showcase">
+                <div class="card-container">
+                    <div class="smart-card pulse">
+                        <div class="card-shine"></div>
+                        <a href="{% url 'cards:view_premium_card' premium_detail.id 1   %}">
+                        <div class="card-content">
+                            <div class="card-title">View My Smart Card</div>
+                            <div class="card-subtitle">Premium Edition</div>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+                
+                <div class="collection-info">
+                    <h3><i class="fas fa-star text-warning me-2"></i>Your Premium Card is Ready!</h3>
+                    <p class="lead text-muted">Kindly visit our office to collect your professionally designed event passes.</p>
                 </div>
             </div>
-        </div>
-        
-        </div>
-    
-        <!-- Showcase Area -->
-        <div class="row justify-content-center showcase-area">
-          <div class="col-lg-12 col-md-12 col-xs-12 pr-0">
-            <div class="showcase-slider owl-carousel">
-              
-              <!-- Item 1 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/01.jpeg' %}" class="img-fluid" alt="Recent Work 1" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
+
+            <!-- Information Grid -->
+            <div class="info-grid">
+                <!-- Contact Section -->
+                <div class="contact-section">
+                    <h4><i class="fas fa-address-book"></i>Contact Information</h4>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <div>
+                            <strong>Office:</strong><br>
+                            Anitata Sangram Kathe<br>
+                            Jansanpark Karyalaya
                         </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/001.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-    
-              <!-- Item 2 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/02.jpeg' %}" class="img-fluid" alt="Recent Work 2" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2022</p>
-                          <h5>Dandiya Mohastav</h5>
+
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address:</strong><br> PK Chowk, Shiv Sai Lane,<br> Pimple Saudagar
                         </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/02.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-    
-              <!-- Item 3 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/03.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2022</p>
-                          <h5>Dandiya Mohastav</h5>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            +91 8975922020
                         </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/03.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
 
-
-              
-              <!-- Item 4 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/04.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2022</p>
-                          <h5>Dandiya Mohastav</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            kateanita2025@gmail.com
                         </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/04.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
 
-
-              
-              <!-- Item 6 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/05.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2022</p>
-                          <h5>Dandiya Mohastav</h5>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <strong>Website:</strong><br>
+                            https://maps.app.goo.gl/vCNaaNokcnY3V76e6?g_st=iw
                         </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/05.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <!-- Item 7 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/06.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2022</p>
-                          <h5>Dandiya Mohastav</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/06.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <!-- Item 6 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/07.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2022</p>
-                          <h5>Dandiya Mohastav</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/07.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <!-- Item 7 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/08.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/08.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Item 6 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/09.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/09.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <!-- Item  -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/10.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/10.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             
-              <!-- Item 7 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/11.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/11.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              
-              <!-- Item 6 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/12.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/011.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <!-- Item 7 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/13.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/13.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Item 6 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/14.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/014.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <!-- Item 7 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/15.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/015.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Item 6 -->
-              <div class="item">
-                <div class="screenshot-thumb">
-                  <img src="{% static 'img/showcase/16.jpeg' %}" class="img-fluid" alt="Recent Work 3" />
-                  <div class="hover-content text-center">
-                    <div class="fancy-table">
-                      <div class="table-cell">
-                        <div class="single-text">
-                          <p>2023</p>
-                          <h5>Grand Dandiya</h5>
-                        </div>
-                        <div class="zoom-icon">
-                          <a class="lightbox" href="{% static 'img/showcase/016.jpeg' %}">
-                            <i class="lni-zoom-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-      
-    
-    
-    <section id="business-plan">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
-                    <div class="business-item-img">
-                        <img src="{% static 'img/business/business-img.png' %}" class="img-fluid" alt="Business Plan">
                     </div>
                 </div>
-    
-                <div class="col-lg-6 col-md-12">
-                    <div class="business-item-info">
-                        <h3 class="mb-4">Pimple Saudagar’s Grand Dandiya Festival</h3>
-                        <p class="mb-4">Get ready to experience the rhythm, colors, and energy of Navratri like never before! Pimple Saudagar’s Biggest Dandiya Festival brings together music, dance, and celebration in one grand evening. Dance to the beats of traditional dandiya and garba, enjoy the festive ambience with friends and family, and create memories that last a lifetime. With vibrant décor, live performances, and joyful spirits all around, this is the celebration you don’t want to miss!.</p>
-                        <a class="btn btn-common" href="#pricing">Registration</a>
+
+                <!-- Map Section -->
+                <div class="map-section">
+                    <h4><i class="fas fa-map"></i>Visit Our Office</h4>
+                    
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.449307449304!2d73.7980747!3d18.59885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9b7ae786711%3A0xa1b83e4b581af586!2z4KSF4KSo4KS_4KSk4KS-4KSk4KS-4KSIIOCkuOCkguCkpuClgOCkqiDgpJXgpL7gpJ_gpYcg4KSc4KSo4KS44KSC4KSq4KSw4KWN4KSVIOCkleCkvuCksOCljeCkr-CkvuCksuCkry4!5e0!3m2!1sen!2sin!4v1758523648423!5m2!1sen!2sin" 
+                               allowfullscreen="" 
+                               loading="lazy" 
+                               referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <div class="office-hours">
+                        <h5><i class="fas fa-clock text-primary me-2"></i>Office Hours</h5>
+                        <ul class="hours-list">
+                            <li><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</li>
+                            <li><strong>Saturday:</strong> 10:00 AM - 4:00 PM</li>
+                            <li><strong>Sunday:</strong> Closed</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h4 class="mb-3">Ready to collect your card?</h4>
+                <p class="text-muted mb-4">Please bring a valid ID for verification</p>
+                <a href="tel:+918975922020" class="cta-button me-3">
+                    <i class="fas fa-phone me-2"></i>Call Now
+                </a>
+                <br><br>
+                <a href="https://maps.app.goo.gl/vCNaaNokcnY3V76e6?g_st=iw" 
+                   target="_blank" class="cta-button">
+                    <i class="fas fa-directions me-2"></i>Get Directions
+                </a>
+            </div>
         </div>
-    </section>
-    
+    </div>
 
-<center>
-    
-    <section id="pricing" class="section">
-    <div class="container">
-    
-    <div class="row">
-    <div class="col-lg-12">
-    <div class="pricing-text section-header text-center">
-    <div>
-    <h2 class="section-title">Registration Here to Gate Pass</h2>
-    <div class="desc-text">
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    
-<center>
-    
-    <div class="row pricing-tables">
-    
-    
-    
-    <div class="col-lg-4 col-md-4 col-xs-12">
-    <div class="pricing-table text-center">
-    <div class="pricing-details">
-    <h3>Dandiya Pass</h3>
-    <h1><span></span>26|27|28</h1>
-    <ul>
-    <li>Free Registration</li>
-    <li>3.0</li>
-    <li>Upto 4 users</li>
-    <li>05pm to 11pm</li>
-    <li>Enjoy The Movement</li>
-    </ul>
-    </div>
-    <div class="plan-button">
-    <a href="{% if premium_detail %}{% url 'cards:edit_premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" class="btn btn-common">Registration</a>
-    </div>
-    </div>
-    </div>
-    
-    
-    
-    </div>
-    </section>
-    
-    
-    <section id="testimonial" class="section">
-    <div class="container right-position">
-    
-    <div class="row">
-    <div class="col-md-12 col-sm-12">
-    <div class="video-promo-content text-center">
- <video width="560" height="315" controls>
-  <source src="static/img/WhatsApp Video 2025-09-18 at 6.04.37 PM.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-    </div>
-    </div>
-    </div>
-  <style>
-video {
-  width: 560px;
-  height: 315px;
-  max-width: 100%;
-}
-
-@media (max-width: 770px) {
-  video {
-    width: 338px;
-    height: 259px;
-  }
-}
-
-</style>
-    
- 
-    </section>
-    
-    
-  
-    
-    <section id="blog" class="section">
-    
-    <div class="container">
-    
-    <div class="row">
-    <div class="col-lg-12">
-    <div class="blog-text section-header text-center">
-    <div>
-    <h2 class="section-title"> Blog Posts</h2>
-    <div class="desc-text">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>
-    <p>eiusmod tempor incididunt ut labore et dolore.</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    
-    
-    <div class="row">
-    
-    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-    
-    <div class="blog-item-wrapper">
-    <div class="blog-item-img">
-    <a href="single-post.html">
-    <img src="{% static 'img/blog/01.jpeg' %}" class="img-fluid" alt>
-    </a>
-    </div>
-    <div class="blog-item-text">
-    <h3><a href="single-post.html">Grand Festival<br>2022</a></h3>
-    <p> The beginning of a vibrant celebration filled with cultural shows and traditional performances.</p>
-    <a href class="read-more"> Min read</a>
-    </div>
-    <div class="author">
-    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-    <span class="date float-right"><i class="lni-calendar"></i><a href="#">2022</a></span>
-    </div>
-    </div>
-    
-    </div>
-    
-    
-    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-    
-    <div class="blog-item-wrapper">
-    <div class="blog-item-img">
-    <a href="single-post.html">
-    <img src="{% static 'img/blog/02.jpeg' %}" class="img-fluid" alt>
-    </a>
-    </div>
-    <div class="blog-item-text">
-    <h3><a href="single-post.html">Grand Festival <br>2023</a></h3>
-    <p> Expanded with more participants, international guests, and new creative themes.</p>
-    <a href class="read-more"> Min read</a>
-    </div>
-    <div class="author">
-    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
-    </div>
-    </div>
-    
-    </div>
-    
-    
-    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-    
-    <div class="blog-item-wrapper">
-    <div class="blog-item-img">
-    <a href="single-post.html">
-    <img src="{% static 'img/blog/03.jpeg' %}" class="img-fluid" alt>
-    </a>
-    </div>
-    <div class="blog-item-text">
-    <h3><a href="single-post.html">Upcoming Grand Dandiya Festival   <br>2025</a></h3>
-    <p>Get ready for the Upcoming Grand Festival 2025!
-Celebrate the divine Dadiya Yatra with joy and devotion.</p>
-    <a href class="read-more">Min read</a>
-    </div>
-    <div class="author">
-    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-    <span class="date float-right"><i class="lni-calendar"></i><a href="#">26-28 Sept, 2025</a></span>
-    </div>
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    </section>
-
-    <style></style>
-    
-    
-
-    <script src="app.js"></script>
-  </body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
-
-    
-    
-    
-    <div class="col-lg-1">
-    </div>
-    
-    
-    <div class="col-lg-4 col-md-12">
-    <div class="contact-img">
-    <img src="img/contact/01.png' %}" class="img-fluid" alt>
-    </div>
-    </div>
-    
-    
-    <div class="col-lg-1">
-    </div>
-    
-    </div>
-    
-    </div>
-    </section>
-    
-
-{% endblock content %}
-
-
-

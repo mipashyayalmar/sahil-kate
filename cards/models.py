@@ -11,13 +11,13 @@ class Detail(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=100, blank=True, null=True)
-    profileimage = models.ImageField(upload_to='images/', blank=True, null=True)
-    phone = models.CharField(max_length=100, blank=True, null=True)
-    companyname = models.CharField(max_length=100, blank=True, null=True)
+    profileimage = models.ImageField(upload_to='images/', blank=False, null=False)
+    phone = models.CharField(max_length=100, blank=False, null=False)
+    companyname = models.CharField(max_length=100, blank=False, null=False)
     companylogo = models.ImageField(upload_to='images/', blank=True, null=True)
     website = models.CharField(max_length=500, blank=True, null=True)
     company_website = models.CharField(max_length=100, blank=True, null=True, default="https://anitatai.in/")
-    address = models.CharField(max_length=500, blank=True, null=True)
+    address = models.CharField(max_length=500, blank=True, null=False)
 
     # Gallery images
     gallery_image1 = models.ImageField(upload_to='basic_gallery/', blank=True, null=True)
@@ -37,11 +37,11 @@ class Detail_Primium(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=100, blank=True, null=True)
-    profileimage = models.ImageField(upload_to='images/', blank=True, null=True)
-    phone = models.CharField(max_length=100, blank=True, null=True)
+    profileimage = models.ImageField(upload_to='images/', blank=False, null=False)
+    phone = models.CharField(max_length=100, blank=False, null=False)
     phone_secondary = models.CharField(max_length=100, blank=True, null=True)
     whatsapp_no = models.CharField(max_length=100, blank=True, null=True)
-    companyname = models.CharField(max_length=100, blank=True, null=True)
+    companyname = models.CharField(max_length=100, blank=False, null=False)
     company_email = models.EmailField(blank=True, null=True)
     companylogo = models.ImageField(
         upload_to='images/', 
@@ -51,7 +51,7 @@ class Detail_Primium(models.Model):
     )
     website = models.CharField(max_length=500, blank=True, null=True)
     company_website = models.CharField(max_length=100, blank=True, null=True, default="none")
-    address = models.CharField(max_length=500, blank=True, null=True)
+    address = models.CharField(max_length=500, blank=False, null=False)
     location_url = models.CharField(max_length=100, blank=True, null=True)
     nature_of_business = models.CharField(max_length=200, blank=True, null=True)
     start_year = models.DateField(
