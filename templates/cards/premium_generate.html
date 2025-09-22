@@ -1,103 +1,369 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Details</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- You can add your CSS links here -->
-</head>
 <body>
     <div class="container">
-        <!-- Messages -->
-        {% if messages %}
-            <div class="messages">
+        <div class="header">
+            <h3>Create Premium Card</h3>
+            <p>Fill out the form below to generate your premium society card</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="alert-container">
+            {% if messages %}
+            <div class="container-fluid p-0 m-0">
                 {% for message in messages %}
-                    <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}">
-                        {{ message }}
+                    <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Hey <b>{{ request.user.username }}</b>! {{ message }}
                     </div>
                 {% endfor %}
             </div>
-        {% endif %}
-
-        <!-- Premium Details Section -->
-        <div class="premium-details-card">
-            <h1>Premium Details</h1>
-            
-            <div class="profile">
-                <h2>{{ premium_details.name }}</h2>
-                <img src="{{ premium_details.profileimage.url }}" alt="{{ premium_details.name }}'s Profile Image" class="profile-image">
-            </div>
-            
-            <div class="details">
-                <p><strong>Personal Email:</strong> {{ premium_details.email }}</p>
-                <p><strong>Phone:</strong> {{ premium_details.phone }}</p>
-                {% if premium_details.phone_secondary %}
-                    <p><strong>Secondary Phone:</strong> {{ premium_details.phone_secondary }}</p>
-                {% endif %}
-                <p><strong>WhatsApp No:</strong> {{ premium_details.whatsapp_no }}</p>
-                <p><strong>Company Name:</strong> {{ premium_details.companyname }}</p>
-                <p><strong>Company Email:</strong> {{ premium_details.company_email }}</p>
-                <p><strong>Website:</strong> <a href="{{ premium_details.website }}" target="_blank">{{ premium_details.website }}</a></p>
-                <p><strong>Company Website:</strong> <a href="{{ premium_details.company_website }}" target="_blank">{{ premium_details.company_website }}</a></p>
-                <p><strong>Address:</strong> {{ premium_details.address }}</p>
-                <p><strong>Nature of Business:</strong> {{ premium_details.nature_of_business }}</p>
-            </div>
-
-            <!-- Specialities -->
-            <div class="specialities">
-                <h3>Specialities</h3>
-                {% if premium_details.speciality_1 %}
-                    <p><strong>Speciality 1:</strong> {{ premium_details.speciality_1 }}</p>
-                {% endif %}
-                {% if premium_details.speciality_2 %}
-                    <p><strong>Speciality 2:</strong> {{ premium_details.speciality_2 }}</p>
-                {% endif %}
-                {% if premium_details.speciality_3 %}
-                    <p><strong>Speciality 3:</strong> {{ premium_details.speciality_3 }}</p>
-                {% endif %}
-            </div>
-
-            <!-- Gallery Section -->
-            <div class="gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    {% if premium_details.gallery_imagePrimium1 %}
-                        <img src="{{ premium_details.gallery_imagePrimium1.url }}" alt="Gallery Image 1">
-                    {% endif %}
-                    {% if premium_details.gallery_imagePrimium2 %}
-                        <img src="{{ premium_details.gallery_imagePrimium2.url }}" alt="Gallery Image 2">
-                    {% endif %}
-                    {% if premium_details.gallery_imagePrimium3 %}
-                        <img src="{{ premium_details.gallery_imagePrimium3.url }}" alt="Gallery Image 3">
-                    {% endif %}
-                    {% if premium_details.gallery_imagePrimium4 %}
-                        <img src="{{ premium_details.gallery_imagePrimium4.url }}" alt="Gallery Image 4">
-                    {% endif %}
-                    {% if premium_details.gallery_imagePrimium5 %}
-                        <img src="{{ premium_details.gallery_imagePrimium5.url }}" alt="Gallery Image 5">
-                    {% endif %}
-                    {% if premium_details.gallery_imagePrimium6 %}
-                        <img src="{{ premium_details.gallery_imagePrimium6.url }}" alt="Gallery Image 6">
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- Last Message -->
-            {% if premium_details.last_message %}
-                <div class="last-message">
-                    <h3>Last Message</h3>
-                    <p>{{ premium_details.last_message }}</p>
-                </div>
             {% endif %}
+            
+            <div class="alert alert-success" style="display: none;">
+                <button type="button" class="close" onclick="this.parentElement.style.display='none'">
+                    <span>&times;</span>
+                </button>
+                <strong>Success!</strong> Your form has been submitted successfully.
+            </div>
         </div>
 
-        <!-- Back to Home Button -->
-        <div class="back-home">
-            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
         </div>
+
+        <form id="premiumForm" class="form-container" action="{% if premium_detail %}{% url 'cards:premium_form' premium_detail.id %}{% else %}{% url 'cards:premium_form' %}{% endif %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-grid">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Personal Information</h4>
+                    
+                    <div class="form-group">
+                        <label for="name" class="required">First Name</label>
+                        {{ form.name }}
+                        {% for error in form.name.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pinterest_url">Middle Name</label>
+                        {{ form.pinterest_url }}
+                        {% for error in form.pinterest_url.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role" class="required">Last Name</label>
+                        {{ form.role }}
+                        {% for error in form.role.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_year" class="required">Date of Birth</label>
+                        {{ form.start_year }}
+                        <small class="form-text text-muted">Choose your date of birth.</small>
+                        {% for error in form.start_year.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="speciality_1" class="required">Gender</label>
+                        {{ form.speciality_1 }}
+                        {% for error in form.speciality_1.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="speciality_2" class="required">Age Group</label>
+                        {{ form.speciality_2 }}
+                        {% for error in form.speciality_2.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Contact Information</h4>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Village</label>
+                        {{ form.website }}
+                        {% for error in form.website.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instagram_url">Instagram URL</label>
+                        {{ form.instagram_url }}
+                        {% for error in form.instagram_url.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Society Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Society Information</h4>
+                    
+                    <div class="form-group">
+                        <label for="companyname" class="required">Society Name</label>
+                        {{ form.companyname }}
+                        {% for error in form.companyname.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="required">Flat Number</label>
+                        {{ form.address }}
+                        {% for error in form.address.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nature_of_business">Wing</label>
+                        {{ form.nature_of_business }}
+                        {% for error in form.nature_of_business.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Document Upload Section -->
+                <div class="form-section">
+                    <h4 class="section-title">Document Upload</h4>
+                    
+                    <div class="form-group">
+                        <label for="profileimage" class="required">Profile Picture</label>
+                        <div class="file-input-wrapper">
+                            {{ form.profileimage }}
+                            <button type="button" class="file-input-button" onclick="document.getElementById('id_profileimage').click()">
+                                📷 Choose Profile Picture
+                            </button>
+                        </div>
+                        <div class="file-preview" id="profilePreview">
+                            {% if premium_detail.profileimage %}
+                                <small class="form-text text-muted">Current file: {{ premium_detail.profileimage.name }}</small>
+                            {% endif %}
+                        </div>
+                        {% for error in form.profileimage.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companylogo">Background Image</label>
+                        <div class="file-input-wrapper">
+                            {{ form.companylogo }}
+                            <button type="button" class="file-input-button" onclick="document.getElementById('id_companylogo').click()">
+                                🖼️ Choose Background Image
+                            </button>
+                        </div>
+                        <div class="file-preview" id="backgroundPreview">
+                            {% if premium_detail.companylogo %}
+                                <small class="form-text text-muted">Current file: {{ premium_detail.companylogo.name }}</small>
+                            {% endif %}
+                        </div>
+                        {% for error in form.companylogo.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gallery_imagePrimium1" class="required">Address Proof</label>
+                        <div class="file-input-wrapper">
+                            {{ form.gallery_imagePrimium1 }}
+                            <button type="button" class="file-input-button" onclick="document.getElementById('id_gallery_imagePrimium1').click()">
+                                📄 Choose Address Proof
+                            </button>
+                        </div>
+                        <div class="file-preview" id="addressProofPreview">
+                            {% if premium_detail.gallery_imagePrimium1 %}
+                                <small class="form-text text-muted">Current file: {{ premium_detail.gallery_imagePrimium1.name }}</small>
+                            {% endif %}
+                        </div>
+                        {% for error in form.gallery_imagePrimium1.errors %}
+                            <div class="form-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="btn-submit">
+                    🚀 Create Premium Card
+                </button>
+            </div>
+        </form>
     </div>
 
+    <script>
+        // Form validation and animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('premiumForm');
+            const progressFill = document.getElementById('progressFill');
+            const requiredFields = form.querySelectorAll('[required]');
+            
+            // Update progress bar based on filled fields
+            function updateProgress() {
+                let filledFields = 0;
+                requiredFields.forEach(field => {
+                    if (field.type === 'file') {
+                        if (field.files.length > 0) filledFields++;
+                    } else if (field.value.trim() !== '') {
+                        filledFields++;
+                    }
+                });
+                
+                const progress = (filledFields / requiredFields.length) * 100;
+                progressFill.style.width = progress + '%';
+            }
+
+            // Add event listeners to all form inputs
+            form.addEventListener('input', updateProgress);
+            form.addEventListener('change', updateProgress);
+
+            // File input handling with preview
+            const fileInputs = ['id_profileimage', 'id_companylogo', 'id_gallery_imagePrimium1'];
+            fileInputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                const previewId = inputId.replace('id_', '').replace('image', 'Preview').replace('Primium', '');
+                const preview = document.getElementById(previewId);
+                
+                if (input) {
+                    input.addEventListener('change', function() {
+                        if (this.files && this.files[0]) {
+                            const fileName = this.files[0].name;
+                            const fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
+                            
+                            preview.innerHTML = `
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span>📁</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: #059669;">${fileName}</div>
+                                        <div style="font-size: 0.875rem; color: #6b7280;">${fileSize} MB</div>
+                                    </div>
+                                </div>
+                            `;
+                            preview.style.display = 'block';
+                        }
+                        updateProgress();
+                    });
+                }
+            });
+
+            // Phone number validation
+            const phoneInput = document.getElementById('id_phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    if (this.value.length > 10) {
+                        this.value = this.value.slice(0, 10);
+                    }
+                });
+            }
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const errors = form.querySelectorAll('.form-error');
+                
+                // Hide all errors first
+                errors.forEach(error => error.style.display = 'none');
+                
+                // Validate required fields
+                requiredFields.forEach(field => {
+                    let fieldValid = false;
+                    
+                    if (field.type === 'file') {
+                        fieldValid = field.files.length > 0;
+                    } else if (field.type === 'tel') {
+                        fieldValid = field.value.length === 10 && /^\d{10}$/.test(field.value);
+                    } else {
+                        fieldValid = field.value.trim() !== '';
+                    }
+                    
+                    if (!fieldValid) {
+                        isValid = false;
+                        const errorDiv = field.parentElement.querySelector('.form-error');
+                        if (errorDiv) {
+                            errorDiv.style.display = 'block';
+                            field.focus();
+                        }
+                    }
+                });
+                
+                if (isValid) {
+                    // Show success message
+                    const alertContainer = document.getElementById('alert-container');
+                    const successAlert = alertContainer.querySelector('.alert-success');
+                    successAlert.style.display = 'block';
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Simulate form processing
+                    const submitBtn = form.querySelector('.btn-submit');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '⏳ Processing...';
+                    submitBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        // Submit the form after processing animation
+                        form.submit();
+                    }, 3000);
+                    
+                    console.log('Form submitted successfully!');
+                } else {
+                    // Shake the form
+                    form.style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        form.style.animation = '';
+                    }, 500);
+                }
+            });
+
+            // Initialize progress
+            updateProgress();
+        });
+
+        // Smooth scroll animation for form sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.form-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
 </body>
-</html>

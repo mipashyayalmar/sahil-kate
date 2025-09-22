@@ -187,8 +187,8 @@ def premium_form(request, premium_id=None):
         form = PremiumDetailForm(request.POST or None, request.FILES or None)
 
     if not request.user.is_authenticated:
-        messages.error(request, "You need to be logged in to create or update a premium card.")
-        return redirect('user:signin')
+        messages.error(request, "You need to be sign-up in to create your pass.")
+        return redirect('user:signup')
 
     if request.method == 'POST':
         if form.is_valid():
