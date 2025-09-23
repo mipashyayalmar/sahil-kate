@@ -604,12 +604,6 @@
 
                     <div class="form-group">
                         <label for="companylogo">Background Image</label>
-                        <div class="file-input-wrapper">
-                            {{ form.companylogo }}
-                            <button type="button" class="file-input-button" onclick="document.getElementById('id_companylogo').click()">
-                                🖼️ Choose Background Image
-                            </button>
-                        </div>
                         <div class="file-preview" id="backgroundPreview">
                             {% if premium_detail.companylogo %}
                                 <small class="form-text text-muted">Current file: {{ premium_detail.companylogo.name }}</small>

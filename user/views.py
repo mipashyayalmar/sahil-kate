@@ -39,7 +39,7 @@ def signup(request):
             request.session['username'] = username
             request.session.save()
             login(request, authenticated_user)
-            return redirect('/')  # Redirect to homepage after successful signup and login
+            return redirect('cards:premium_form')  # Redirect to homepage after successful signup and login
         
         return render(request, 'user/signup.html', {'message': 'Account created but failed to log in automatically. Please sign in.'})
     
