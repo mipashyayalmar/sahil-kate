@@ -26,6 +26,11 @@ import datetime
 def generatePremiumForm(request, id):
     # Fetch the existing Detail_Primium object
     premium_detail = get_object_or_404(Detail_Primium, id=id)
+    
+    # Allow access if user is admin/staff OR if they own the card
+    if not (request.user.is_superuser or request.user.is_staff or premium_detail.created_for == request.user):
+        messages.error(request, 'You are not authorized to access this card.')
+        return redirect('home')
 
     if request.method == 'POST':
         # Bind the form with POST data and FILES, and associate it with the instance
@@ -167,7 +172,6 @@ def form(req):
     if req.session.get('username') is None:
         return render(req, 'user/signin.html', {'message': "You need to sign in to generate Cards"})
     return render(req, 'cards/form.html')
-from django.shortcuts import render, redirect, get_object_or_404
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
@@ -213,7 +217,6 @@ def premium_form(request, premium_id=None):
     return render(request, 'cards/premium_form.html', context)
     
 
-
 def view(req, id, theme):
     """
     View function to render normal cards.
@@ -231,11 +234,17 @@ def view_premium(req, id, theme):
     """
     View function to render premium cards.
     """
-    details = get_object_or_404(Detail_Primium, id=id)
+    premium_detail = get_object_or_404(Detail_Primium, id=id)
+    
+    # Allow access if user is admin/staff OR if they own the card
+    if not (req.user.is_superuser or req.user.is_staff or premium_detail.created_for == req.user):
+        messages.error(req, 'You are not authorized to view this premium card.')
+        return redirect('home')
+    
     template_name = 'cards/premium_card' + str(theme) + '.html'
     
     return render(req, template_name, {
-        'premium_detail': details,
+        'premium_detail': premium_detail,
         'id': id,
         'theme': theme
     })
@@ -244,6 +253,12 @@ def view_premium(req, id, theme):
 @login_required
 def view_premium_card(req, id, theme):
     premium_detail = get_object_or_404(Detail_Primium, id=id)
+    
+    # Allow access if user is admin/staff OR if they own the card
+    if not (req.user.is_superuser or req.user.is_staff or premium_detail.created_for == req.user):
+        messages.error(req, 'You are not authorized to view this premium card.')
+        return redirect('home')
+    
     return render(req, 'cards/premium_card{}.html'.format(theme), {
         'premium_detail': premium_detail,
         'id': id,
@@ -260,11 +275,16 @@ from django.contrib.auth.decorators import login_required
 def download_premium(req, id, theme):
     premium_detail = get_object_or_404(Detail_Primium, id=id)
     
+    # Allow access if user is admin/staff OR if they own the card
+    if not (req.user.is_superuser or req.user.is_staff or premium_detail.created_for == req.user):
+        messages.error(req, 'You are not authorized to download this premium card.')
+        return redirect('home')
+    
     user = User.objects.get(username=req.user.username)
     
-    if user.paid_member:
+    # Skip payment check for admin users
+    if not (req.user.is_superuser or req.user.is_staff) and not user.paid_member:
         return redirect('payment:process_payment')
-    
     
     if req.headers.get('X-Requested-With') == 'XMLHttpRequest':
         image_url = premium_detail.image.url if hasattr(premium_detail, 'image') and premium_detail.image else None
@@ -284,18 +304,77 @@ def download_premium(req, id, theme):
 
 def download(req, id, theme):
     details = get_object_or_404(Detail, id=id)
+    
+    # Allow access if user is admin/staff OR if they own the card
+    if not (req.user.is_superuser or req.user.is_staff or details.created_for == req.user):
+        messages.error(req, 'You are not authorized to download this card.')
+        return redirect('home')
+    
     if 'username' in req.session:
         user = User.objects.get(username=req.session['username'])
-        if not user.paid_member:
+        
+        # Skip payment check for admin users
+        if not (req.user.is_superuser or req.user.is_staff) and not user.paid_member:
             return redirect('payment:process_payment')
+            
         return render(req, 'cards/card' + str(theme) + '.html', {'details': details, 'id': id, 'theme': theme, "paidmember": user.paid_member})
+    
     return render(req, 'cards/card' + str(theme) + '.html', {'details': details, 'id': id, 'theme': theme, "alert": "You need to sign in to download the card"})
 
 def closead(req, id, theme):
     details = get_object_or_404(Detail, id=id)
+    
+    # Allow access if user is admin/staff OR if they own the card
+    if not (req.user.is_superuser or req.user.is_staff or details.created_for == req.user):
+        messages.error(req, 'You are not authorized to access this card.')
+        return redirect('home')
+    
     if 'username' in req.session:
         user = User.objects.get(username=req.session['username'])
-        if not user.paid_member:
+        
+        # Skip payment check for admin users
+        if not (req.user.is_superuser or req.user.is_staff) and not user.paid_member:
             return redirect('payment:process_payment')
+            
         return render(req, 'cards/card' + str(theme) + '.html', {'details': details, 'id': id, 'theme': theme, "paidmember": user.paid_member})
+    
     return redirect('user:signin')
+
+# New function for admin to view any premium card
+@login_required
+def admin_view_premium_card(request, id, theme):
+    """
+    Special view for admin to view any premium card without restrictions
+    """
+    if not (request.user.is_superuser or request.user.is_staff):
+        messages.error(request, 'You are not authorized to access this page.')
+        return redirect('home')
+    
+    premium_detail = get_object_or_404(Detail_Primium, id=id)
+    
+    return render(request, f'cards/premium_card{theme}.html', {
+        'premium_detail': premium_detail,
+        'id': id,
+        'theme': theme,
+        'is_admin_view': True  # Flag to indicate admin is viewing
+    })
+
+# New function for admin to download any premium card
+@login_required
+def admin_download_premium(request, id, theme):
+    """
+    Special view for admin to download any premium card without payment restrictions
+    """
+    if not (request.user.is_superuser or request.user.is_staff):
+        messages.error(request, 'You are not authorized to access this page.')
+        return redirect('home')
+    
+    premium_detail = get_object_or_404(Detail_Primium, id=id)
+    
+    return render(request, f'cards/premium_card{theme}.html', {
+        'premium_detail': premium_detail,
+        'id': id,
+        'theme': theme,
+        'is_admin_view': True,
+        'paidmember': True  # Force paid member status for admin
+    })

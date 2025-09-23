@@ -356,15 +356,20 @@
                         <div class="card-shine"></div>
                         <a href="{% url 'cards:view_premium_card' premium_detail.id 1   %}">
                         <div class="card-content">
+                             {% if not user.is_superuser %}
                             <div class="card-title">View My Smart Card</div>
-                            <div class="card-subtitle">Premium Edition</div>
+                            <div class="card-subtitle">Checkout</div>
+                            {% else %}
+                            <div class="card-title">Print This Smart Card</div>
+                            <div class="card-subtitle">Checkout</div>
+                            {% endif %}
                         </div>
                       </a>
                     </div>
                 </div>
                 
                 <div class="collection-info">
-                    <h3><i class="fas fa-star text-warning me-2"></i>Your Premium Card is Ready!</h3>
+                    <h3><i class="fas fa-star text-warning me-2"></i>Your  Card is Ready!</h3>
                     <p class="lead text-muted">Kindly visit our office to collect your professionally designed event passes.</p>
                 </div>
             </div>
@@ -411,7 +416,7 @@
                         <i class="fas fa-globe"></i>
                         <div>
                             <strong>Website:</strong><br>
-                            https://maps.app.goo.gl/vCNaaNokcnY3V76e6?g_st=iw
+                            <p>https://anitataikate.in/</p>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navaratri Dandiya</title>
+<link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-512x512.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #008445;
+            --accent-color: #4ecdc4;
+            --admin-color: #9c27b0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .profile-container {
+            background: white;
+            border-radius: 15px;
+            margin: 30px auto;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .back-btn {
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--admin-color), #ba68c8);
+            border: none;
+            color: white;
+        }
+        .card {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-download {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-container">
+            <a href="{% url 'profile' %}" class="btn back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Admin Dashboard
+            </a>
+            
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h2><i class="fas fa-user"></i> User Profile: {{ user_profile.username }}</h2>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Card Generated date:</strong> {{ user_profile.date_joined|date:"F d, Y" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3><i class="fas fa-id-card-alt"></i> Printing Card ({{ cards_detail.count }})</h3>
+            {% if cards_detail %}
+                <div class="row">
+                    {% for card in cards_detail %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-id-card fa-3x mb-3" style="color: #ff9800;"></i>
+                                    <h5 class="card-title">print your card {{ forloop.counter }}</h5>
+                                    {% if card.id %}
+                                        <a href="{% url 'cards:generate_premium_form' card.id %}" class="btn btn-download btn-sm">
+                                            <i class="fas fa-print"></i> Print {{ user_profile.username }} Card
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">Card ID not available</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>  cards found for this user.
+                </div>
+            {% endif %}
+            
+            <h3><i class="fas fa-credit-card"></i> Regular Cards ({{ cards.count }})</h3>
+            {% if cards %}
+                <div class="row">
+                    {% for card in cards %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-credit-card fa-3x mb-3" style="color: #008445;"></i>
+                                    <h5 class="card-title">Regular Card {{ forloop.counter }}</h5>
+                                    <span class="text-muted">Regular card download</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Regular cards found  this user.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

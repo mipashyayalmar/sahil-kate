@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ premium_detail.name }} - Grand Dandiya estival 3.0 </title>
+    <title>{{ premium_detail.name }} - Grand Dandiya Festival 2025</title>
     <link rel="shortcut icon" href="{% static 'img/favicon_io/android-chrome-512x512.png' %}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -38,6 +38,7 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
         }
         
         .header h3 {
@@ -51,7 +52,30 @@
             opacity: 0.9;
         }
         
-        /* Card Container */
+        /* Download Button */
+        .download-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Card Container (Mobile View) */
         .card-container {
             display: flex;
             flex-direction: column;
@@ -189,7 +213,99 @@
             font-size: 14px;
         }
         
-        /* Responsive */
+        /* Identity Card Layout (Hidden, for Admin Download) */
+        .id-card-container {
+            display: none; /* Hidden by default */
+            width: 337px; /* 85.60mm at 300 DPI */
+            height: 213px; /* 53.98mm at 300 DPI */
+            background: white;
+            border: 2px solid #ff6e7f;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 10px;
+            line-height: 1.2;
+            position: relative;
+        }
+        
+        .id-card-header {
+            background: linear-gradient(135deg, #ff6e7f 0%, #bf5af2 100%);
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .id-card-content {
+            display: flex;
+            padding: 10px;
+        }
+        
+        .id-card-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff6e7f;
+            margin-right: 10px;
+        }
+        
+        .id-card-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .id-card-details p {
+            margin: 2px 0;
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+        .id-card-qr {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+        }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            font-size: 18px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 5px solid white;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive (Mobile View) */
         @media (max-width: 768px) {
             .info-grid {
                 grid-template-columns: 1fr;
@@ -206,21 +322,56 @@
             .profile-name {
                 font-size: 24px;
             }
+            
+            .download-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 15px;
+                align-self: center;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: none;
+            }
+            .container, .download-btn, .contact-buttons, .footer {
+                display: none;
+            }
+            .id-card-container {
+                display: block !important;
+                margin: 0;
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Generating your digital pass...</p>
+    </div>
+    
+    <!-- Mobile Pass Container -->
+    <div class="container" id="passContainer">
         <div class="header">
-            <h3>Grand Dandiya estival 3.0 </h3>
-            <p>Your digital identity in our community</p>
+            <h3>Grand Dandiya Festival 2025</h3>
+            <p>Your Smart Digital Pass</p>
+            {% if user.is_superuser %}
+            <button class="download-btn" id="downloadBtn">
+                <i class="fa fa-download"></i> Download ID Card (JPG)
+            </button>
+            {% endif %}
         </div>
         
         <div class="card-container">
             <div class="profile-section">
                 <img src="{% if premium_detail.profileimage %}{{ premium_detail.profileimage.url }}{% else %}https://via.placeholder.com/150{% endif %}" 
                      alt="Profile Image" class="profile-image">
-                <h1 class="profile-name">{{ premium_detail.name }} {% if premium_detail.pinterest_url %}{{ premium_detail.pinterest_url }}{% endif %} {{ premium_detail.role }}</h1>
+                <h1 class="profile-name">{{ premium_detail.name }}</h1>
                 <p class="profile-role">Resident of {{ premium_detail.companyname }}</p>
             </div>
             
@@ -320,12 +471,35 @@
         
         <div class="footer">
             <p>© 2025 {{ premium_detail.companyname }}. All rights reserved.</p>
-            <p>AnitaTai Sandeep Kate Initiates Grand Dandiya Festival 2020 (3.0)</p>
+            <p>Anitatai Sandeep Kate Initiates Grand Dandiya Festival 2025</p>
+        </div>
+    </div>
+    
+    <!-- Identity Card Container (Hidden, for Admin Download) -->
+    <div class="id-card-container" id="idCardContainer">
+        <div class="id-card-header">
+            Mrs.Anitatai Sandeep Kate Initiates <br>Grand Dandiya Festival 2025
+        </div>
+        <div class="id-card-content">
+            <img src="{% if premium_detail.profileimage %}{{ premium_detail.profileimage.url }}{% else %}https://via.placeholder.com/80{% endif %}" 
+                 alt="Profile Image" class="id-card-image">
+            <div class="id-card-details">
+                <p><strong>Name:</strong> {{ premium_detail.name }}</p>
+                <p><strong>Society:</strong> {{ premium_detail.companyname }}</p>
+                <p><strong>Flat:</strong> {{ premium_detail.address }}</p>
+                <p><strong>Wing:</strong> {{ premium_detail.nature_of_business }}</p>
+                <p><strong>Phone:</strong> {{ premium_detail.phone }}</p>
+                <p><strong>DOB:</strong> {{ premium_detail.start_year }}</p>
+            </div>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data={{ request.build_absolute_uri|urlencode }}" 
+                 alt="QR Code" class="id-card-qr">
         </div>
     </div>
 
+    <!-- Include html2canvas library -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
     <script>
-        // Simple animation for page elements
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.info-section, .profile-section, .qr-section');
             
@@ -339,7 +513,59 @@
                     element.style.transform = 'translateY(0)';
                 }, 100 + (index * 200));
             });
+            
+            // Download button functionality (for admin)
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    downloadPassAsJPG();
+                });
+            }
         });
+        
+        // Function to download the ID card as JPG
+        function downloadPassAsJPG() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const idCardContainer = document.getElementById('idCardContainer');
+            
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+            
+            // Temporarily show the ID card container for rendering
+            idCardContainer.style.display = 'block';
+            
+            // Use html2canvas to capture the ID card
+            html2canvas(idCardContainer, {
+                scale: 3, // Higher resolution for print (300 DPI equivalent)
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff',
+                width: 337, // 85.60mm at 300 DPI
+                height: 213 // 53.98mm at 300 DPI
+            }).then(function(canvas) {
+                // Convert canvas to image data URL
+                const imageData = canvas.toDataURL('image/jpeg', 0.95);
+                
+                // Create a temporary link to download the image
+                const link = document.createElement('a');
+                link.download = 'Grand_Dandiya_IDCard_{{ premium_detail.name }}.jpg';
+                link.href = imageData;
+                
+                // Trigger the download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Hide the ID card container and loading overlay
+                idCardContainer.style.display = 'none';
+                loadingOverlay.style.display = 'none';
+            }).catch(function(error) {
+                console.error('Error generating ID card image:', error);
+                alert('Error generating the ID card image. Please try again.');
+                idCardContainer.style.display = 'none';
+                loadingOverlay.style.display = 'none';
+            });
+        }
     </script>
 </body>
 </html>
